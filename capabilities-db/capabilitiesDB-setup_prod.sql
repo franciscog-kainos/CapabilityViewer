@@ -1,0 +1,50 @@
+DROP DATABASE IF EXISTS capabilitiesDB_prod;
+CREATE DATABASE IF NOT EXISTS capabilitiesDB_prod;
+USE capabilitiesDB_prod;
+
+CREATE TABLE IF NOT EXISTS Job_Family(
+	job_family_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    job_family_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Band(
+	band_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    band_name VARCHAR(50) NOT NULL,
+    band_competency TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS User(
+	user_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	user_f_name VARCHAR(50) NOT NULL,
+    user_l_name VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS Role(
+	role_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    role_name VARCHAR(50) NOT NULL,
+    role_summary VARCHAR(200) NOT NULL,
+    role_training VARCHAR(200) NOT NULL,
+    role_responsibilities VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Capability(
+	capability_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    capability_name VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE User
+ADD role_id SMALLINT UNSIGNED NOT NULL,
+ADD FOREIGN KEY(role_id) REFERENCES Role(role_id);
+
+ALTER TABLE Role
+ADD capability_id SMALLINT UNSIGNED NOT NULL,
+ADD band_id SMALLINT UNSIGNED NOT NULL,
+ADD FOREIGN KEY(capability_id) REFERENCES Capability(capability_id),
+ADD FOREIGN KEY(band_id) REFERENCES Band(band_id);
+
+ALTER TABLE Capability
+ADD leader_id SMALLINT UNSIGNED UNIQUE,
+ADD job_family_id SMALLINT UNSIGNED NOT NULL,
+ADD FOREIGN KEY(leader_id) REFERENCES User(user_id),
+ADD FOREIGN KEY(job_family_id) REFERENCES Job_Family(job_family_id);
+
