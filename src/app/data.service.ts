@@ -4,6 +4,7 @@ import { JobFamily } from './JobFamily';
 import { Capability } from './Capability';
 import { Band } from './Band';
 import { Role } from './Role';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -11,68 +12,34 @@ import { Role } from './Role';
 })
 export class DataService {
 
-  jobFamilies: JobFamily[];
-  capabilities: Capability[];
-  bands: Band[];
-  roles: Role[];
-  role: Role = new Role();
-
   constructor(private http: HttpClient) { 
+    this.getEverything();
+  }
+
+  public getEverything(){
     this.getAllJobFamilies();
+    this.getAllCapabilities();
+    this.getAllBands();
+    this.getAllRoles();
   }
 
-  
-  getAllJobFamilies() : void {
-    this.http.get<JobFamily[]>('/api/families').subscribe(res => {
-      console.log(res)
-      if(res[0] == null){
-        console.error(res);
-      } else {
-        this.jobFamilies = res;
-      }
-    });
+  public getAllJobFamilies() : Observable<JobFamily[]> {
+    return this.http.get<JobFamily[]>('/api/families');
   }
 
-  getJobFamilies() : JobFamily[]{
-    return this.jobFamilies
+  public getAllCapabilities() : Observable<Capability[]> {
+    return this.http.get<Capability[]>('/api/capabilities');
   }
 
-  getAllCapabilities() : void {
-    this.http.get<Capability[]>('/api/capabilities').subscribe(res => {
-      console.log(res)
-      if(res[0] == null){
-        console.error(res);
-      } else {
-        this.capabilities = res;
-      }
-    });
+  public getAllBands() : Observable<Band[]> {
+    return this.http.get<Band[]>('/api/bands');
   }
 
-  getAllBands() : void {
-    this.http.get<Band[]>('/api/bands').subscribe(res => {
-      console.log(res)
-      if(res[0] == null){
-        console.error(res);
-      } else {
-        this.bands = res;
-      }
-    });
+  public getAllRoles() : Observable<Role[]> {
+    return this.http.get<Role[]>('/api/roles');
   }
 
-  getAllRoles() : void {
-    this.http.get<Role[]>('/api/roles').subscribe(res => {
-      console.log(res)
-      if(res[0] == null){
-        console.error(res);
-      } else {
-        this.roles = res;
-      }
-    });
-  }
-
-  getRole(id) : void {
-    this.http.get<Role>('/api/role/' + id).subscribe(role => {
-      this.role = role;
-    });
+  public getRole(id) : Observable<JobFamily[]> {
+    return this.http.get<JobFamily[]>('/api/role' + id);
   }
 }
