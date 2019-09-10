@@ -1,5 +1,16 @@
 <p>table-page works!</p>
 
+
 <p>
     <a (click)="goBack()">Go Back via TypeScript</a> | <a [routerLink]="['/']">Go Back via Markup</a>
 </p>
+
+<div class="table">
+<ag-grid-angular 
+    style="width: 1500px; height: 500px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    >
+</ag-grid-angular>
+</div>
