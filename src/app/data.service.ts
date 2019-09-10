@@ -17,11 +17,13 @@ export class DataService {
   roles: Role[];
   role: Role = new Role();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.getAllJobFamilies();
+  }
 
   
   getAllJobFamilies() : void {
-    this.http.get<JobFamily[]>('/api/jobfamilies').subscribe(res => {
+    this.http.get<JobFamily[]>('/api/families').subscribe(res => {
       console.log(res)
       if(res[0] == null){
         console.error(res);
@@ -29,6 +31,10 @@ export class DataService {
         this.jobFamilies = res;
       }
     });
+  }
+
+  getJobFamilies() : JobFamily[]{
+    return this.jobFamilies
   }
 
   getAllCapabilities() : void {
