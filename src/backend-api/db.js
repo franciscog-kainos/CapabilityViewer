@@ -15,7 +15,7 @@ db.connect(function(err) {
 
 exports.getAllRoles = function(callback) {
 
-    db.query('SELECT * FROM Role', function(err, rows) {
+    db.query('SELECT * FROM role', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
