@@ -24,9 +24,16 @@ app.get('/', function(req, res) {
     });
 
 app.get('/roles', function(req, res) {
-    db.getAllRoles(req.body, function(err) {
+    db.getAllRoles(function(err, rows) {
         if (err) return handleError(err, req, res);
-        res.send(200);
+        res.send(rows);
+    });
+});
+
+app.get('/families', function(req, res) {
+    db.getAllJobFamilies(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
     });
 });
 

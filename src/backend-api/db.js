@@ -8,19 +8,39 @@ const db = mysql.createConnection({
   database: process.env.DB_DATABASE
 });
 
-// db.connect(function(err) {
-//     if (err) throw err;
-//     console.log('Connected to mysql');
-// });
+db.connect(function(err) {
+    if (err) throw err;
+    console.log('Connected to mysql');
+});
 
 exports.getAllRoles = function(callback) {
 
-  console.log("roles endpoint hit!!!");
-  
+    db.query('SELECT * FROM Role', function(err, rows) {
+        if (err) return callback(err, null);
+        callback(err, rows);
+    });
+};
 
-    // db.query('SELECT * FROM ', function(err, rows) {
-    //     if (err) return callback(err, null);
-    //     callback(err, rows);
-    // });
+exports.getAllCapabilities = function(callback) {
+	
+    db.query('SELECT * FROM Capability', function(err, rows) {
+        if (err) return callback(err, null);
+        callback(err, rows);
+    });
+};
 
+exports.getAllBands = function(callback) {
+	
+    db.query('SELECT * FROM Band', function(err, rows) {
+        if (err) return callback(err, null);
+        callback(err, rows);
+    });
+};
+
+exports.getAllJobFamilies = function(callback) {
+	
+    db.query('SELECT * FROM Job_Family', function(err, rows) {
+        if (err) return callback(err, null);
+        callback(err, rows);
+    });
 };
