@@ -1,3 +1,2 @@
-export class Role {
-    
+export class Band {
 }
