@@ -26,7 +26,7 @@ export class DataService {
       if(res[0] == null){
         console.error(res);
       } else {
-        this.roles = res;
+        this.jobFamilies = res;
       }
     });
   }
@@ -37,7 +37,7 @@ export class DataService {
       if(res[0] == null){
         console.error(res);
       } else {
-        this.roles = res;
+        this.capabilities = res;
       }
     });
   }
@@ -48,7 +48,7 @@ export class DataService {
       if(res[0] == null){
         console.error(res);
       } else {
-        this.roles = res;
+        this.bands = res;
       }
     });
   }
