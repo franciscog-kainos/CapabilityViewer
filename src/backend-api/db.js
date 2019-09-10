@@ -15,7 +15,7 @@ db.connect(function(err) {
 
 exports.getAllRoles = function(callback) {
 
-    db.query('SELECT * FROM role', function(err, rows) {
+    db.query('SELECT * FROM Role', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
@@ -23,7 +23,7 @@ exports.getAllRoles = function(callback) {
 
 exports.getAllCapabilities = function(callback) {
 	
-    db.query('SELECT * FROM ', function(err, rows) {
+    db.query('SELECT * FROM Capability', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
@@ -31,7 +31,7 @@ exports.getAllCapabilities = function(callback) {
 
 exports.getAllBands = function(callback) {
 	
-    db.query('SELECT * FROM ', function(err, rows) {
+    db.query('SELECT * FROM Band', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
@@ -39,7 +39,7 @@ exports.getAllBands = function(callback) {
 
 exports.getAllJobFamilies = function(callback) {
 	
-    db.query('SELECT * FROM ', function(err, rows) {
+    db.query('SELECT * FROM Job_Family', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });

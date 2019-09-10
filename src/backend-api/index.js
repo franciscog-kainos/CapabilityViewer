@@ -30,6 +30,13 @@ app.get('/roles', function(req, res) {
     });
 });
 
+app.get('/families', function(req, res) {
+    db.getAllJobFamilies(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
