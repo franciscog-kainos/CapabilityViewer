@@ -1,17 +1,23 @@
-import { AppPage } from './app.po';
+import { LandingPage } from './landing-page.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+describe('Landing Page', () => {
+  let page: LandingPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new LandingPage();
   });
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to company-app!');
+    expect(page.getTitleText()).toEqual('Welcome to Career Lattice V2.0!');
   });
+
+  it('should redirect to table page when navigation button is clicked', () => {
+    page.clickTableNavigation();
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "table-page");
+  });
+
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
