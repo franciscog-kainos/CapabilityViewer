@@ -1,4 +1,4 @@
-require('dotenv').config({path: 'mysql.env'});
+require('dotenv').config({ path: 'mysql.env' });
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
@@ -8,8 +8,19 @@ const db = mysql.createConnection({
   database: process.env.DB_DATABASE
 });
 
-db.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to MySQL");
-});
+// db.connect(function(err) {
+//     if (err) throw err;
+//     console.log('Connected to mysql');
+// });
 
+exports.getAllRoles = function(callback) {
+
+  console.log("roles endpoint hit!!!");
+  
+
+    // db.query('SELECT * FROM ', function(err, rows) {
+    //     if (err) return callback(err, null);
+    //     callback(err, rows);
+    // });
+
+};
