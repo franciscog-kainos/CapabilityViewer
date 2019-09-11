@@ -8,24 +8,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageHeaderComponent,
-    ...AppComponents
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    RouterModule.forRoot(AppRoutes),
-    NgbModule,
-    HttpClientModule,
-    AgGridModule.withComponents([])
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PageHeaderComponent,
+        ...AppComponents
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        RouterModule.forRoot(AppRoutes),
+        NgbModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        AgGridModule.withComponents([])
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule { }
