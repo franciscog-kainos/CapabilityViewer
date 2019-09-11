@@ -11,7 +11,6 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-
 @NgModule({
   declarations: [
     AppComponent,
