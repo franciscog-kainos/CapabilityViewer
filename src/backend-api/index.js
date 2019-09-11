@@ -37,7 +37,7 @@ app.get('/families', function(req, res) {
     });
 });
 
-app.get('/band/:id', (req,res) => {
+app.get('/bands/:id', (req,res) => {
     db.getBand(req.params.id, (err,rows) => {
         if(err) return handleError(err);
         res.send(rows);

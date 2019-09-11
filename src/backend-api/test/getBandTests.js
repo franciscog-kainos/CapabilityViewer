@@ -1,7 +1,7 @@
 const assert = require('assert');
 const request = require('request');
 
-const API_URL = 'http://localhost:8002/bands/responsibilities';
+const API_URL = 'http://localhost:8002/bands';
 
 describe('Getting responsibilities for a band', function() {
 
