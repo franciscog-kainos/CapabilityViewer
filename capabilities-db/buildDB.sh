@@ -2,32 +2,33 @@
 
 # This script is meant to be run in the directory it's in.
 # Ensure the script has the correct running permissions. If not do: chmod +x buildDB.sh
-# Use: ./buildDB.sh <your_mysql_root_password>
+# Use: ./buildDB.sh
+# This script will generate a mysql.config file. The user is expected to change the parameters in this file according to
+# the users mysql setup.
 
 echo "Starting Script..."
 echo ""
 
-if [ $# -eq 0 ]
-  then
-    echo "No password to root supplied."
-    echo "./buildDB.sh <your_mysql_root_password>"
-    echo "If root has no password set use 'none' for the password"
+# Check if mysql.config file exists
+if [ ! -f "mysql.config" ]; then
+  touch mysql.config
+  { echo "[mysql]"; echo "user=root"; echo "password="; echo "database=capabilitiesDB_test"; } >> mysql.config
+  echo "Config file created. Continue? (username and password may not match your settings) (y/n)"
+  read -r CHOICE
+
+  if [ "$CHOICE" = "y" ]; then
+    echo "Continuing..."
+  else
+    echo "Exiting..."
     exit
-fi
-
-PASS=$1
-
-if [ $PASS = "none" ]
-  then
-    echo "Using empty password."
-    PASS=""
+  fi
 fi
 
 echo "Sourcing capabilitiesDB-setup_prod.sql..."
-mysql -u root --password="$PASS" -e "source capabilitiesDB-setup_prod.sql;"
+mysql --defaults-file="mysql.config" -e "source capabilitiesDB-setup_prod.sql;"
 
 echo "Populating capabilitiesDB-setup_prod..."
-mysql -u root --password="$PASS" -e "use capabilitiesDB_prod; source capabilitiesDB-populate.sql;"
+mysql --defaults-file="mysql.config" -e "source capabilitiesDB-populate.sql;"
 
 echo "Production Table Initialised!"
 
@@ -36,10 +37,10 @@ echo "==========================================================================
 echo ""
 
 echo "Sourcing capabilitiesDB_test.sql..."
-mysql -u root --password="$PASS" -e "source capabilitiesDB-setup_test.sql;"
+mysql --defaults-file="mysql.config" -e "source capabilitiesDB-setup_test.sql;"
 
 echo "Populating capabilitiesDB_test..."
-mysql -u root --password="$PASS" -e "use capabilitiesDB_test; capabilitiesDB-populate.sql;"
+mysql --defaults-file="mysql.config" -e "source capabilitiesDB-populate.sql;"
 
 echo "Test Table Initialised"
 
