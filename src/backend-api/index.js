@@ -39,7 +39,7 @@ app.get('/families', function(req, res) {
 
 app.get('/capabilities', function(req, res) {
   db.getCapabilityNames(function(err, rows) {
-      if (err) return handleError(err, req, res);
+if (err) return handleError(err, req, res);
       res.send(rows);
   });
 });
