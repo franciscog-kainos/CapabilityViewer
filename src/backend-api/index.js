@@ -37,6 +37,20 @@ app.get('/families', function(req, res) {
     });
 });
 
+app.get('/capabilities', function(req, res) {
+  db.getAllCapabilities(function(err, rows) {
+      if (err) return handleError(err, req, res);
+      res.send(rows);
+  });
+});
+
+app.get('/bands', function(req, res) {
+  db.getAllBands(function(err, rows) {
+      if (err) return handleError(err, req, res);
+      res.send(rows);
+  });
+});
+
 app.get('/bands/:id', (req,res) => {
     db.getBand(req.params.id, (err,rows) => {
         if(err) return handleError(err);

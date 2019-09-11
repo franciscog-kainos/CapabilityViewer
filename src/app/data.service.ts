@@ -4,7 +4,7 @@ import { JobFamily } from './JobFamily';
 import { Capability } from './Capability';
 import { Band } from './Band';
 import { Role } from './Role';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 
 @Injectable({
@@ -13,14 +13,15 @@ import { Observable } from 'rxjs';
 export class DataService {
 
   constructor(private http: HttpClient) { 
-    this.getEverything();
+    this.getAllFromDatabase();
   }
 
-  public getEverything(){
-    this.getAllJobFamilies();
-    this.getAllCapabilities();
-    this.getAllBands();
-    this.getAllRoles();
+  public getAllFromDatabase(): Observable<any[]> {
+    let jobFamilies = this.getAllJobFamilies();
+    let capabilities = this.getAllCapabilities();
+    let bands = this.getAllBands();
+    let roles = this.getAllRoles();
+    return forkJoin(jobFamilies, capabilities, bands, roles);
   }
 
   public getAllJobFamilies() : Observable<JobFamily[]> {
