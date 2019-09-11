@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from '../data.service';
 import { JobFamily } from '../JobFamily';
+import { Role } from '../Role';
+import { Capability } from '../Capability';
+import { Band } from '../Band';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'table-page',
@@ -12,6 +16,9 @@ import { JobFamily } from '../JobFamily';
 export class TablePageComponent implements OnInit {
 
   jobFamilies: JobFamily[];
+  roles: Role[];
+  bands: Band[];
+  capabilities: Capability[];
   data: DataService;
   rowData = [];
   columnDefs = [];
@@ -20,9 +27,13 @@ export class TablePageComponent implements OnInit {
   }
 
   constructor(private location: Location, data: DataService) {
-    data.getAllJobFamilies().subscribe(res => {
-      this.jobFamilies = res;
-      this.makeTheTable(this.jobFamilies);
+    data.getAllFromDatabase().subscribe(responseList => {
+      //DO EVERYTHING INSIDE SUBSCRIPTION
+      this.jobFamilies = responseList[0];
+      this.capabilities = responseList[1];
+      this.bands = responseList[2];
+      this.roles = responseList[3];
+      this.generateTable(this.jobFamilies, this.capabilities, this.bands, this.roles);
     });
   }
 
@@ -30,7 +41,7 @@ export class TablePageComponent implements OnInit {
     this.location.back();
   }
 
-  makeTheTable(jobFamilies: JobFamily[]) {
+  generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
     this.rowData = [
       { business_development: 'Toyota', model: 'Celica', price: 35000 },
       { business_development: 'Ford', model: 'Mondeo', price: 32000 },
@@ -42,13 +53,13 @@ export class TablePageComponent implements OnInit {
       {
         headerName: jobFamilies[0].job_family_name,
         children: [
-          { headerName: 'Business development', field: 'business_development', width: 150, filter: 'agTextColumnFilter' },
-          { headerName: 'Account Management', field: 'age', width: 90, filter: 'agNumberColumnFilter' },
+          { headerName: capabilities[0].capability_name, field: 'business_development', width: 150, filter: 'agTextColumnFilter' },
+          { headerName: capabilities[1].capability_name, field: 'age', width: 90, filter: 'agNumberColumnFilter' },
           { headerName: 'Sales', field: 'country', width: 120 }
         ]
       },
       {
-        headerName: jobFamilies[1],
+        headerName: jobFamilies[1].job_family_name,
         children: [
           { headerName: 'Software engineer', field: 'sport', width: 90, columnGroupShow: 'open' },
           { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 100, filter: 'agNumberColumnFilter' },
