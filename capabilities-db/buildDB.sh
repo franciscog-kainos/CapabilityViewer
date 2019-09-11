@@ -11,6 +11,7 @@ if [ $# -eq 0 ]
   then
     echo "No password to root supplied."
     echo "./buildDB.sh <your_mysql_root_password>"
+    echo "If root has no password set use 'none' for the password"
     exit
 fi
 
