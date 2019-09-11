@@ -8,8 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { PageHeaderComponent } from './page-header/page-header.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
