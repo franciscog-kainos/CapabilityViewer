@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS Job_Family(
 CREATE TABLE IF NOT EXISTS Band(
 	band_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     band_name VARCHAR(50) NOT NULL,
-    band_competency TEXT NOT NULL
+    band_competency TEXT NOT NULL,
+    band_responsibilities VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS User(
@@ -47,5 +48,4 @@ ADD leader_id SMALLINT UNSIGNED UNIQUE,
 ADD job_family_id SMALLINT UNSIGNED NOT NULL,
 ADD FOREIGN KEY(leader_id) REFERENCES User(user_id),
 ADD FOREIGN KEY(job_family_id) REFERENCES Job_Family(job_family_id);
-
 
