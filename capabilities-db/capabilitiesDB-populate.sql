@@ -2,16 +2,16 @@ INSERT INTO `Job_Family`(`job_family_name`)
     VALUES 
     ('Sales & Marketing'), 
     ('Technical');
- 
-INSERT INTO `Capability`(`capability_name`, `job_family_id`) 
-    VALUES 
-    ('Business Development Director',  1), 
-    ('Account Director',  1), 
-    ('Softare Engineering Manager',  2), 
+
+INSERT INTO `Capability`(`capability_name`, `job_family_id`)
+    VALUES
+    ('Business Development Director',  1),
+    ('Account Director',  1),
+    ('Softare Engineering Manager',  2),
     ('Data Engineering Manager',  2);
  
-INSERT INTO `Band`(`band_name`, `band_competency`) 
-    VALUES ('Executive', 'Competency'), ('Leadership Community', 'Competency');
+INSERT INTO `Band`(`band_name`, `band_competency`, `band_responsibilities`)
+    VALUES ('Executive', 'Competency', 'Band responsibilities include...'), ('Leadership Community', 'Competency', 'Band responsibilities include...');
  
 INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsibilities`, `capability_id`, `band_id`)
     VALUES 
