@@ -13,8 +13,8 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ...AppComponents,
     PageHeaderComponent,
+    ...AppComponents,
     TablePageComponent
   ],
   imports: [
