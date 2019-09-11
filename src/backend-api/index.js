@@ -52,10 +52,10 @@ app.get('/bands', function(req, res) {
 });
 
 app.get('/bands/:id', (req,res) => {
-    db.getBand(req.params.id, (err,rows) => {
+    db.getBand(req.params.id, (err,row) => {
         if(err) return handleError(err);
-        res.send(rows);
-    })
+        res.send(row[0]);
+    });
 });
 
 app.listen(8002, function() {
