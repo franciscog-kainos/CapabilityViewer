@@ -31,7 +31,7 @@ app.get('/roles', function(req, res) {
 });
 
 app.get('/families', function(req, res) {
-    db.getJobFamiliyNames(function(err, rows) {
+    db.getAllJobFamilies(function(err, rows) {
         if (err) return handleError(err, req, res);
         res.send(rows);
     });
@@ -49,6 +49,13 @@ app.get('/bands', function(req, res) {
       if (err) return handleError(err, req, res);
       res.send(rows);
   });
+});
+
+app.get('/band/:id', (req,res) => {
+    db.getBand(req.params.id, (err,rows) => {
+        if(err) return handleError(err);
+        res.send(rows);
+    })
 });
 
 app.listen(8002, function() {

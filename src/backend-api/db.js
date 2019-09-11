@@ -44,3 +44,17 @@ exports.getJobFamiliyNames = function(callback) {
         callback(err, rows);
     });
 };
+
+//Get details for a specific band
+exports.getBand = function(callback) {
+    db.query(
+        'SELECT band_name, band_competency, band_responsibilities FROM Band WHERE band_id = ?',
+        [band_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
