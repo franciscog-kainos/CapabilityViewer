@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
-import { TablePageComponent } from './table-page/table-page.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ...AppComponents,
-    TablePageComponent
+    PageHeaderComponent,
   ],
   imports: [
     BrowserModule,
