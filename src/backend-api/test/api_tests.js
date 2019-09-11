@@ -1,17 +1,23 @@
 const assert = require('assert');
 const request = require('request');
+const log4js = require('log4js');
 
-const API_URL = 'http://localhost:8002/';
+log4js.configure({
+  appenders: { api_tests: { type: 'file', filename: 'api_tests.log' } },
+  categories: { default: { appenders: ['api_tests'], level: 'error' } }
+});
+
+const logger = log4js.getLogger('api_tests');
+const API_BASE_URL = 'http://localhost:8002/';
 
 describe('Getting all roles', function() {
-
     it('Should return status 200 with valid endpoint', function() {
         request.get({
-            uri: API_URL + 'roles',
+            uri: API_BASE_URL + 'roles',
         }, (err, res, body) => {
-            if (err) console.log(err);
-            if (body) console.log(body);
-
+            if (err) {
+                logger.error(err);
+            };
             assert.equal(res.statusCode, 200);
         });
     });
@@ -21,11 +27,11 @@ describe('Getting all job families', function() {
 
     it('Should return status 200 with valid endpoint', function() {
         request.get({
-            uri: API_URL + 'families',
+            uri: API_BASE_URL + 'families',
         }, (err, res, body) => {
-            if (err) console.log(err);
-            if (body) console.log(body);
-
+            if (err) {
+                logger.error(err);
+            };
             assert.equal(res.statusCode, 200);
         });
     });
@@ -35,11 +41,11 @@ describe('Getting all bands', function() {
 
     it('Should return status 200 with valid endpoint', function() {
         request.get({
-            uri: API_URL + 'bands',
+            uri: API_BASE_URL + 'bands',
         }, (err, res, body) => {
-            if (err) console.log(err);
-            if (body) console.log(body);
-
+            if (err) {
+                logger.error(err);
+            };
             assert.equal(res.statusCode, 200);
         });
     });
@@ -49,16 +55,42 @@ describe('Getting all capabilities', function() {
 
     it('Should return status 200 with valid endpoint', function() {
         request.get({
-            uri: API_URL + 'capabilities',
+            uri: API_BASE_URL + 'capabilities',
         }, (err, res, body) => {
-            if (err) console.log(err);
-            if (body) console.log(body);
-
+            if (err) {
+                logger.error(err);
+            };
             assert.equal(res.statusCode, 200);
         });
     });
 });
 
+
+describe('Getting a specific band', function() {
+    it('Should return 200 response with existing id', function() {
+           request.get({
+                      uri: API_BASE_URL + 'bands/1',
+                  }, (err, res, body) => {
+                      if (err) {
+                        logger.error(err);
+                      };
+                      assert.equal(res.statusCode, 200);
+                  });
+
+    });
+    it('Should return band name, band competency and band responsibilities', function() {
+        request.get({
+            uri: API_BASE_URL + 'bands/1',
+        }, (err, res, body) => {
+            if (err) {
+                logger.error(err);
+              };
+            body = JSON.parse(body);
+            assert.deepEqual(Object.keys(body), ['band_name','band_competency','band_responsibilities']);
+        });
+    });
+
+});
 
 
 
