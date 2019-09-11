@@ -58,3 +58,17 @@ exports.getBand = function(band_id, callback) {
         }
     )
 };
+
+//Get details for a specific role
+exports.getRole = function(role_id, callback) {
+    db.query(
+        'SELECT role_name, role_summary, role_training, role_responsibilities FROM Role WHERE role_id = ?',
+        [role_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
