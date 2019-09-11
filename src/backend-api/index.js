@@ -37,6 +37,13 @@ app.get('/families', function(req, res) {
     });
 });
 
+app.get('/band/:id', (req,res) => {
+    db.getBand(req.params.id, (err,rows) => {
+        if(err) return handleError(err);
+        res.send(rows);
+    })
+});
+
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
