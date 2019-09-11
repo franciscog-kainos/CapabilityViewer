@@ -41,6 +41,11 @@ export class TablePageComponent implements OnInit {
     this.location.back();
   }
 
+  viewRole(role_id: number) {
+    //TODO - open link with id
+    console.log(this.location.path());
+  }
+
   generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
     this.rowData = [
       { business_development: 'Toyota', model: 'Celica', price: 35000 },
