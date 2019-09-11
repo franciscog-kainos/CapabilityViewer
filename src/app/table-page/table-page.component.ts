@@ -6,6 +6,7 @@ import { Role } from '../Role';
 import { Capability } from '../Capability';
 import { Band } from '../Band';
 import { Observable } from 'rxjs';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'table-page',
@@ -26,7 +27,7 @@ export class TablePageComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private location: Location, data: DataService) {
+  constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
     data.getAllFromDatabase().subscribe(responseList => {
       //DO EVERYTHING INSIDE SUBSCRIPTION
       this.jobFamilies = responseList[0];
@@ -43,7 +44,8 @@ export class TablePageComponent implements OnInit {
 
   viewRole(role_id: number) {
     //TODO - open link with id
-    console.log(this.location.path());
+    this.router.navigate(['/detail-viewer/' + role_id]);
+    //console.log(this.location.path());
   }
 
   generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
