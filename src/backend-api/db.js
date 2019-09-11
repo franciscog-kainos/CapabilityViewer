@@ -46,7 +46,7 @@ exports.getJobFamiliyNames = function(callback) {
 };
 
 //Get details for a specific band
-exports.getBand = function(callback) {
+exports.getBand = function(band_id, callback) {
     db.query(
         'SELECT band_name, band_competency, band_responsibilities FROM Band WHERE band_id = ?',
         [band_id],

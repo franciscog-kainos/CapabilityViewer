@@ -43,4 +43,8 @@ export class DataService {
   public getRole(id) : Observable<JobFamily[]> {
     return this.http.get<JobFamily[]>('/api/role' + id);
   }
+
+  public getBandDetails(bandId) : Observable<Band>{
+    return this.http.get<Band>('/api/bands/' + bandId);
+  }
 }
