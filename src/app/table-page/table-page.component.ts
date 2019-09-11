@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from '../data.service';
 import { JobFamily } from '../JobFamily';
+import { Role } from '../Role';
+import { Capability } from '../Capability';
+import { Band } from '../Band';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'table-page',
@@ -12,6 +16,9 @@ import { JobFamily } from '../JobFamily';
 export class TablePageComponent implements OnInit {
 
   jobFamilies: JobFamily[];
+  roles: Role[];
+  bands: Band[];
+  capabilities: Capability[];
   data: DataService;
   rowData = [];
   columnDefs = [];
