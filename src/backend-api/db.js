@@ -13,33 +13,33 @@ db.connect(function(err) {
     console.log('Connected to mysql');
 });
 
-exports.getAllRoles = function(callback) {
+exports.getRoleNames = function(callback) {
 
-    db.query('SELECT * FROM Role', function(err, rows) {
+    db.query('SELECT role_id, role_name FROM Role ORDER BY band_id', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
-exports.getAllCapabilities = function(callback) {
+exports.getCapabilityNames = function(callback) {
 	
-    db.query('SELECT * FROM Capability', function(err, rows) {
+    db.query('SELECT capability_id, capability_name FROM Capability ORDER BY job_family_id', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
-exports.getAllBands = function(callback) {
+exports.getBandNames = function(callback) {
 	
-    db.query('SELECT * FROM Band', function(err, rows) {
+    db.query('SELECT band_id, band_name FROM Band', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
-exports.getAllJobFamilies = function(callback) {
+exports.getJobFamiliyNames = function(callback) {
 	
-    db.query('SELECT * FROM Job_Family', function(err, rows) {
+    db.query('SELECT job_family_id, job_family_name FROM Job_Family', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });

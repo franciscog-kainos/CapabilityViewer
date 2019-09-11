@@ -24,28 +24,28 @@ app.get('/', function(req, res) {
     });
 
 app.get('/roles', function(req, res) {
-    db.getAllRoles(function(err, rows) {
+    db.getRoleNames(function(err, rows) {
         if (err) return handleError(err, req, res);
         res.send(rows);
     });
 });
 
 app.get('/families', function(req, res) {
-    db.getAllJobFamilies(function(err, rows) {
+    db.getJobFamiliyNames(function(err, rows) {
         if (err) return handleError(err, req, res);
         res.send(rows);
     });
 });
 
 app.get('/capabilities', function(req, res) {
-  db.getAllCapabilities(function(err, rows) {
+  db.getCapabilityNames(function(err, rows) {
       if (err) return handleError(err, req, res);
       res.send(rows);
   });
 });
 
 app.get('/bands', function(req, res) {
-  db.getAllBands(function(err, rows) {
+  db.getBandNames(function(err, rows) {
       if (err) return handleError(err, req, res);
       res.send(rows);
   });
