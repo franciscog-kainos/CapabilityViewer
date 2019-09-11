@@ -58,6 +58,13 @@ app.get('/band/:id', (req,res) => {
     })
 });
 
+app.get('/roles/:id', (req,res) => {
+    db.getRole(req.params.id, (err,row) => {
+        if(err) return handleError(err);
+        res.send(row[0]);
+    });
+});
+
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
