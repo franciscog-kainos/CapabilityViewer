@@ -1,5 +1,4 @@
-mysql.env
-
+*.env
 
 
 # Created by https://www.gitignore.io/api/node,macos,windows,angular,intellij,visualstudiocode
