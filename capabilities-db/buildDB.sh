@@ -1,2 +1,26 @@
 #!/bin/bash
-mysql -u root -p -e "source capabilitiesDB-setup_prod.sql; use capabilitiesDB_prod; source capabilitiesDB-populate.sql; source capabilitiesDB-setup_test.sql;  use capabilitiesDB_test; source capabilitiesDB-populate.sql;"
+echo "Starting Script..."
+echo ""
+
+echo "Sourcing capabilitiesDB-setup_prod.sql..."
+mysql -u root -e "source capabilities-db/capabilitiesDB-setup_prod.sql;"
+
+echo "Populating capabilitiesDB-setup_prod..."
+mysql -u root -e "use capabilitiesDB_prod; source capabilities-db/capabilitiesDB-populate.sql;"
+
+echo "Production Table Initialised!"
+
+echo ""
+echo "============================================================================"
+echo ""
+
+echo "Sourcing capabilitiesDB_test.sql..."
+mysql -u root -e "source capabilities-db/capabilitiesDB-setup_test.sql;"
+
+echo "Populating capabilitiesDB_test..."
+mysql -u root -e "use capabilitiesDB_test; source capabilities-db/capabilitiesDB-populate.sql;"
+
+echo "Test Table Initialised"
+
+echo ""
+echo "Script finished."
