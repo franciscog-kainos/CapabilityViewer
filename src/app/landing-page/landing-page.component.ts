@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { PageHeaderComponent } from './page-header';
 
 @Component({
   selector: 'landing-page',
