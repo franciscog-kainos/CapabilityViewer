@@ -6,7 +6,7 @@ import { Role } from '../Role';
 import { Capability } from '../Capability';
 import { Band } from '../Band';
 import { Observable } from 'rxjs';
-
+import { GridOptions } from 'ag-grid-community';
 @Component({
   selector: 'table-page',
   templateUrl: './table-page.component.html',
@@ -22,11 +22,18 @@ export class TablePageComponent implements OnInit {
   data: DataService;
   rowData = [];
   columnDefs = [];
+  public gridOptions: GridOptions;
   
   ngOnInit() {
+    console.log(this.gridOptions.api)
   }
 
+  onGridReady() {
+    console.log(this.gridOptions.api);
+}
+
   constructor(private location: Location, data: DataService) {
+    this.gridOptions = <GridOptions>{};
     data.getAllFromDatabase().subscribe(responseList => {
       //DO EVERYTHING INSIDE SUBSCRIPTION
       this.jobFamilies = responseList[0];
@@ -75,7 +82,21 @@ export class TablePageComponent implements OnInit {
       },
       debug: true,
       columnDefs: this.columnDefs,
-      rowData: this.rowData
+      rowData: this.rowData,
     };
+
+  }
+
+  onCellClicked(event){
+    var focusedCell = this.gridOptions.api.getFocusedCell();
+    var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
+    var cellValue = this.gridOptions.api.getValue(focusedCell.column, row)
+    window.alert("This is a cell of value " + cellValue);
+    console.log("Cell selected");
+  }
+
+  onColumnClicked(event){
+    window.alert("This is a column");
+    console.log("Column selected");
   }
 }
