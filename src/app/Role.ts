@@ -6,4 +6,5 @@ export class Role {
     role_responsibilities: string;
     capability_id: number;
     band_id: number;
+    type: string;
 }
