@@ -15,7 +15,7 @@ db.connect(function(err) {
 
 exports.getRoleNames = function(callback) {
 
-    db.query('SELECT role_id, role_name FROM Role ORDER BY band_id', function(err, rows) {
+    db.query('SELECT role_id, role_name,band_id,capability_id FROM Role ORDER BY band_id', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });

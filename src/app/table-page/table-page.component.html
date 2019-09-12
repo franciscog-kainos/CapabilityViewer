@@ -7,10 +7,15 @@
 
 <div class="table">
 <ag-grid-angular 
+    #myGrid
     style="width: 1500px; height: 500px;" 
     class="ag-theme-balham"
+    [gridOptions]="gridOptions"
     [rowData]="rowData" 
     [columnDefs]="columnDefs"
+    (cellClicked)="onCellClicked($event)"
+    (sortChanged)="onColumnClicked($event)"
+    [components]="components"
     >
 </ag-grid-angular>
 </div>
