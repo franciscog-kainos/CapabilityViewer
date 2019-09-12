@@ -51,7 +51,7 @@ export class TablePageComponent implements OnInit {
     this.location.back();
   }
 
-  generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands2: Band[], roles: Role[]) {
+  generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
     this.rowData = [];
    
     var currentBandId = 1; //bands start at one
@@ -60,21 +60,22 @@ export class TablePageComponent implements OnInit {
     var columnsToShow = ["firstColumn","secondColumn","thirdColumn","fourthColumn"]; 
 
     var j = 0; 
-    var bands = ["Executive","Principal","Manager","Senior","Associate"]; //Bands to display on the front end.
-    
+
     var k = 0;
     rowToAppend["bandLevels"] = bands[k]; //The very first item in the row should be the band level.
-
+    bands[k].type = 'band';
     var i;
     for(i = 0; i < roles.length; i++){ //for each role
       if (currentBandId == roles[i].band_id){
       //we are in the current band, object should be appended to with new roles    
       rowToAppend[columnsToShow[j]]= roles[i]; //Here we are building up the row with the new role
+      roles[i].type = 'role';
 
       } else {
         // band has changed, we should push the new band and create a new one.
 
         rowToAppend["bandLevels"]= bands[k];  //add band level for new row
+        bands[k].type = 'band';
         k++; 
         
         this.rowData.push(rowToAppend); //push the completed band row
@@ -83,13 +84,15 @@ export class TablePageComponent implements OnInit {
         j = 0; //reset the counter which keeps track of which columns should be shown (so that it starts building the new row from column 0)
         
         //Add a role to the new band with 
-        rowToAppend[columnsToShow[j]]= roles[i].role_name;
+        rowToAppend[columnsToShow[j]]= roles[i];
+        roles[i].type = 'role';
       }
      j++; 
      currentBandId = roles[i].band_id; // update what band we are in
     }
 
     rowToAppend["bandLevels"]= bands[k];  
+    bands[k].type = 'band';
     this.rowData.push(rowToAppend);
     // When the loop has finished, push the final row it was building up. 
 
@@ -99,17 +102,16 @@ export class TablePageComponent implements OnInit {
       {
         headerName: "Band Level",
         children: [
-          { headerName: '', field: 'bandLevels', width: 0, filter: 'agTextColumnFilter' },
+          { headerName: '', cellRenderer: "nameCellRenderer", field: 'bandLevels', width: 0, filter: 'agTextColumnFilter' },
         ]
       },
       {
         headerName: "Sales and Marketing",
         children: [
-          { headerName: 'Business development',
-          cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter' },
-          { headerName: 'Account Management', field: 'secondColumn', width: 200, filter: 'agNumberColumnFilter' },
-          { headerName: 'Sales', field: 'thirdColumn', width: 200 },
-          { headerName: 'Sales', field: 'fourthColumn', width: 200 }
+          { headerName: 'Business development', cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter' },
+          { headerName: 'Account Management',cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agNumberColumnFilter' },
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'thirdColumn', width: 200 },
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'fourthColumn', width: 200 }
         ]
       },
       {
@@ -120,42 +122,26 @@ export class TablePageComponent implements OnInit {
         ]
       }
     ];
-
-    var gridOptions = {
-      defaultColDef: {
-        sortable: true,
-        resizable: true,
-        filter: true
-      },
-      components: {
-        nameCellRenderer: NameCellRenderer
-      },
-      debug: true,
-      columnDefs: this.columnDefs,
-      rowData: this.rowData,
-      onCellClicked: function(event) { 
-        var focusedCell = this.gridOptions.api.getFocusedCell();
-        var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
-        var cellValue = this.gridOptions.api.getValue(focusedCell.column, row)
-        window.alert("This is a cell of value " + cellValue);
-      }
-      
-    };
   }
 
   onCellClicked(event){
     var focusedCell = this.gridOptions.api.getFocusedCell();
     var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
-    var cellValue = this.gridOptions.api.getValue(focusedCell.column, row)
-    window.alert("This is a cell of value " + cellValue.role_id);
-    console.log("Cell selected");
-  }
+    var cellValue = this.gridOptions.api.getValue(focusedCell.column, row);
 
+      if (cellValue.type == 'role') {
+        window.alert("This is a cell of type " + cellValue.type + " with id " + cellValue.role_id);
+      }
+      else if (cellValue.type == 'band') {
+        window.alert("This is a cell of type " + cellValue.type + " with id " + cellValue.band_id);
+    }
+  }
+/*
   onColumnClicked(event){
     var focusedColumn = this.gridOptions.columnApi.getAllColumns();
     window.alert("Column things " + focusedColumn);
     console.log("Column selected");
-  }
+  }*/
   
 }
 
@@ -165,10 +151,13 @@ function NameCellRenderer() {
 
 NameCellRenderer.prototype.init = function (params) {
     this.eGui = document.createElement('span');
-    if (params.value !== "" || params.value !== undefined || params.value !== null) {
-        var gender = '';
-        this.eGui.innerHTML = params.value.role_name;
-        console.log("IM HERE");
+    if (params.value != undefined) {
+        if (params.value.type == 'role') {
+          this.eGui.innerHTML = params.value.role_name;
+        }
+          else if (params.value.type == 'band') {
+          this.eGui.innerHTML = params.value.band_name;
+      }
     }
 };
 
