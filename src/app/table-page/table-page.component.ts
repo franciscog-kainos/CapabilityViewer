@@ -1,101 +1,193 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { DataService } from '../data.service';
-import { JobFamily } from '../JobFamily';
-import { Role } from '../Role';
-import { Capability } from '../Capability';
-import { Band } from '../Band';
-import {ActivatedRoute, Data, Router} from '@angular/router';
-<<<<<<< HEAD
-=======
-import {Observable, Subject} from 'rxjs';
-import {User} from '../user';
-import {switchAll, switchMap} from 'rxjs/operators';
->>>>>>> 832c94cf2ae0b8e99a9994a75c9646ca1fb20167
+import {Component, OnInit, Output} from '@angular/core';
+import {Location} from '@angular/common';
+import {DataService} from '../data.service';
+import {JobFamily} from '../JobFamily';
+import {Role} from '../Role';
+import {Capability} from '../Capability';
+import {Band} from '../Band';
+import {Observable} from 'rxjs';
+import {GridOptions} from 'ag-grid-community';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'table-page',
-  templateUrl: './table-page.component.html',
-  styleUrls: ['./table-page.component.css']
+    selector: 'table-page',
+    templateUrl: './table-page.component.html',
+    styleUrls: ['./table-page.component.css']
 })
 
 export class TablePageComponent implements OnInit {
 
-  jobFamilies: JobFamily[];
-  roles: Role[];
-  bands: Band[];
-  capabilities: Capability[];
-  data: DataService;
-  rowData = [];
-  columnDefs = [];
+    jobFamilies: JobFamily[];
+    roles: Role[];
+    bands: Band[];
+    capabilities: Capability[];
+    data: DataService;
+    rowData = [];
+    columnDefs = [];
 
-  private width = 200;
+    private width = 200;
 
-  ngOnInit() {
+    public gridOptions: GridOptions;
+    components;
 
-  }
-
-  constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
-    this.data = data;
-    data.getAllFromDatabase().subscribe(responseList => {
-      //DO EVERYTHING INSIDE SUBSCRIPTION
-      this.jobFamilies = responseList[0];
-      this.capabilities = responseList[1];
-      this.bands = responseList[2];
-      this.roles = responseList[3];
-      this.generateTable(this.jobFamilies, this.capabilities, this.bands, this.roles);
-      this.filterWithUser();
-    });
-  }
-
-  filterWithUser() {
-    if (this.data.mockUser) {
-      this.generateTable(this.jobFamilies, [this.data.mockUser.capability], this.bands, this.roles);
+    ngOnInit() {
+        console.log(this.gridOptions.api);
     }
-  }
 
-  goBack() {
-    this.router.navigate(['/landing-page']);
-  }
+    onGridReady() {
+        console.log(this.gridOptions.api);
+    }
 
-  navigateToDetailView(type: string, id: number) {
-    this.router.navigate(['/detail-viewer/' + type + "/" + id]);
-  }
+    constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
+        this.gridOptions = <GridOptions> {};
+        this.components = {nameCellRenderer: NameCellRenderer};
+        this.data = data;
+        data.getAllFromDatabase().subscribe(responseList => {
+            //DO EVERYTHING INSIDE SUBSCRIPTION
+            this.jobFamilies = responseList[0];
+            this.capabilities = responseList[1];
+            this.bands = responseList[2];
+            this.roles = responseList[3];
+            this.generateTable(this.jobFamilies, this.capabilities, this.bands, this.roles);
+            this.filterWithUser();
+        });
+    }
 
-  generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
-    this.rowData = [
-      { business_development: 'Toyota', model: 'Celica', price: 35000 },
-      { business_development: 'Ford', model: 'Mondeo', price: 32000 },
-      { business_development: 'Porsche', model: 'Boxter', price: 72000 }
-    ];
+    filterWithUser() {
+        if (this.data.mockUser) {
+            this.generateTable(this.jobFamilies, [this.data.mockUser.capability], this.bands, this.roles);
+        }
+    }
 
-    this.columnDefs = [
-      {
-        headerName: jobFamilies[0].job_family_name,
-        children: [
-          { headerName: capabilities[0].capability_name, field: 'business_development', width: 150, filter: 'agTextColumnFilter' },
-          { headerName: capabilities[1].capability_name, field: 'age', width: 90, filter: 'agNumberColumnFilter' },
-          { headerName: 'Sales', field: 'country', width: 120 }
-        ]
-      },
-      {
-        headerName: jobFamilies[1].job_family_name,
-        children: [
-          { headerName: 'Software engineer', field: 'sport', width: 90, columnGroupShow: 'open' },
-          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 100, filter: 'agNumberColumnFilter' }
-        ]
-      }
-    ];
+    goBack() {
+        this.router.navigate(['/landing-page']);
+    }
 
-    let gridOptions = {
-      defaultColDef: {
-        sortable: true,
-        resizable: true,
-        filter: true
-      },
-      debug: true,
-      columnDefs: this.columnDefs,
-      rowData: this.rowData
-    };
-  }
+    navigateToDetailView(type: string, id: number) {
+        this.router.navigate(['/detail-viewer/' + type + '/' + id]);
+    }
+
+    generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
+        this.rowData = [];
+
+        var currentBandId = 1; //bands start at one
+
+        var rowToAppend = [];
+        var columnsToShow = ['firstColumn', 'secondColumn', 'thirdColumn', 'fourthColumn'];
+
+        var j = 0;
+
+        var k = 0;
+        rowToAppend['bandLevels'] = bands[k]; //The very first item in the row should be the band level.
+        bands[k].type = 'band';
+        var i;
+        for (i = 0; i < roles.length; i++) { //for each role
+            if (currentBandId == roles[i].band_id) {
+                //we are in the current band, object should be appended to with new roles
+                rowToAppend[columnsToShow[j]] = roles[i]; //Here we are building up the row with the new role
+                roles[i].type = 'role';
+
+            } else {
+                // band has changed, we should push the new band and create a new one.
+
+                rowToAppend['bandLevels'] = bands[k];  //add band level for new row
+                bands[k].type = 'band';
+                k++;
+
+                this.rowData.push(rowToAppend); //push the completed band row
+
+                rowToAppend = []; //empty the row that was being built up
+                j = 0; //reset the counter which keeps track of which columns should be shown (so that it starts building the new row from column 0)
+
+                //Add a role to the new band with
+                rowToAppend[columnsToShow[j]] = roles[i];
+                roles[i].type = 'role';
+            }
+            j++;
+            currentBandId = roles[i].band_id; // update what band we are in
+        }
+
+        rowToAppend['bandLevels'] = bands[k];
+        bands[k].type = 'band';
+        this.rowData.push(rowToAppend);
+        // When the loop has finished, push the final row it was building up.
+
+        console.log('Full data \n');
+        this.columnDefs = [
+
+            {
+                headerName: 'Band Level',
+                children: [
+                    {headerName: '', cellRenderer: 'nameCellRenderer', field: 'bandLevels', width: 0, filter: 'agTextColumnFilter'},
+                ]
+            },
+            {
+                headerName: 'Sales and Marketing',
+                children: [
+                    {
+                        headerName: 'Business development',
+                        cellRenderer: 'nameCellRenderer',
+                        field: 'firstColumn',
+                        width: 200,
+                        filter: 'agTextColumnFilter'
+                    },
+                    {
+                        headerName: 'Account Management',
+                        cellRenderer: 'nameCellRenderer',
+                        field: 'secondColumn',
+                        width: 200,
+                        filter: 'agNumberColumnFilter'
+                    },
+                    {headerName: 'Sales', cellRenderer: 'nameCellRenderer', field: 'thirdColumn', width: 200},
+                    {headerName: 'Sales', cellRenderer: 'nameCellRenderer', field: 'fourthColumn', width: 200}
+                ]
+            },
+            {
+                headerName: 'Technical',
+                children: [
+                    {headerName: 'Software engineer', field: 'sda', width: 200, columnGroupShow: 'open'},
+                    {headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 200, filter: 'agNumberColumnFilter'},
+                ]
+            }
+        ];
+    }
+
+    onCellClicked(event) {
+        var focusedCell = this.gridOptions.api.getFocusedCell();
+        var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
+        var cellValue = this.gridOptions.api.getValue(focusedCell.column, row);
+
+        if (cellValue.type == 'role') {
+            window.alert('This is a cell of type ' + cellValue.type + ' with id ' + cellValue.role_id);
+        } else if (cellValue.type == 'band') {
+            window.alert('This is a cell of type ' + cellValue.type + ' with id ' + cellValue.band_id);
+        }
+    }
+
+    /*
+      onColumnClicked(event){
+        var focusedColumn = this.gridOptions.columnApi.getAllColumns();
+        window.alert("Column things " + focusedColumn);
+        console.log("Column selected");
+      }*/
+
 }
+
+function NameCellRenderer() {
+
+}
+
+NameCellRenderer.prototype.init = function(params) {
+    this.eGui = document.createElement('span');
+    if (params.value != undefined) {
+        if (params.value.type == 'role') {
+            this.eGui.innerHTML = params.value.role_name;
+        } else if (params.value.type == 'band') {
+            this.eGui.innerHTML = params.value.band_name;
+        }
+    }
+};
+
+NameCellRenderer.prototype.getGui = function() {
+    return this.eGui;
+};

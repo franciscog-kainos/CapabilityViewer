@@ -10,4 +10,5 @@ export class Role {
     constructor(name: string) {
         this.role_name = name;
     }
+    type: string;
 }

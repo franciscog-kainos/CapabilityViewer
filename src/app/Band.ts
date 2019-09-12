@@ -7,4 +7,5 @@ export class Band {
     constructor(name: string) {
         this.band_name = name;
     }
+    type: string;
 }
