@@ -128,25 +128,25 @@ export class TablePageComponent implements OnInit {
                         headerName: 'Business development',
                         cellRenderer: 'nameCellRenderer',
                         field: 'firstColumn',
-                        width: 200,
+                        width: this.width,
                         filter: 'agTextColumnFilter'
                     },
                     {
                         headerName: 'Account Management',
                         cellRenderer: 'nameCellRenderer',
                         field: 'secondColumn',
-                        width: 200,
+                        width: this.width,
                         filter: 'agNumberColumnFilter'
                     },
-                    {headerName: 'Sales', cellRenderer: 'nameCellRenderer', field: 'thirdColumn', width: 200},
-                    {headerName: 'Sales', cellRenderer: 'nameCellRenderer', field: 'fourthColumn', width: 200}
+                    {headerName: 'Sales', cellRenderer: 'nameCellRenderer', field: 'thirdColumn', width: this.width},
+                    {headerName: 'Sales', cellRenderer: 'nameCellRenderer', field: 'fourthColumn', width: this.width}
                 ]
             },
             {
                 headerName: 'Technical',
                 children: [
-                    {headerName: 'Software engineer', field: 'sda', width: 200, columnGroupShow: 'open'},
-                    {headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 200, filter: 'agNumberColumnFilter'},
+                    {headerName: 'Software engineer', field: 'sda', width: this.width, columnGroupShow: 'open'},
+                    {headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: this.width, filter: 'agNumberColumnFilter'},
                 ]
             }
         ];
