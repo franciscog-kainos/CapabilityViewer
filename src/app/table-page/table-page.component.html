@@ -1,6 +1,3 @@
-<p>table-page works!</p>
-
-
 <p>
     <a (click)="goBack()">Click To Go Back via TypeScript</a>
 </p>
@@ -8,10 +5,10 @@
 <div class="table">
 <ag-grid-angular 
     #myGrid
-    style="width: 1500px; height: 500px;" 
+    style="width: 1500px; height: 500px;"
     class="ag-theme-balham"
     [gridOptions]="gridOptions"
-    [rowData]="rowData" 
+    [rowData]="rowData"
     [columnDefs]="columnDefs"
     (cellClicked)="onCellClicked($event)"
     (sortChanged)="onColumnClicked($event)"
@@ -19,4 +16,4 @@
     >
 </ag-grid-angular>
 </div>
-<button (click)="navigateToCapabilityView(1)">capability</button>
+
