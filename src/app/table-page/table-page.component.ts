@@ -5,7 +5,10 @@ import { JobFamily } from '../JobFamily';
 import { Role } from '../Role';
 import { Capability } from '../Capability';
 import { Band } from '../Band';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Data, Router} from '@angular/router';
+import {Observable, Subject} from 'rxjs';
+import {User} from '../user';
+import {switchAll, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'table-page',
@@ -22,12 +25,13 @@ export class TablePageComponent implements OnInit {
   data: DataService;
   rowData = [];
   columnDefs = [];
-  
+
   ngOnInit() {
 
   }
 
   constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
+    this.data = data;
     data.getAllFromDatabase().subscribe(responseList => {
       //DO EVERYTHING INSIDE SUBSCRIPTION
       this.jobFamilies = responseList[0];
@@ -35,7 +39,14 @@ export class TablePageComponent implements OnInit {
       this.bands = responseList[2];
       this.roles = responseList[3];
       this.generateTable(this.jobFamilies, this.capabilities, this.bands, this.roles);
+      this.filterWithUser();
     });
+  }
+
+  filterWithUser() {
+    if (this.data.mockUser) {
+      this.generateTable(this.jobFamilies, [this.data.mockUser.capability], this.bands, this.roles);
+    }
   }
 
   goBack() {
@@ -53,7 +64,6 @@ export class TablePageComponent implements OnInit {
       { business_development: 'Porsche', model: 'Boxter', price: 72000 }
     ];
 
-
     this.columnDefs = [
       {
         headerName: jobFamilies[0].job_family_name,
@@ -67,12 +77,12 @@ export class TablePageComponent implements OnInit {
         headerName: jobFamilies[1].job_family_name,
         children: [
           { headerName: 'Software engineer', field: 'sport', width: 90, columnGroupShow: 'open' },
-          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 100, filter: 'agNumberColumnFilter' },
+          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 100, filter: 'agNumberColumnFilter' }
         ]
       }
     ];
 
-    var gridOptions = {
+    let gridOptions = {
       defaultColDef: {
         sortable: true,
         resizable: true,

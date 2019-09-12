@@ -6,4 +6,8 @@ export class Role {
     role_responsibilities: string;
     capability_id: number;
     band_id: number;
+
+    constructor(name: string) {
+        this.role_name = name;
+    }
 }
