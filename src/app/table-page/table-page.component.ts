@@ -39,7 +39,7 @@ export class TablePageComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/landing-page']);
   }
 
   navigateToDetailView(type: string, id: number) {
