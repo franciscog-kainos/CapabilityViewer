@@ -6,9 +6,6 @@ import { Role } from '../Role';
 import { Capability } from '../Capability';
 import { Band } from '../Band';
 import {ActivatedRoute, Data, Router} from '@angular/router';
-import {Observable, Subject} from 'rxjs';
-import {User} from '../user';
-import {switchAll, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'table-page',
@@ -25,6 +22,8 @@ export class TablePageComponent implements OnInit {
   data: DataService;
   rowData = [];
   columnDefs = [];
+
+  private width = 200;
 
   ngOnInit() {
 
@@ -68,16 +67,16 @@ export class TablePageComponent implements OnInit {
       {
         headerName: jobFamilies[0].job_family_name,
         children: [
-          { headerName: capabilities[0].capability_name, field: 'business_development', width: 150, filter: 'agTextColumnFilter' },
-          { headerName: capabilities[1].capability_name, field: 'age', width: 90, filter: 'agNumberColumnFilter' },
-          { headerName: 'Sales', field: 'country', width: 120 }
+          { headerName: capabilities[0].capability_name, field: 'business_development', width: this.width / capabilities.length, filter: 'agTextColumnFilter' },
+          { headerName: capabilities[1].capability_name, field: 'age', width: this.width / capabilities.length, filter: 'agNumberColumnFilter' },
+          { headerName: 'Sales', field: 'country', width: this.width }
         ]
       },
       {
         headerName: jobFamilies[1].job_family_name,
         children: [
-          { headerName: 'Software engineer', field: 'sport', width: 90, columnGroupShow: 'open' },
-          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 100, filter: 'agNumberColumnFilter' }
+          { headerName: 'Software engineer', field: 'sport', width: this.width, columnGroupShow: 'open' },
+          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: this.width, filter: 'agNumberColumnFilter' }
         ]
       }
     ];

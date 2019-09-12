@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ag-grid-community/dist/styles/ag-theme-material.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
@@ -23,10 +23,7 @@ form input.ng-valid {
 form input.ng-invalid {
     background: pink;
 }
-.ag-grid-angular {
-    margin: auto;
-    width:50%;
-}
+
 body {
     font-family: Roboto, Arial, sans-serif;
     margin: 0;
