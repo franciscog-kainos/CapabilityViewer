@@ -13,6 +13,7 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
+import {MatCardModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,16 +24,17 @@ import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
     DetailViewerComponent,
     PageNotFoundComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    NgbModule,
-    HttpClientModule,
-    AgGridModule.withComponents([]),
-    BrowserAnimationsModule,
-    MatExpansionModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        NgbModule,
+        HttpClientModule,
+        AgGridModule.withComponents([]),
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        AppRoutingModule,
+        MatCardModule
+    ],
   providers: [],
   bootstrap: [ AppComponent ]
 })
