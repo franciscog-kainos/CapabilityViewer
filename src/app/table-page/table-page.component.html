@@ -14,5 +14,7 @@
     [rowData]="rowData" 
     [columnDefs]="columnDefs"
     (cellClicked)="onCellClicked($event)"
+    (sortChanged)="onColumnClicked($event)"
+    [components]="components"
     >
 </ag-grid-angular>

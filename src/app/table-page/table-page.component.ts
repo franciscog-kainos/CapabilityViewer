@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from '../data.service';
 import { JobFamily } from '../JobFamily';
@@ -23,6 +23,7 @@ export class TablePageComponent implements OnInit {
   rowData = [];
   columnDefs = [];
   public gridOptions: GridOptions;
+  components;
   
   ngOnInit() {
     console.log(this.gridOptions.api)
@@ -34,6 +35,8 @@ export class TablePageComponent implements OnInit {
 
   constructor(private location: Location, data: DataService) {
     this.gridOptions = <GridOptions>{};
+    this.components = { nameCellRenderer: NameCellRenderer };
+    
     data.getAllFromDatabase().subscribe(responseList => {
       //DO EVERYTHING INSIDE SUBSCRIPTION
       this.jobFamilies = responseList[0];
@@ -66,7 +69,7 @@ export class TablePageComponent implements OnInit {
     for(i = 0; i < roles.length; i++){ //for each role
       if (currentBandId == roles[i].band_id){
       //we are in the current band, object should be appended to with new roles    
-      rowToAppend[columnsToShow[j]]= roles[i].role_name; //Here we are building up the row with the new role
+      rowToAppend[columnsToShow[j]]= roles[i]; //Here we are building up the row with the new role
 
       } else {
         // band has changed, we should push the new band and create a new one.
@@ -91,8 +94,8 @@ export class TablePageComponent implements OnInit {
     // When the loop has finished, push the final row it was building up. 
 
     console.log("Full data \n" );
-
     this.columnDefs = [
+      
       {
         headerName: "Band Level",
         children: [
@@ -102,7 +105,8 @@ export class TablePageComponent implements OnInit {
       {
         headerName: "Sales and Marketing",
         children: [
-          { headerName: 'Business development', field: 'firstColumn', width: 200, filter: 'agTextColumnFilter' },
+          { headerName: 'Business development',
+          cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter' },
           { headerName: 'Account Management', field: 'secondColumn', width: 200, filter: 'agNumberColumnFilter' },
           { headerName: 'Sales', field: 'thirdColumn', width: 200 },
           { headerName: 'Sales', field: 'fourthColumn', width: 200 }
@@ -123,23 +127,51 @@ export class TablePageComponent implements OnInit {
         resizable: true,
         filter: true
       },
+      components: {
+        nameCellRenderer: NameCellRenderer
+      },
       debug: true,
       columnDefs: this.columnDefs,
       rowData: this.rowData,
+      onCellClicked: function(event) { 
+        var focusedCell = this.gridOptions.api.getFocusedCell();
+        var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
+        var cellValue = this.gridOptions.api.getValue(focusedCell.column, row)
+        window.alert("This is a cell of value " + cellValue);
+      }
+      
     };
   }
-  
 
   onCellClicked(event){
     var focusedCell = this.gridOptions.api.getFocusedCell();
     var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
     var cellValue = this.gridOptions.api.getValue(focusedCell.column, row)
-    window.alert("This is a cell of value " + cellValue);
+    window.alert("This is a cell of value " + cellValue.role_id);
     console.log("Cell selected");
   }
 
   onColumnClicked(event){
-    window.alert("This is a column");
+    var focusedColumn = this.gridOptions.columnApi.getAllColumns();
+    window.alert("Column things " + focusedColumn);
     console.log("Column selected");
   }
+  
 }
+
+function NameCellRenderer() {
+
+}
+
+NameCellRenderer.prototype.init = function (params) {
+    this.eGui = document.createElement('span');
+    if (params.value !== "" || params.value !== undefined || params.value !== null) {
+        var gender = '';
+        this.eGui.innerHTML = params.value.role_name;
+        console.log("IM HERE");
+    }
+};
+
+NameCellRenderer.prototype.getGui = function () {
+    return this.eGui;
+};
