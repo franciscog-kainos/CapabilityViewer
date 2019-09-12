@@ -3,7 +3,7 @@
 	    <img src="../assets/Kainos-logo-neg.png" alt="kainos logo">
 	</div>
 
-	<div *ngIf="this.router.url === '/table-page'" id="back-button">
+	<div *ngIf="this.router.url != '/landing-page'" id="back-button">
 	    <button (click)="goBack()">Go Back</button>
 	</div>
 </div>
