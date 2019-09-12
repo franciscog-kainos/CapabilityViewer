@@ -44,6 +44,10 @@ export class DataService {
     return this.http.get<Role>('/api/roles/' + id);
   }
 
+  public getCapability(id) : Observable<Capability> {
+    return this.http.get<Capability>('/api/capabilities/' + id);
+  }
+
   public getBandDetails(bandId) : Observable<Band>{
     return this.http.get<Band>('/api/bands/' + bandId);
   }

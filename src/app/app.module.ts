@@ -13,6 +13,7 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
+import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
     LandingPageComponent,
     TablePageComponent,
     DetailViewerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CapabilityLeadViewerComponent
   ],
   imports: [
     BrowserModule,
