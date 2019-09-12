@@ -7,6 +7,8 @@ import { Capability } from '../Capability';
 import { Band } from '../Band';
 import { Observable } from 'rxjs';
 import { GridOptions } from 'ag-grid-community';
+import {ActivatedRoute, Router} from "@angular/router";
+
 @Component({
   selector: 'table-page',
   templateUrl: './table-page.component.html',
@@ -33,11 +35,11 @@ export class TablePageComponent implements OnInit {
     console.log(this.gridOptions.api);
 }
 
-  constructor(private location: Location, data: DataService) {
-    this.gridOptions = <GridOptions>{};
-    this.components = { nameCellRenderer: NameCellRenderer };
+  constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
+      this.gridOptions = <GridOptions>{};
+      this.components = { nameCellRenderer: NameCellRenderer };
     
-    data.getAllFromDatabase().subscribe(responseList => {
+      data.getAllFromDatabase().subscribe(responseList => {
       //DO EVERYTHING INSIDE SUBSCRIPTION
       this.jobFamilies = responseList[0];
       this.capabilities = responseList[1];
@@ -48,7 +50,11 @@ export class TablePageComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/landing-page']);
+  }
+
+  navigateToDetailView(type: string, id: number) {
+    this.router.navigate(['/detail-viewer/' + type + "/" + id]);
   }
 
   generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
