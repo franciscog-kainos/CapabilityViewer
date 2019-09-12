@@ -72,3 +72,19 @@ exports.getRole = function(role_id, callback) {
         }
     )
 };
+
+//Get details for a specific capability
+exports.getCapability = function(capability_id, callback) {
+    db.query(
+        'SELECT Capability.capability_name, User.user_f_name, User.user_l_name ' +
+        'FROM capabilitiesDB_test.Capability, capabilitiesDB_test.User ' +
+        'WHERE User.user_id = Capability.leader_id AND Capability.capability_id = ?;',
+        [capability_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
