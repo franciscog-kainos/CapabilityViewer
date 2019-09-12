@@ -1,40 +1,53 @@
-<p>detail-viewer works!</p>
-
 <p>
     <a (click)="goBack()">Click To Go Back via TypeScript</a>
 </p>
 
-<!--Role Details below-->
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>Role Name</mat-panel-title>
-        <mat-panel-description>This is a summary of the content</mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>{{role.role_name}}</p>
-</mat-expansion-panel>
+<div class="detail-viewer-content">
+    <!--Role Details below-->
+    <div class="role-information" *ngIf="detailType === 'role'">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Role Name</mat-panel-title>
+                <mat-panel-description>This is a summary of the content</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{role.role_name}}</p>
+        </mat-expansion-panel>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>Job Summary</mat-panel-title>
-        <mat-panel-description>This is a summary of the content</mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>{{role.role_summary}}</p>
-</mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Job Summary</mat-panel-title>
+                <mat-panel-description>This is a summary of the content</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{role.role_summary}}</p>
+        </mat-expansion-panel>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>Training</mat-panel-title>
-        <mat-panel-description>This is a summary of the content</mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>{{role.role_training}}</p>
-</mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Training</mat-panel-title>
+                <mat-panel-description>This is a summary of the content</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{role.role_training}}</p>
+        </mat-expansion-panel>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>Responsibilities</mat-panel-title>
-        <mat-panel-description>This is a summary of the content</mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>{{role.role_responsibilities}}</p>
-</mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Responsibilities</mat-panel-title>
+                <mat-panel-description>This is a summary of the content</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{role.role_responsibilities}}</p>
+        </mat-expansion-panel>
+    </div>
 
-<!--Band details below-->
+    <!--Band details below-->
+    <div class="band-information" *ngIf="detailType === 'band'">
+        <!-- Start band responsibilities -->
+        <mat-expansion-panel >
+            <mat-expansion-panel-header>
+                <mat-panel-title>Responsibilities</mat-panel-title>
+                <mat-panel-description> Responsibilities for this band</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p class="main-detail-content">{{band.band_responsibilities}}</p>
+        </mat-expansion-panel>
+        <!-- End band responsibilities -->
+    </div>
+</div>

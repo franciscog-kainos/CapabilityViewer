@@ -55,7 +55,7 @@ export class DataService {
     return this.http.get<Capability>('/api/capabilities/' + id);
   }
 
-  public getBandDetails(bandId) : Observable<Band>{
+  public getBand(bandId) : Observable<Band>{
     return this.http.get<Band>('/api/bands/' + bandId);
   }
 }
