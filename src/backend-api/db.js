@@ -44,3 +44,31 @@ exports.getJobFamiliyNames = function(callback) {
         callback(err, rows);
     });
 };
+
+//Get details for a specific band
+exports.getBand = function(band_id, callback) {
+    db.query(
+        'SELECT band_name, band_competency, band_responsibilities FROM Band WHERE band_id = ?',
+        [band_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
+//Get details for a specific role
+exports.getRole = function(role_id, callback) {
+    db.query(
+        'SELECT role_name, role_summary, role_training, role_responsibilities FROM Role WHERE role_id = ?',
+        [role_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};

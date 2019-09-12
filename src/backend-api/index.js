@@ -51,6 +51,20 @@ app.get('/bands', function(req, res) {
   });
 });
 
+app.get('/bands/:id', (req,res) => {
+    db.getBand(req.params.id, (err,row) => {
+        if(err) return handleError(err);
+        res.send(row[0]);
+    });
+});
+
+app.get('/roles/:id', (req,res) => {
+    db.getRole(req.params.id, (err,row) => {
+        if(err) return handleError(err);
+        res.send(row[0]);
+    });
+});
+
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });

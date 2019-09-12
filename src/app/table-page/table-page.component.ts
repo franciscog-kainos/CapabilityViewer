@@ -5,7 +5,7 @@ import { JobFamily } from '../JobFamily';
 import { Role } from '../Role';
 import { Capability } from '../Capability';
 import { Band } from '../Band';
-import { Observable } from 'rxjs';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'table-page',
@@ -24,9 +24,10 @@ export class TablePageComponent implements OnInit {
   columnDefs = [];
   
   ngOnInit() {
+
   }
 
-  constructor(private location: Location, data: DataService) {
+  constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
     data.getAllFromDatabase().subscribe(responseList => {
       //DO EVERYTHING INSIDE SUBSCRIPTION
       this.jobFamilies = responseList[0];
@@ -39,6 +40,10 @@ export class TablePageComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  navigateToDetailView(type: string, id: number) {
+    this.router.navigate(['/detail-viewer/' + type + "/" + id]);
   }
 
   generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {

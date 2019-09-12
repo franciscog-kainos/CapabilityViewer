@@ -40,7 +40,11 @@ export class DataService {
     return this.http.get<Role[]>('/api/roles');
   }
 
-  public getRole(id) : Observable<JobFamily[]> {
-    return this.http.get<JobFamily[]>('/api/role' + id);
+  public getRole(id) : Observable<Role> {
+    return this.http.get<Role>('/api/roles/' + id);
+  }
+
+  public getBandDetails(bandId) : Observable<Band>{
+    return this.http.get<Band>('/api/bands/' + bandId);
   }
 }
