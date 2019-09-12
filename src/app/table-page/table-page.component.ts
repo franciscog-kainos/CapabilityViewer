@@ -5,7 +5,6 @@ import { JobFamily } from '../JobFamily';
 import { Role } from '../Role';
 import { Capability } from '../Capability';
 import { Band } from '../Band';
-import { Observable } from 'rxjs';
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -25,6 +24,7 @@ export class TablePageComponent implements OnInit {
   columnDefs = [];
   
   ngOnInit() {
+
   }
 
   constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
@@ -42,10 +42,8 @@ export class TablePageComponent implements OnInit {
     this.location.back();
   }
 
-  viewRole(role_id: number) {
-    //TODO - open link with id
-    this.router.navigate(['/detail-viewer/' + role_id]);
-    //console.log(this.location.path());
+  navigateToDetailView(type: string, id: number) {
+    this.router.navigate(['/detail-viewer/' + type + "/" + id]);
   }
 
   generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {

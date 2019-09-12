@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { DataService } from '../data.service';
 import { Band } from '../Band';
 import { Role } from '../Role';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'detail-viewer',
@@ -16,33 +14,29 @@ export class DetailViewerComponent implements OnInit {
     data: DataService;
     band: Band;
     role: Role;
-    role$: Observable<Role>;
+    detailID: string;
+    detailType: string;
 
     constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
-        data.getBandDetails(1).subscribe(response => {
-            this.band = response;
-            console.log(this.band);
-        });
+        route.paramMap.subscribe((params: ParamMap) =>{
+                this.detailID = params.get('detailID');
+                this.detailType = params.get('detailType');
+            }
+        );
 
-        data.getRole(1).subscribe(response => {
-            this.role = response;
-            console.log(this.role);
-        });
+        if (this.detailType == "role") {
+            data.getRole(this.detailID).subscribe(response => {
+                this.role = response;
+            });
+        }
+        //TODO - band in if statement above
     }
 
     ngOnInit() {
-        this.band = new Band();
 
-        //let id = this.route.snapshot.paramMap.get('id');
-        //this.role = this.data.getRole(id);
-        this.role$ = this.route.paramMap.pipe(
-            switchMap((params: ParamMap) =>
-                this.data.getRole(params.get('id')))
-        );
     }
 
     goBack() {
-        //TODO - change the way this navigates back
         this.router.navigate(['/table-page']);
     }
 }
