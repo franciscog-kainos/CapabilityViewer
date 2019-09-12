@@ -9,7 +9,7 @@ import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 const appRoutes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'table-page', component: TablePageComponent },
-  { path: 'detail-viewer/:id', component: DetailViewerComponent },
+  { path: 'detail-viewer/:detailType/:detailID', component: DetailViewerComponent },
   { path: '',   redirectTo: '/landing-page', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
