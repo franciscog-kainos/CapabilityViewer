@@ -23,6 +23,10 @@ export class DataService {
         new Band('A random band'));
   }
 
+  public checkHttpConnection(): Observable<object> {
+    return this.http.get('/api/');
+  }
+
   public getAllFromDatabase(): Observable<any[]> {
     let jobFamilies = this.getAllJobFamilies();
     let capabilities = this.getAllCapabilities();

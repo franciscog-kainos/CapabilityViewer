@@ -6,3 +6,8 @@
 .main-detail-content {
     text-align: left;
 }
+
+p {
+    text-align: left;
+    margin-right: 30px;
+}
