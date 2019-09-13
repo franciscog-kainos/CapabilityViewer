@@ -37,3 +37,20 @@ body {
     font-size: 8pt;
     float: right;
 }
+
+.ag-theme-material .ag-header-cell {
+    background: #202D52;
+    color: white;
+}
+
+.ag-theme-material .ag-header-viewport {
+    background: #202D52;
+}
+
+.ag-theme-material .ag-header-group-cell {
+    background: #202D52;
+    color: white;
+    font-size: 18px;
+
+}
+

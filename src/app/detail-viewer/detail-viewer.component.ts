@@ -40,7 +40,7 @@ export class DetailViewerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.band = new Band();
+        this.band = new Band('');
     }
 
     goBack() {

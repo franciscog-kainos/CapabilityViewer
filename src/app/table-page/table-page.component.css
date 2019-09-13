@@ -1,10 +1,11 @@
 #center {
     display: grid;
-    justify-content: center;
+    justify-items: center;
     grid-template-rows: 90vh 10vh;
-    grid-template-columns: 150vh;
+    grid-template-columns: 100%;
+    width: 100%;
     overflow: hidden;
 }
 .table {
-    box-shadow: -1px 14px 20px -1px rgba(112,112,112,1);
 }
+
