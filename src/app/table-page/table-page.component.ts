@@ -162,8 +162,14 @@ export class TablePageComponent implements OnInit {
     var focusedCell = this.gridOptions.api.getFocusedCell();
     var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
     var cellValue = this.gridOptions.api.getValue(focusedCell.column, row);
-    console.log(cellValue)
-    this.navigateToDetailView(cellValue.type, cellValue.role_id);
+
+    if(cellValue.type == "role") {
+      var id = cellValue.role_id;
+    } else if (cellValue.type == "band") {
+      var id = cellValue.band_id;
+    }
+    
+    this.navigateToDetailView(cellValue.type, id);
   }
 }
 
