@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { AppComponents, AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +16,10 @@ import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
-import {MatButtonModule} from '@angular/material';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { MatButtonModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatButtonModule} from '@angular/material';
     TablePageComponent,
     DetailViewerComponent,
     PageNotFoundComponent,
-    CapabilityLeadViewerComponent
+    CapabilityLeadViewerComponent,
+    AdminPageComponent
   ],
     imports: [
         BrowserModule,
@@ -42,7 +44,12 @@ import {MatButtonModule} from '@angular/material';
         CommonModule,
         MatCardModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
   providers: [],
   bootstrap: [ AppComponent ]
