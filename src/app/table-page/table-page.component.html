@@ -3,6 +3,7 @@
 </p>
 
 <div class="table">
+
 <ag-grid-angular 
     #myGrid
     style="width: 1500px; height: 500px;"
@@ -13,6 +14,8 @@
     (cellClicked)="onCellClicked($event)"
     (sortChanged)="onColumnClicked($event)"
     [components]="components"
+    (gridReady)="onGridReady($event)"
+    [animateRows] = "true"
     >
 </ag-grid-angular>
 </div>
