@@ -1,27 +1,192 @@
 INSERT INTO `Job_Family`(`job_family_name`)
     VALUES 
     ('Sales & Marketing'), 
-    ('Technical');
+    ('Technical'),
+    ('Consulting'),
+    ('Experience Design'),
+    ('Management'),
+    ('Central Services Teams');
 
 INSERT INTO `Capability`(`capability_name`, `job_family_id`)
     VALUES
-    ('Business Development Director',  1),
-    ('Account Director',  1),
-    ('Softare Engineering Manager',  2),
-    ('Data Engineering Manager',  2);
- 
+    ('Business Development', 1),
+    ('Account Management', 1),
+    ('Sales', 1),
+    ('Inside Sales Development', 1),
+    ('Pre Sales & Bid Management', 1),
+    ('Marketing', 1),
+	('Software Engineering', 2),
+    ('Data Engineering', 2),
+    ('Cyber Security', 2),
+    ('Architect', 2),
+	('Ops', 2),
+	('Infrstructure', 2),
+    ('Product', 3),
+    ('Agile', 3),
+    ('HCM', 3),
+    ('Research', 4),
+    ('UX Design', 4),
+    ('Creative Design', 4),
+    ('Service Design', 4),
+    ('Project Management', 5),
+    ('Support Management', 5);
+
 INSERT INTO `Band`(`band_name`, `band_competency`, `band_responsibilities`)
-    VALUES ('Executive', 'Competency', 'Band responsibilities include...'), ('Leadership Community', 'Competency', 'Band responsibilities include...');
- 
+    VALUES
+    ('Executive', 'Executive Competency', 'Executive Responsibilities'),
+    ('Leadership Community', 'Leadership Competency', 'Leadership Responsibilities'),
+    ('Principal', 'Principal Competency', 'Principal Responsibilities'),
+    ('Manager', 'Manager Competency', 'Manager Responsibilities'),
+    ('Consultant', 'Consultant Competency', 'Consultant Responsibilities'),
+    ('Senior Associate', 'Senior Competency', 'Senior Responsibilities'),
+    ('Associate', 'Associate Competency', 'Associate Responsibilities'),
+    ('Trainee', 'Trainee Competency', 'Trainee Responsibilities'),
+    ('Apprentice', 'Apprentice Competency', 'Apprentice Responsibilities');
+
+/* -------------------------- ROLES BEGIN ------------------------ */
 INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsibilities`, `capability_id`, `band_id`)
-    VALUES 
-    ('Head Executive of Business Unit', 'Summary', 'Training', 'Responsibility', 1, 1),
-    ('Head Leader of Business Unit', 'Summary', 'Training', 'Responsibility', 1, 1), 
-    ('Sales Executive Director', 'Summary', 'Training', 'Responsibility', 2, 2),
-    ('Sales Leadership Director', 'Summary', 'Training', 'Responsibility', 2, 1);
- 
+    VALUES
+    /* --- Sales & Marketing --- */
+    ('Head of Business Unit',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	1, 1),
+
+    ('Head of Business Unit',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+    1, 2),
+
+    ('Head of Business Unit',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	1, 3),
+
+    ('Head of Business Unit',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	1, 4),
+
+    ('Head of Business Unit',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	1, 5),
+
+    ('Head of Business Unit',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	1, 6),
+
+    ('Sales Director',
+    '',
+    '* ',
+    '* ',
+    2, 1),
+
+    ('Sales Director',
+    '',
+    '* ',
+    '* ',
+    2, 2),
+
+    ('Sales Director',
+    '',
+    '* ',
+    '* ',
+    2, 3),
+
+    ('Sales Director',
+    '',
+    '* ',
+    '* ',
+    2, 4),
+
+    ('Sales Director',
+    '',
+    '* ',
+    '* ',
+    2, 5),
+
+    ('Marketing Leader',
+    '',
+    '* ',
+    '* ',
+    2, 6),
+
+    ('Business Development Director',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	1, 6),
+
+    /* --- Technical --- */
+    ('Chief Technology Officer',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	10, 1),
+
+    ('Technology Leader',
+    '',
+    '* ',
+    '* ',
+    10, 2),
+
+    ('Infrastructure Leader',
+    '',
+    '* ',
+    '* ',
+    12, 2),
+
+    /* --- Management --- */
+    ('Head of Delivery',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	20, 1),
+
+    ('Head of Support Services',
+    'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
+    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
+    '* Deliver training as part of MAP
+* Encourage collaboration across BUs
+* Identify and actively develop talent at all levels within your area of responsibility',
+	21, 1),
+
+    ('Infrastructure Leader',
+    '',
+    '* ',
+    '* ',
+	12, 2);
+
+ /* -------------------------- ROLES END ------------------------ */
+
 INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`)
-    VALUES 
+    VALUES
     ('Jane One', 'Doe', 1),
     ('Jane Two', 'Doe', 2),
     ('Jane Three', 'Doe', 3);
