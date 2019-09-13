@@ -1,15 +1,18 @@
 <div class="table">
+
 <ag-grid-angular 
     #myGrid
-    style="width: 1500px; height: 500px;" 
+    style="width: 1500px; height: 500px;"
     class="ag-theme-balham"
     [gridOptions]="gridOptions"
-    [rowData]="rowData" 
+    [rowData]="rowData"
     [columnDefs]="columnDefs"
     (cellClicked)="onCellClicked($event)"
     (sortChanged)="onColumnClicked($event)"
     [components]="components"
+    (gridReady)="onGridReady($event)"
+    [animateRows] = "true"
     >
 </ag-grid-angular>
 </div>
-<button (click)="navigateToCapabilityView(1)">capability</button>
+

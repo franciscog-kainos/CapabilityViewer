@@ -8,6 +8,7 @@ import { Band } from '../Band';
 import { Observable } from 'rxjs';
 import { GridOptions } from 'ag-grid-community';
 import {ActivatedRoute, Router} from "@angular/router";
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'table-page',
@@ -26,13 +27,15 @@ export class TablePageComponent implements OnInit {
   columnDefs = [];
   public gridOptions: GridOptions;
   components;
+  private gridApi;
   
   ngOnInit() {
     console.log(this.gridOptions.api)
   }
 
-  onGridReady() {
-    console.log(this.gridOptions.api);
+  onGridReady(params) {
+    // Preparation for grid api
+    this.gridApi=params.api
 }
 
   constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
@@ -60,10 +63,10 @@ export class TablePageComponent implements OnInit {
   navigateToCapabilityView(id: number) {
     this.router.navigate(['/capability/' + id]);
   }
-
+  
   generateTable(jobFamilies: JobFamily[], capabilities: Capability[], bands: Band[], roles: Role[]) {
     this.rowData = [];
-   
+    
     var currentBandId = 1; //bands start at one
 
     var rowToAppend = []; 
@@ -112,33 +115,54 @@ export class TablePageComponent implements OnInit {
       {
         headerName: "Band Level",
         children: [
-          { headerName: '', cellRenderer: "nameCellRenderer", field: 'bandLevels', width: 0, filter: 'agTextColumnFilter' },
+          { headerName: '', cellRenderer: "nameCellRenderer", field: 'bandLevels', width: 0, filter: 'agTextColumnFilter',filterParams: {
+            valueGetter: params => {
+              if (params.data.bandLevels.band_name != undefined){
+              return params.data.bandLevels.band_name
+              }
+            }
+          },  },
         ]
       },
       {
         headerName: "Sales and Marketing",
         children: [
-          { headerName: 'Business development', cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter' },
-          { headerName: 'Account Management',cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agNumberColumnFilter' },
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'thirdColumn', width: 200 },
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'fourthColumn', width: 200 }
+          { headerName: '', cellRenderer: "nameCellRenderer", field: '', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "closed", },
+          { headerName: 'Business development', cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "open",filterParams: {
+            valueGetter: params => {
+              if (params.data.firstColumn.role_name != undefined){
+              return params.data.firstColumn.role_name
+              }
+            }
+          }, },
+          { headerName: 'Account Management',cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open",filterParams: {
+            valueGetter: params => {
+              if (params.data.secondColumn.role_name != undefined){
+              return params.data.secondColumn.role_name
+              }
+            }
+          },  },
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'thirdColumn', width: 200 ,columnGroupShow: "open"},
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
         ]
       },
       {
         headerName: "Technical",
         children: [
+          { headerName: '', cellRenderer: "nameCellRenderer", field: '', width: 200, columnGroupShow: "closed", },
           { headerName: 'Software engineer', field: 'sda', width: 200, columnGroupShow: 'open' },
           { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 200, filter: 'agNumberColumnFilter' },
         ]
       }
     ];
+
   }
 
   onCellClicked(event){
     var focusedCell = this.gridOptions.api.getFocusedCell();
     var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
     var cellValue = this.gridOptions.api.getValue(focusedCell.column, row);
-
+    console.log(cellValue)
     this.navigateToDetailView(cellValue.type, cellValue.role_id);
   }
 }

@@ -9,12 +9,6 @@ import { DataService } from './data.service';
 export class AppComponent {
   title = 'Career Lattice V2.0';
 
-//   columnDefs = [
-//     {headerName: 'Make', field: 'make' },
-//     {headerName: 'Model', field: 'model' },
-//     {headerName: 'Price', field: 'price'}
-// ];
-
 rowData = [
     { business_development: 'Toyota', model: 'Celica', price: 35000 },
     { business_development: 'Ford', model: 'Mondeo', price: 32000 },
@@ -50,9 +44,6 @@ rowData = [
   columnDefs: this.columnDefs,
   rowData: this.rowData
 };
-
-
-
 
   constructor () { }
 }
