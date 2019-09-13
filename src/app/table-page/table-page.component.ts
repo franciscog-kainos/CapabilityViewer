@@ -142,30 +142,30 @@ export class TablePageComponent implements OnInit {
         headerName: "Sales and Marketing",
         children: [
           { headerName: '', cellRenderer: "nameCellRenderer", field: '', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "closed", },
-          { headerName: 'Business development', cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "open",filterParams: {
+          { headerName: 'Business development',resizable: true, cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "open",filterParams: {
             valueGetter: params => {
               if (params.data.firstColumn.role_name != undefined){
               return params.data.firstColumn.role_name
               }
             }
           }, },
-          { headerName: 'Account Management',cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open",filterParams: {
+          { headerName: 'Account Management',resizable: true,cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open",filterParams: {
             valueGetter: params => {
               if (params.data.secondColumn.role_name != undefined){
               return params.data.secondColumn.role_name
               }
             }
           },  },
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'thirdColumn', width: 200 ,columnGroupShow: "open"},
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer",resizable: true, field: 'thirdColumn', width: 200 ,columnGroupShow: "open"},
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", resizable: true,field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
         ]
       },
       {
         headerName: "Technical",
         children: [
-          { headerName: '', cellRenderer: "nameCellRenderer", field: '', width: 200, columnGroupShow: "closed", },
-          { headerName: 'Software engineer', field: 'sda', width: 200, columnGroupShow: 'open' },
-          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 200, filter: 'agNumberColumnFilter' },
+          { headerName: '',resizable: true ,cellRenderer: "nameCellRenderer", field: '', width: 200, columnGroupShow: "closed", },
+          { headerName: 'Software engineer', resizable: true,field: 'sda', width: 200, columnGroupShow: 'open' },
+          { headerName: 'Data Engineering', resizable: true,columnGroupShow: 'open', field: 'total', width: 200, filter: 'agNumberColumnFilter' },
         ]
       }
     ];
