@@ -30,7 +30,19 @@ export class TablePageComponent implements OnInit {
   private gridApi;
   
   ngOnInit() {
-    console.log(this.gridOptions.api)
+    console.log(this.gridOptions.api);
+  }
+
+  styleBandLevels() {
+    const tableCells: HTMLCollectionOf<Element> = document.getElementsByClassName('ag-cell');
+    console.log(tableCells);
+    for (let i = 0; i < tableCells.length; i++) {
+      const element = tableCells.item(i);
+      console.log(element);
+      if (element.getAttribute('col-id') === 'bandLevels') {
+        element.setAttribute('style', 'background: red');
+      }
+    }
   }
 
   onGridReady(params) {
@@ -50,6 +62,8 @@ export class TablePageComponent implements OnInit {
       this.roles = responseList[3];
       this.generateTable(this.jobFamilies, this.capabilities, this.bands, this.roles);
     });
+
+      this.styleBandLevels();
   }
 
   goBack() {
