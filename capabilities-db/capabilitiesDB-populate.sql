@@ -63,7 +63,7 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-    1, 2),
+    2, 1),
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
@@ -71,7 +71,7 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-	1, 3),
+	3, 1),
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
@@ -79,7 +79,7 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-	1, 4),
+	4, 1),
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
@@ -87,7 +87,7 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-	1, 5),
+	5, 1),
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
@@ -95,13 +95,67 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-	1, 6),
+	6, 1),
 
     ('Sales Director',
     '',
     '* ',
     '* ',
-    2, 1),
+    1, 2),
+
+    ('Business Development Director',
+    '',
+    '* ',
+    '* ',
+    1, 3),
+
+    ('Business Development Manager',
+    '',
+    '* ',
+    '* ',
+    1, 4),
+
+    ('Junior Business Development Manager',
+    '',
+    '* ',
+    '* ',
+    1, 5),
+
+    ('',
+    '',
+    '* ',
+    '* ',
+    1, 6),
+
+    ('',
+    '',
+    '* ',
+    '* ',
+    2, 6),
+
+    ('',
+    '',
+    '* ',
+    '* ',
+    1, 7),
+
+    ('',
+    '',
+    '* ',
+    '* ',
+    2, 7),
+
+    ('Sales Associate',
+    '',
+    '* ',
+    '* ',
+    3, 6),
+
+    ('Sales Associate',
+    '',
+    '* ',
+    '* ',
+    3, 7),
 
     ('Sales Director',
     '',
@@ -113,25 +167,25 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '',
     '* ',
     '* ',
-    2, 3),
+    3, 2),
 
     ('Sales Director',
     '',
     '* ',
     '* ',
-    2, 4),
+    4, 2),
 
     ('Sales Director',
     '',
     '* ',
     '* ',
-    2, 5),
+    5, 2),
 
     ('Marketing Leader',
     '',
     '* ',
     '* ',
-    2, 6),
+    6, 2),
 
     ('Business Development Director',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
@@ -139,7 +193,7 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-	1, 6),
+	6, 1),
 
     /* --- Technical --- */
     ('Chief Technology Officer',
