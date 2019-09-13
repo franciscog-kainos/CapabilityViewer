@@ -8,7 +8,7 @@ export class User {
     capability: Capability;
     role: Role;
     band: Band;
-
+    // Just a random comment
     constructor(name: string, capability: Capability, role: Role, band: Band) {
         this.name = name;
         this.capability = capability;
