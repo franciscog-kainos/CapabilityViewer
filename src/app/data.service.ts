@@ -150,4 +150,18 @@ export class DataService {
             .set('id', id);
         return this.http.get<IUser>('/api/user/'+id, {params: params});
     }
+
+    public addFamily(newFamily: IJobFamily): void {
+        console.log(newFamily);
+
+        this.http.post<IJobFamily>('api/families', newFamily).subscribe( res => {
+
+            if (res == null) {
+                console.log('Could not add family!');
+            } else {
+                console.log('Added new family!');
+                console.log(newFamily);
+            }
+        });
+    }
 }
