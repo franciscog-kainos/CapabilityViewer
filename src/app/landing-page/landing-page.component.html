@@ -1,13 +1,16 @@
-<h1>
-  Welcome to the career viewer!
-</h1>
-<div class="dropdown">
-  <button class="dropbtn">Why are you here today?     &darr;</button>
-  <div class="dropdown-content">
-    <a id="landing-page-nav-button-my-place" (click)="navigate()">See my place in the company...</a>
-    <a id="landing-page-nav-button-moves-upwards" (click)="navigate()">I want to see what I need for a promotion...</a>
-    <a id="landing-page-nav-button-moves-sideways" (click)="navigate()">I want to see opportunities in my band...</a>
-    <a id="landing-page-nav-button-last-session" (click)="navigate()">Take me back to my previous session...</a>
-    <a id="landing-page-nav-button-show-all" (click)="navigate()">I just want to see everything...</a>
-  </div>
-</div>
+<mat-card>
+  <mat-card-title>Hello! {{data.mockUser.name}}</mat-card-title>
+  <mat-card-content>
+    <div class="dropdown">
+      <button class="dropbtn">Why are you here today?     &darr;</button>
+      <div class="dropdown-content">
+        <a id="landing-page-nav-button-my-place" (click)="navigate()">See my place in the company...</a>
+        <a id="landing-page-nav-button-moves-upwards" (click)="navigate()">I want to see what I need for a promotion...</a>
+        <a id="landing-page-nav-button-moves-sideways" (click)="navigate()">I want to see opportunities in my band...</a>
+        <a id="landing-page-nav-button-last-session" (click)="navigate()">Take me back to my previous session...</a>
+        <a id="landing-page-nav-button-show-all" (click)="navigate()">I just want to see everything...</a>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+

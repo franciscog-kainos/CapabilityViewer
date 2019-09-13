@@ -14,7 +14,7 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
-import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
+import {MatCardModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capabili
     BrowserAnimationsModule,
     MatExpansionModule,
     AppRoutingModule,
-    CommonModule
+      MatCardModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
