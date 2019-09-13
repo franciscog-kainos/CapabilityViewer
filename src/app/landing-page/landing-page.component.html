@@ -1,6 +1,13 @@
-
-<p>landing-page works!</p>
-
-<p>
-    <a id="landing-page-nav-button" (click)="navigate()">Click To Navigate via TypeScript</a>
-</p>
+<h1>
+  Welcome to the career viewer!
+</h1>
+<div class="dropdown">
+  <button class="dropbtn">Why are you here today?     &darr;</button>
+  <div class="dropdown-content">
+    <a id="landing-page-nav-button-my-place" (click)="navigate()">See my place in the company...</a>
+    <a id="landing-page-nav-button-moves-upwards" (click)="navigate()">I want to see what I need for a promotion...</a>
+    <a id="landing-page-nav-button-moves-sideways" (click)="navigate()">I want to see opportunities in my band...</a>
+    <a id="landing-page-nav-button-last-session" (click)="navigate()">Take me back to my previous session...</a>
+    <a id="landing-page-nav-button-show-all" (click)="navigate()">I just want to see everything...</a>
+  </div>
+</div>
