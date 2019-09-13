@@ -5,6 +5,7 @@ import { Capability } from './Capability';
 import { Band } from './Band';
 import { Role } from './Role';
 import { Observable, forkJoin } from 'rxjs';
+import {User} from './user';
 
 
 @Injectable({
@@ -12,8 +13,14 @@ import { Observable, forkJoin } from 'rxjs';
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { 
+  mockUser: User;
+
+  constructor(private http: HttpClient) {
     this.getAllFromDatabase();
+    this.mockUser = new User('Test User',
+        new Capability('A Random Capability'),
+        new Role('A Random Role'),
+        new Band('A random band'));
   }
 
   public getAllFromDatabase(): Observable<any[]> {

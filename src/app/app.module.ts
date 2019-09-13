@@ -18,6 +18,7 @@ import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
+import {MatButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -29,19 +30,20 @@ import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capabili
     PageNotFoundComponent,
     CapabilityLeadViewerComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    NgbModule,
-    HttpClientModule,
-    AgGridModule.withComponents([]),
-    BrowserAnimationsModule,
-    MatExpansionModule,
-    AppRoutingModule,
-    CommonModule,
-    MatCardModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        NgbModule,
+        HttpClientModule,
+        AgGridModule.withComponents([]),
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        AppRoutingModule,
+        CommonModule,
+        MatCardModule,
+        AppRoutingModule,
+        MatButtonModule
+    ],
   providers: [],
   bootstrap: [ AppComponent ]
 })

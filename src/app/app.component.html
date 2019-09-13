@@ -1,4 +1,10 @@
 <page-header></page-header>
-<div style="text-align:center">
-  <router-outlet></router-outlet>
+<div style="text-align:center; margin-left: 64px; margin-right: 64px">
+  <mat-card>
+    <mat-card-title> Welcome to {{ title }}!</mat-card-title>
+    <mat-card-content>
+      <router-outlet class="router-content"></router-outlet>
+    </mat-card-content>
+  </mat-card>
+
 </div>
