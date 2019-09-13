@@ -41,6 +41,7 @@ export class DetailViewerComponent implements OnInit {
 
     ngOnInit() {
         this.band = new Band('');
+        this.role = new Role('');
     }
 
     goBack() {
