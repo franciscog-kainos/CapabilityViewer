@@ -9,6 +9,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {TablePageComponent} from "./table-page/table-page.component";
@@ -35,7 +36,9 @@ import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capabili
     BrowserAnimationsModule,
     MatExpansionModule,
     AppRoutingModule,
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
