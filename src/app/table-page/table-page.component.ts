@@ -156,7 +156,7 @@ export class TablePageComponent implements OnInit {
               }
             }
           },  },
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer",resizable: true, field: 'thirdColumn', width: 200 ,columnGroupShow: "open"},
+
           { headerName: 'Sales', cellRenderer: "nameCellRenderer", resizable: true,field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
         ]
       },
