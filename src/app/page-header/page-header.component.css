@@ -6,3 +6,8 @@ img{
     height: 80px;
     padding: 10px;
 }
+#back-button {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+}
