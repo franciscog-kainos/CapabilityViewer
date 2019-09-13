@@ -7,7 +7,7 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Career Lattice V2.0';
+  title = 'Career Viewer';
 
 rowData = [
     { business_development: 'Toyota', model: 'Celica', price: 35000 },
