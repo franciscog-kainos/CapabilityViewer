@@ -112,23 +112,23 @@ export class TablePageComponent implements OnInit {
       {
         headerName: "Band Level",
         children: [
-          { headerName: '', cellRenderer: "nameCellRenderer", field: 'bandLevels', width: 0, filter: 'agTextColumnFilter' },
+          { headerName: '', cellRenderer: "nameCellRenderer", field: 'bandLevels', filter: 'agTextColumnFilter' },
         ]
       },
       {
         headerName: "Sales and Marketing",
         children: [
-          { headerName: 'Business development', cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter' },
-          { headerName: 'Account Management',cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agNumberColumnFilter' },
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'thirdColumn', width: 200 },
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'fourthColumn', width: 200 }
+          { headerName: 'Business development', cellRenderer: "nameCellRenderer", field: 'firstColumn', filter: 'agTextColumnFilter' },
+          { headerName: 'Account Management',cellRenderer: "nameCellRenderer", field: 'secondColumn', filter: 'agNumberColumnFilter' },
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'thirdColumn' },
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", field: 'fourthColumn' }
         ]
       },
       {
         headerName: "Technical",
         children: [
-          { headerName: 'Software engineer', field: 'sda', width: 200, columnGroupShow: 'open' },
-          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', width: 200, filter: 'agNumberColumnFilter' },
+          { headerName: 'Software engineer', field: 'sda', columnGroupShow: 'open' },
+          { headerName: 'Data Engineering', columnGroupShow: 'open', field: 'total', filter: 'agNumberColumnFilter' },
         ]
       }
     ];

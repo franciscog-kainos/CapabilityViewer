@@ -1,4 +1,10 @@
+#center {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 90vh 10vh;
+    grid-template-columns: 150vh;
+    overflow: hidden;
+}
 .table {
-    margin:auto;
-    width:80%;
+    box-shadow: -1px 14px 20px -1px rgba(112,112,112,1);
 }

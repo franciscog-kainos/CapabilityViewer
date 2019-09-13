@@ -1,15 +1,13 @@
-<div class="table">
-<ag-grid-angular 
-    #myGrid
-    style="width: 1500px; height: 500px;" 
-    class="ag-theme-balham"
-    [gridOptions]="gridOptions"
-    [rowData]="rowData" 
-    [columnDefs]="columnDefs"
-    (cellClicked)="onCellClicked($event)"
-    (sortChanged)="onColumnClicked($event)"
-    [components]="components"
-    >
-</ag-grid-angular>
+<div id="center">
+    <ag-grid-angular
+        class="ag-theme-material table"
+        [gridOptions]="gridOptions"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        (cellClicked)="onCellClicked($event)"
+        (sortChanged)="onColumnClicked($event)"
+        [components]="components">
+    </ag-grid-angular>
+    <button (click)="navigateToCapabilityView(1)">capability</button>
 </div>
-<button (click)="navigateToCapabilityView(1)">capability</button>
+
