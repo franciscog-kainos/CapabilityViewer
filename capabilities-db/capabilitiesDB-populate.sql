@@ -1,4 +1,4 @@
-USE capabilitiesDB_test;
+USE capabilitiesDB_prod;
 
 INSERT INTO `Job_Family`(`job_family_name`)
     VALUES 
