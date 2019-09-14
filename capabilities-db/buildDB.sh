@@ -44,9 +44,9 @@ mysql --defaults-file="mysql.config" -e "source capabilitiesDB-populate.sql;"
 
 echo "Test Table Initialised"
 
-if [ -f "users.sql" ]; then
+if [ -f "capabilitesDB-users.sql" ]; then
   echo "Giving user permissions."
-  mysql --defaults-file="mysql.config" -e "source users.sql;"
+  mysql --defaults-file="mysql.config" -e "source capabilitesDB-users.sql;"
 fi
 
 echo ""
