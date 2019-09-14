@@ -1,3 +1,5 @@
+USE capabilitiesDB_test;
+
 INSERT INTO `Job_Family`(`job_family_name`)
     VALUES 
     ('Sales & Marketing'), 
