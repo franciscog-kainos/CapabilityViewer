@@ -7,7 +7,7 @@ img{
     padding: 10px;
 }
 #back-button {
-    position: fixed;
+    position: absolute;
     right: 30px;
     top: 30px;
 }

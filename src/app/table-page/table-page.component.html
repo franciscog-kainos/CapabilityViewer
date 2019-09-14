@@ -1,13 +1,21 @@
-<div id="center">
-    <ag-grid-angular
-        class="ag-theme-material table"
-        [gridOptions]="gridOptions"
-        [rowData]="rowData"
-        [columnDefs]="columnDefs"
-        (cellClicked)="onCellClicked($event)"
-        (sortChanged)="onColumnClicked($event)"
-        [components]="components">
-    </ag-grid-angular>
-    <button (click)="navigateToCapabilityView(1)">capability</button>
-</div>
+<mat-card>
+    <mat-card-title>Career Table</mat-card-title>
+    <mat-card-content class="table-content">
+        <ag-grid-angular
+                class="ag-theme-material table"
+                [gridOptions]="gridOptions"
+                [rowData]="rowData"
+                [columnDefs]="columnDefs"
+                (cellClicked)="onCellClicked($event)"
+                (sortChanged)="onColumnClicked($event)"
+                domLayout="autoHeight"
+                (firstDataRendered)="onFirstDataRendered($event)"
+                [components]="components"
+                (gridReady)="onGridReady($event)"
+                [animateRows] = "true">
+        </ag-grid-angular>
+        <button mat-raised-button (click)="navigateToCapabilityView(1)">capability</button>
+    </mat-card-content>
+
+</mat-card>
 

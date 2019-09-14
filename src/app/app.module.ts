@@ -17,6 +17,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import {MatButtonModule} from '@angular/material';
         CommonModule,
         MatCardModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatMenuModule
     ],
     providers: [],
     bootstrap: [AppComponent]
