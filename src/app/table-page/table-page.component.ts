@@ -7,7 +7,7 @@ import {Capability} from '../Capability';
 import {Band} from '../Band';
 import {Observable} from 'rxjs';
 import {GridOptions} from 'ag-grid-community';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -34,12 +34,17 @@ export class TablePageComponent implements OnInit {
         console.log(this.gridOptions.api);
     }
 
+    onGridReady(params) {
+        // Preparation for grid api
+        this.gridApi = params.api;
+    }
+
     styleBandLevels() {
         this.gridOptions.getRowClass = params => {
             if (params.node.rowIndex === 0) {
-                return 'executive-band-row'
+                return 'executive-band-row';
             }
-        }
+        };
     }
 
     onGridReady(params) {
@@ -57,7 +62,7 @@ export class TablePageComponent implements OnInit {
         });
 
         var allColumnIds = [];
-        this.gridColumnApi.getAllColumns().forEach(function (column) {
+        this.gridColumnApi.getAllColumns().forEach(function(column) {
             allColumnIds.push(column.colId);
         });
         this.gridColumnApi.autoSizeColumns(allColumnIds);
@@ -66,7 +71,7 @@ export class TablePageComponent implements OnInit {
 
     constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
         this.data = data;
-        this.gridOptions = <GridOptions>{};
+        this.gridOptions = <GridOptions> {};
         this.components = {nameCellRenderer: NameCellRenderer};
         this.styleBandLevels();
     }
@@ -76,7 +81,7 @@ export class TablePageComponent implements OnInit {
     }
 
     navigateToDetailView(type: string, id: number) {
-        this.router.navigate(['/detail-viewer/' + type + "/" + id]);
+        this.router.navigate(['/detail-viewer/' + type + '/' + id]);
     }
 
     navigateToCapabilityView(id: number) {
@@ -89,12 +94,12 @@ export class TablePageComponent implements OnInit {
         var currentBandId = 1; //bands start at one
 
         var rowToAppend = [];
-        var columnsToShow = ["firstColumn", "secondColumn", "thirdColumn", "fourthColumn"];
+        var columnsToShow = ['firstColumn', 'secondColumn', 'thirdColumn', 'fourthColumn'];
 
         var j = 0;
 
         var k = 0;
-        rowToAppend["bandLevels"] = bands[k]; //The very first item in the row should be the band level.
+        rowToAppend['bandLevels'] = bands[k]; //The very first item in the row should be the band level.
         bands[k].type = 'band';
         var i;
         for (i = 0; i < roles.length; i++) { //for each role
@@ -106,7 +111,7 @@ export class TablePageComponent implements OnInit {
             } else {
                 // band has changed, we should push the new band and create a new one.
 
-                rowToAppend["bandLevels"] = bands[k];  //add band level for new row
+                rowToAppend['bandLevels'] = bands[k];  //add band level for new row
                 bands[k].type = 'band';
                 k++;
 
@@ -123,50 +128,56 @@ export class TablePageComponent implements OnInit {
             currentBandId = roles[i].band_id; // update what band we are in
         }
 
-        rowToAppend["bandLevels"] = bands[k];
+        rowToAppend['bandLevels'] = bands[k];
         bands[k].type = 'band';
         this.rowData.push(rowToAppend);
         // When the loop has finished, push the final row it was building up.
 
-        console.log("Full data \n");
+        console.log('Full data \n');
         this.columnDefs = [
 
             {
-                headerName: "Band Level",
+                headerName: 'Band Level',
                 children: [
                     {
                         headerName: '',
-                        cellRenderer: "nameCellRenderer",
+                        cellRenderer: 'nameCellRenderer',
                         field: 'bandLevels',
-                        pinned: 'left',
-                        cellClass: 'bandLevels',
+                        width: 0,
                         filter: 'agTextColumnFilter',
                         filterParams: {
                             valueGetter: params => {
                                 if (params.data.bandLevels.band_name != undefined) {
-                                    return params.data.bandLevels.band_name
+                                    return params.data.bandLevels.band_name;
                                 }
                             }
                         },
                     },
                 ]
-
             },
             {
-                headerName: "Sales and Marketing",
-                rowGroup: true,
+                headerName: 'Sales and Marketing',
                 children: [
+                    {
+                        headerName: '',
+                        cellRenderer: 'nameCellRenderer',
+                        field: '',
+                        width: 200,
+                        filter: 'agTextColumnFilter',
+                        columnGroupShow: 'closed',
+                    },
                     {
                         headerName: 'Business development',
                         resizable: true,
-                        cellRenderer: "nameCellRenderer",
+                        cellRenderer: 'nameCellRenderer',
                         field: 'firstColumn',
+                        width: 200,
                         filter: 'agTextColumnFilter',
-                        columnGroupShow: "open",
+                        columnGroupShow: 'open',
                         filterParams: {
                             valueGetter: params => {
                                 if (params.data.firstColumn.role_name != undefined) {
-                                    return params.data.firstColumn.role_name
+                                    return params.data.firstColumn.role_name;
                                 }
                             }
                         },
@@ -174,14 +185,15 @@ export class TablePageComponent implements OnInit {
                     {
                         headerName: 'Account Management',
                         resizable: true,
-                        cellRenderer: "nameCellRenderer",
+                        cellRenderer: 'nameCellRenderer',
                         field: 'secondColumn',
+                        width: 200,
                         filter: 'agTextColumnFilter',
-                        columnGroupShow: "open",
+                        columnGroupShow: 'open',
                         filterParams: {
                             valueGetter: params => {
                                 if (params.data.secondColumn.role_name != undefined) {
-                                    return params.data.secondColumn.role_name
+                                    return params.data.secondColumn.role_name;
                                 }
                             }
                         },
@@ -189,27 +201,25 @@ export class TablePageComponent implements OnInit {
 
                     {
                         headerName: 'Sales',
-                        cellRenderer: "nameCellRenderer",
+                        cellRenderer: 'nameCellRenderer',
                         resizable: true,
                         field: 'fourthColumn',
-                        columnGroupShow: "open"
+                        width: 200,
+                        columnGroupShow: 'open'
                     }
                 ]
             },
             {
-                headerName: "Technical",
+                headerName: 'Technical',
                 children: [
-                    {
-                        headerName: 'Software engineer',
-                        resizable: true,
-                        field: 'sda',
-                        columnGroupShow: 'open'
-                    },
+                    {headerName: '', resizable: true, cellRenderer: 'nameCellRenderer', field: '', width: 200, columnGroupShow: 'closed',},
+                    {headerName: 'Software engineer', resizable: true, field: 'sda', width: 200, columnGroupShow: 'open'},
                     {
                         headerName: 'Data Engineering',
                         resizable: true,
                         columnGroupShow: 'open',
                         field: 'total',
+                        width: 200,
                         filter: 'agNumberColumnFilter'
                     },
                 ]
@@ -224,10 +234,9 @@ export class TablePageComponent implements OnInit {
         var cellValue = this.gridOptions.api.getValue(focusedCell.column, row);
 
 
-
-        if (cellValue.type == "role") {
+        if (cellValue.type == 'role') {
             var id = cellValue.role_id;
-        } else if (cellValue.type == "band") {
+        } else if (cellValue.type == 'band') {
             var id = cellValue.band_id;
         }
 
@@ -243,7 +252,7 @@ function NameCellRenderer() {
 
 }
 
-NameCellRenderer.prototype.init = function (params) {
+NameCellRenderer.prototype.init = function(params) {
     this.eGui = document.createElement('span');
     if (params.value != undefined) {
         if (params.value.type == 'role') {
@@ -254,6 +263,6 @@ NameCellRenderer.prototype.init = function (params) {
     }
 };
 
-NameCellRenderer.prototype.getGui = function () {
+NameCellRenderer.prototype.getGui = function() {
     return this.eGui;
 };
