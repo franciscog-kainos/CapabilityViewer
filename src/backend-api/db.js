@@ -23,7 +23,7 @@ exports.getRoleNames = function(callback) {
 
 exports.getCapabilityNames = function(callback) {
 	
-    db.query('SELECT capability_id, capability_name FROM Capability ORDER BY job_family_id', function(err, rows) {
+    db.query('SELECT capability_id, capability_name, job_family_id FROM Capability ORDER BY job_family_id', function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
