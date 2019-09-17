@@ -16,24 +16,13 @@ export class JobFamilyColumn {
         // Gets all the capabilities in the job family.
         data.getCapabilitiesInJobFamily(this.family.job_family_id)
             .subscribe(value => this.family.capabilities = value.map(v => Capability.fromICapability(v)));
-
-        // Gets all the roles
-        let roles: Role[] = [];
-        data.getAllRoles().subscribe(value => {
-            roles = value;
-        });
         // Filters the roles by the capabilities present in the job family.
+        // Then, it assigns the roles to each capability.
         this.family.capabilities.forEach(capability => {
-            roles.filter(r => r.capability_id === capability.capability_id);
+            data.getRolesInCapabilityInJobFamily(this.family.job_family_id, capability.capability_id)
+                .subscribe(value => capability.roles = value.map(r => Role.fromIRole(r)));
         });
-
+        this.children = this.family.asTableObject();
     }
 
-
-    asColumnObject() {
-        return {
-            headerName: this.family.job_family_name,
-            children: this.children
-        };
-    }
 }

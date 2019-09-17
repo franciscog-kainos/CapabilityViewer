@@ -1,7 +1,8 @@
 import {ICapability} from './icapability';
 import {Role} from './Role';
+import {TableObject} from './table-object';
 
-export class Capability extends ICapability {
+export class Capability extends ICapability implements TableObject {
     roles: Role[];
 
     static fromICapability(cap: ICapability) {
@@ -19,5 +20,12 @@ export class Capability extends ICapability {
 
     addRoles(role: Role) {
         this.roles.push(role);
+    }
+
+    asTableObject(): object {
+        return {
+            headerName: this.capability_name,
+            children: this.roles.map(r => r.asTableObject())
+        };
     }
 }

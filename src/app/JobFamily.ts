@@ -1,8 +1,9 @@
 import {IJobFamily} from './ijob-family';
 import {Capability} from './Capability';
 import {IRole} from './irole';
+import {TableObject} from './table-object';
 
-export class JobFamily extends IJobFamily {
+export class JobFamily extends IJobFamily implements TableObject {
     capabilities: Capability[];
     constructor(name) {
         super();
@@ -12,6 +13,13 @@ export class JobFamily extends IJobFamily {
 
     addCapability(capability: Capability) {
         this.capabilities.push(capability);
+    }
+
+    asTableObject(): object {
+        return {
+            headerName: 'Sales and Marketing',
+            children: this.capabilities.map(c => c.asTableObject())
+        };
     }
 
 }
