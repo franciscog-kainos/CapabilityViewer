@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{operationType | titlecase}} Request </h1>
+
+<mat-dialog-content>
+    <p>{{feedbackMessage}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button id="close-feedback-button" (click)="close()">Close</button>
+</mat-dialog-actions>

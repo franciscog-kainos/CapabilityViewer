@@ -79,6 +79,22 @@ app.put('/families', (req,res) => {
     });
 });
 
+app.get('/deletableJobFamilies', (req,res) => {
+    db.getDeletableJobFamilies(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
+app.delete('/deleteJobFamily/:id', (req, res) => {
+    db.deleteJobFamily(req.params.id, (err, rows) =>{
+        if(err){
+            return handleError(err);
+        }
+        res.send(rows);
+    });
+});
+
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
@@ -89,12 +105,3 @@ app.post('/families', (req, res) => {
         res.send({message: "Added new family"});
     });
 })
-
-
-// app.post('/families', function (req, res) {
-//     function insertFamily(){
-//       db.insertFamily(req.body, function (err) {
-//         if (err) return handleError(err, req, res);
-//         res.send({message: "Added new family", body: req.body.family_});
-//       });
-//     }

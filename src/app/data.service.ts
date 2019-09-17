@@ -14,7 +14,6 @@ import {User} from './user';
 export class DataService {
 
   mockUser: User;
-  
 
   constructor(private http: HttpClient) {
     this.getAllFromDatabase();
@@ -70,6 +69,9 @@ export class DataService {
       } else {
         console.log('Added new family!');
         console.log(newFamily);
+        }
+     })
+  }
 
   public updateFamily(newFamily: JobFamily): void {
     console.log(newFamily);
@@ -85,4 +87,13 @@ export class DataService {
       }
     });
   }
+
+  public getDeletableJobFamilies() : Observable<JobFamily[]> {
+    return this.http.get<JobFamily[]>('/api/deletableJobFamilies');
+  }
+
+  public deleteJobFamily(jobFamilyId): Observable<Object> {
+    return this.http.delete('/api/deleteJobFamily/' + jobFamilyId);
+  }
+
 }

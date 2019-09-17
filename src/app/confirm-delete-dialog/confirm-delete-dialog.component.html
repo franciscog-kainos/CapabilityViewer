@@ -1,0 +1,12 @@
+<h1 mat-dialog-title id="confirm-delete-dialog-title">Confirm deletion</h1>
+
+<mat-dialog-content id="confirm-delete-dialog-message">
+    <p>Are you sure you want to delete job family '{{jobFamilyName}}'?</p>
+    <p>This action cannot be undone</p>
+</mat-dialog-content>
+
+<mat-dialog-actions id="confirm-delete-dialog">
+    <button mat-raised-button id="cancel-delete-button" (click)="close()">Cancel</button>
+    <button mat-raised-button id="confirm-delete-button" (click)="confirmDelete()" color="warn">Delete</button>
+</mat-dialog-actions>
+
