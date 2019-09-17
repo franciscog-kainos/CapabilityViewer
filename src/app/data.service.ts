@@ -70,7 +70,11 @@ export class DataService {
       return this.http.get<IRole[]>('/api/rolesInCapabilityInJobFamily/' + familyId + '/' + capabilityId);
     }
 
-    public getJobFamily(jobFamilyId: number) {
+    public getJobFamily(jobFamilyId: number): Observable<IJobFamily> {
         return this.http.get<IJobFamily>('/api/jobFamily/' + jobFamilyId);
+    }
+
+    public testConnection() {
+        return this.http.get<object>('/api/');
     }
 }

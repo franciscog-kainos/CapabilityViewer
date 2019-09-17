@@ -18,6 +18,7 @@ import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
 import {MatMenuModule} from "@angular/material/menu";
+import { RandomComponent } from './random/random.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {MatMenuModule} from "@angular/material/menu";
         TablePageComponent,
         DetailViewerComponent,
         PageNotFoundComponent,
-        CapabilityLeadViewerComponent
+        CapabilityLeadViewerComponent,
+        RandomComponent
     ],
     imports: [
         BrowserModule,

@@ -89,8 +89,41 @@ exports.getCapability = function(capability_id, callback) {
     )
 };
 
-exports.getCapabilitiesInJobFamily = function(family_id) {
+exports.getCapabilitiesInJobFamily = function(family_id, callback) {
     db.query(
-        'select '
+        'select * from Capability where Capability.job_family_id = ' + family_id,
+        [family_id],
+        function(err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
+exports.getJobFamily = function(family_id, callback) {
+    db.query(
+        'select * from Job_Family where job_family_id = ' + family_id,
+        [family_id],
+        function(err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
+exports.getRolesInCapabilityInJobFamily = function(family_id, capability_id, callback) {
+    db.query(
+        'select * from Roles WHERE Roles.capability_id IN (select *  FROM Capability where job_family_id=' + family_id + ') AND capability_id=' + capability_id,
+        [family_id, capability_id],
+        function(err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
     )
 };
