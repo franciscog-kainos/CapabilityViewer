@@ -1,7 +1,8 @@
 import { LandingPage } from './landing-page.po';
 import { browser, logging } from 'protractor';
 import { TablePage } from './table-page.po';
-/*describe('Landing Page', () => {
+/*
+describe('Landing Page', () => {
   let page: LandingPage;
 
   beforeEach(() => {
@@ -17,7 +18,6 @@ import { TablePage } from './table-page.po';
     page.clickTableNavigation();
     expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "table-page");
   });
-
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
@@ -60,5 +60,28 @@ describe('Table Page', () => {
 });
 
 
+describe('Test search function', ()=>{
+  let table_page: TablePage; 
 
+  beforeEach(() => {
+    table_page = new TablePage
+  });
+
+  it('Load table page', () => {
+    table_page.navigateTo();
+      expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+    });
+
+    it('Fill text box', () => {
+      table_page.fillSearchBox();
+      
+      expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+      });
+
+      it('The first search result should be Head of Business', () => {
+      table_page.clickColumnExpandIcon()
+      table_page.checkFirstSearchResult()
+    })
+
+})
 
