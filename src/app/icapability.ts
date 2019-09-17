@@ -1,3 +1,5 @@
+import {Capability} from './Capability';
+
 export abstract class ICapability {
     capability_id: number;
     capability_name: string;
