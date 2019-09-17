@@ -1,5 +1,6 @@
 import { LandingPage } from './landing-page.po';
-import { browser, logging } from 'protractor';
+import { TablePage } from './table-page-search.po'
+import { browser, logging, Ptor } from 'protractor';
 
 describe('Landing Page', () => {
   let page: LandingPage;
@@ -18,7 +19,6 @@ describe('Landing Page', () => {
     expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "table-page");
   });
 
-
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
@@ -27,3 +27,28 @@ describe('Landing Page', () => {
     } as logging.Entry));
   });
 });
+
+describe('Test search function', ()=>{
+  let table_page: TablePage; 
+
+  beforeEach(() => {
+    table_page = new TablePage
+  });
+
+  it('Load table page', () => {
+    table_page.navigateTo();
+      expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+    });
+
+    it('Fill text box', () => {
+      table_page.fillSearchBox();
+      
+      expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+      });
+
+      it('The first search result should be Head of Business', () => {
+      table_page.clickColumnExpandIcon()
+      table_page.checkFirstSearchResult()
+    })
+
+})

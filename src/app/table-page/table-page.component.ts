@@ -51,7 +51,10 @@ export class TablePageComponent implements OnInit {
       this.generateTable(this.jobFamilies, this.capabilities, this.bands, this.roles);
     });
   }
-
+  quickFilter(){
+    // Use ag-grids search function
+    this.gridApi.setQuickFilter(document.getElementById("quickFilter").value);
+   }
   goBack() {
     this.router.navigate(['/landing-page']);
   }
@@ -134,16 +137,12 @@ export class TablePageComponent implements OnInit {
               return params.data.firstColumn.role_name
               }
             }
-          }, },
-          { headerName: 'Account Management',resizable: true,cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open",filterParams: {
-            valueGetter: params => {
-              if (params.data.secondColumn.role_name != undefined){
-              return params.data.secondColumn.role_name
-              }
-            }
-          },  },
+          }, getQuickFilterText: function(params) {
+        return params.value.role_name;
+    }  },
+          { headerName: 'Account Management',resizable: true,cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open"},
 
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", resizable: true,field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", resizable: true,field: 'fourthColumn', width: 200 ,columnGroupShow: "open",}
         ]
       },
       {
