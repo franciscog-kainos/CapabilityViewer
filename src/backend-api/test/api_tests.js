@@ -22,6 +22,7 @@ describe('Getting all role information', function() {
             if (err) {
                 logger.error(err);
             };
+
             expect(res.statusCode).to.equal(200);
         });
     });
@@ -50,6 +51,7 @@ describe('Getting all job familiy information', function() {
             if (err) {
                 logger.error(err);
             };
+
             expect(res.statusCode).to.equal(200);
         });
     });
@@ -78,7 +80,8 @@ describe('Getting all band information', function() {
             if (err) {
                 logger.error(err);
             };
-            expect(res.statusCode).to.equal(200);
+
+            expect(res.statusCode).to.equal(200);            
         });
     });
 
