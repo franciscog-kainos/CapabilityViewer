@@ -1,14 +1,8 @@
-export class Role {
-    role_id: number;
-    role_name: string;
-    role_summary: string;
-    role_training: string;
-    role_responsibilities: string;
-    capability_id: number;
-    band_id: number;
+import {IRole} from './irole';
 
+export class Role extends IRole {
     constructor(name: string) {
-        this.role_name = name;
+        super();
+        super.role_name = name;
     }
-    type: string;
 }

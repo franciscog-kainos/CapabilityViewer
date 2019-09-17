@@ -1,15 +1,15 @@
-import {Capability} from './Capability';
-import {Role} from './Role';
-import {Band} from './Band';
+import {IRole} from './irole';
+import {ICapability} from './icapability';
+import {IBand} from './iband';
 
 export class User {
 
     name: string;
-    capability: Capability;
-    role: Role;
-    band: Band;
+    capability: ICapability;
+    role: IRole;
+    band: IBand;
     // Just a random comment
-    constructor(name: string, capability: Capability, role: Role, band: Band) {
+    constructor(name: string, capability: ICapability, role: IRole, band: IBand) {
         this.name = name;
         this.capability = capability;
         this.role = role;

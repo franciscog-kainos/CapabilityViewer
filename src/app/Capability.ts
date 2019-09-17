@@ -1,12 +1,14 @@
-export class Capability {
-    capability_id: number;
-    capability_name: string;
-    job_family_id: number;
+import {ICapability} from './icapability';
+import {Role} from './Role';
 
-    constructor(name: string) {
-        this.capability_name = name;
+export class Capability extends ICapability {
+    roles: Role[];
+    constructor(capability_name: string) {
+        super();
+        this.capability_name = capability_name;
     }
-    leader_id: number;
-    user_f_name: string;
-    user_l_name: string;
+
+    addRoles(role: Role) {
+        this.roles.push(role);
+    }
 }

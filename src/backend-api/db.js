@@ -88,3 +88,9 @@ exports.getCapability = function(capability_id, callback) {
         }
     )
 };
+
+exports.getCapabilitiesInJobFamily = function(family_id) {
+    db.query(
+        'select '
+    )
+};

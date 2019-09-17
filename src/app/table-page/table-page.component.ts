@@ -5,10 +5,9 @@ import {JobFamily} from '../JobFamily';
 import {Role} from '../Role';
 import {Capability} from '../Capability';
 import {Band} from '../Band';
-import {Observable} from 'rxjs';
 import {GridOptions} from 'ag-grid-community';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormsModule} from '@angular/forms';
+import {async} from 'rxjs/internal/scheduler/async';
 
 @Component({
     selector: 'table-page',
@@ -32,11 +31,6 @@ export class TablePageComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.gridOptions.api);
-    }
-
-    onGridReady(params) {
-        // Preparation for grid api
-        this.gridApi = params.api;
     }
 
     styleBandLevels() {
@@ -66,6 +60,7 @@ export class TablePageComponent implements OnInit {
             allColumnIds.push(column.colId);
         });
         this.gridColumnApi.autoSizeColumns(allColumnIds);
+
 
     }
 
@@ -144,6 +139,7 @@ export class TablePageComponent implements OnInit {
                         cellRenderer: 'nameCellRenderer',
                         field: 'bandLevels',
                         width: 0,
+                        pinned: 'left',
                         filter: 'agTextColumnFilter',
                         filterParams: {
                             valueGetter: params => {
@@ -158,14 +154,6 @@ export class TablePageComponent implements OnInit {
             {
                 headerName: 'Sales and Marketing',
                 children: [
-                    {
-                        headerName: '',
-                        cellRenderer: 'nameCellRenderer',
-                        field: '',
-                        width: 200,
-                        filter: 'agTextColumnFilter',
-                        columnGroupShow: 'closed',
-                    },
                     {
                         headerName: 'Business development',
                         resizable: true,
@@ -212,8 +200,9 @@ export class TablePageComponent implements OnInit {
             {
                 headerName: 'Technical',
                 children: [
-                    {headerName: '', resizable: true, cellRenderer: 'nameCellRenderer', field: '', width: 200, columnGroupShow: 'closed',},
-                    {headerName: 'Software engineer', resizable: true, field: 'sda', width: 200, columnGroupShow: 'open'},
+                    {
+                        headerName: 'Software engineer', resizable: true, field: 'sda', width: 200, columnGroupShow: 'open',
+                    },
                     {
                         headerName: 'Data Engineering',
                         resizable: true,
@@ -229,6 +218,7 @@ export class TablePageComponent implements OnInit {
     }
 
     onCellClicked(event) {
+
         var focusedCell = this.gridOptions.api.getFocusedCell();
         var row = this.gridOptions.api.getDisplayedRowAtIndex(focusedCell.rowIndex);
         var cellValue = this.gridOptions.api.getValue(focusedCell.column, row);
@@ -246,6 +236,14 @@ export class TablePageComponent implements OnInit {
     onFirstDataRendered(params) {
         params.api.sizeColumnsToFit();
     }
+
+    createBandObject(band: Band) {
+        return {
+            headerName: band.band_name,
+            children: []
+        };
+    }
+
 }
 
 function NameCellRenderer() {
