@@ -16,10 +16,13 @@ import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
-import {MatButtonModule} from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { MatFormFieldModule, MatSelectModule, MatInputModule,MatTabsModule } from '@angular/material';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatButtonModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule, MatDialogModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ConfirmDeleteDialog } from "./confirm-delete-dialog/confirm-delete-dialog.component";
+import { FeedbackDialog} from "./feedback-dialog/feedback-dialog.component";
 import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
 
 @NgModule({
@@ -33,6 +36,8 @@ import { TableHeaderClickComponent } from './table-header-click/table-header-cli
     CapabilityLeadViewerComponent,
     TableHeaderClickComponent,
     AdminPageComponent,
+    ConfirmDeleteDialog,
+    FeedbackDialog
   ],
     imports: [
         BrowserModule,
@@ -51,10 +56,16 @@ import { TableHeaderClickComponent } from './table-header-click/table-header-cli
         MatSelectModule,
         MatInputModule,
         MatSnackBarModule,
-        MatInputModule
+        MatTabsModule,
+        MatDialogModule,
+        NgSelectModule
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [ AppComponent ],
+  entryComponents: [
+    ConfirmDeleteDialog,
+    FeedbackDialog
+  ]
 })
 
 export class AppModule {

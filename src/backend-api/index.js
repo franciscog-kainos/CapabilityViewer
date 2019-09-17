@@ -117,7 +117,23 @@ app.get('/user/:id', (req, res) => {
     });
 });
 
-app.listen(8002, function () {
+app.get('/deletableJobFamilies', (req,res) => {
+    db.getDeletableJobFamilies(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
+app.delete('/deleteJobFamily/:id', (req, res) => {
+    db.deleteJobFamily(req.params.id, (err, rows) =>{
+        if(err){
+            return handleError(err);
+        }
+        res.send(rows);
+    });
+});
+
+app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
 
