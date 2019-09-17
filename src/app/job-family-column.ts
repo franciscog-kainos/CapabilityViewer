@@ -8,11 +8,14 @@ export class JobFamilyColumn {
     family: JobFamily;
     children;
 
-    constructor(family: JobFamily) {
-        this.family = family;
+    constructor() {
     }
 
-    populateChildren(data: DataService) {
+    populateChildren(data: DataService, jobFamilyId: number) {
+        data.getJobFamily(jobFamilyId).subscribe(value => {
+            this.family = JobFamily.fromIJobFamily(value);
+        });
+
         // Gets all the capabilities in the job family.
         data.getCapabilitiesInJobFamily(this.family.job_family_id)
             .subscribe(value => this.family.capabilities = value.map(v => Capability.fromICapability(v)));

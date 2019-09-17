@@ -4,6 +4,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../data.service';
 import { Band } from '../Band';
 import { Role } from '../Role';
+import {IBand} from '../iband';
+import {IRole} from '../irole';
 
 @Component({
     selector: 'detail-viewer',
@@ -12,8 +14,8 @@ import { Role } from '../Role';
 })
 export class DetailViewerComponent implements OnInit {
     data: DataService;
-    band: Band;
-    role: Role;
+    band: IBand;
+    role: IRole;
     detailID: string;
     detailType: string;
 

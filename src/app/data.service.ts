@@ -69,4 +69,8 @@ export class DataService {
     public getRolesInCapabilityInJobFamily(familyId, capabilityId): Observable<IRole[]> {
       return this.http.get<IRole[]>('/api/rolesInCapabilityInJobFamily/' + familyId + '/' + capabilityId);
     }
+
+    public getJobFamily(jobFamilyId: number) {
+        return this.http.get<IJobFamily>('/api/jobFamily/' + jobFamilyId);
+    }
 }
