@@ -15,31 +15,41 @@ db.connect(function(err) {
 
 exports.getRoleNames = function(callback) {
 
-    db.query('SELECT role_id, role_name,band_id,capability_id FROM Role ORDER BY band_id', function(err, rows) {
+    db.query('SELECT Role.role_id, Role.role_name, Role.band_id, Role.capability_id ' +
+        'FROM capabilitiesDB_test.Role ' +
+        'ORDER BY Role.band_id',
+        function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
 exports.getCapabilityNames = function(callback) {
-	
-    db.query('SELECT capability_id, capability_name FROM Capability ORDER BY job_family_id', function(err, rows) {
+
+    db.query('SELECT Capability.capability_id, Capability.capability_name ' +
+        'FROM capabilitiesDB_test.Capability ' +
+        'ORDER BY Capability.job_family_id',
+        function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
 exports.getBandNames = function(callback) {
-	
-    db.query('SELECT band_id, band_name FROM Band', function(err, rows) {
+
+    db.query('SELECT Band.band_id, Band.band_name ' +
+        'FROM capabilitiesDB_test.Band',
+        function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
 exports.getJobFamiliyNames = function(callback) {
-	
-    db.query('SELECT job_family_id, job_family_name FROM Job_Family', function(err, rows) {
+
+    db.query('SELECT Job_Family.job_family_id, Job_Family.job_family_name ' +
+        'FROM capabilitiesDB_test.Job_Family',
+        function(err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
@@ -48,7 +58,9 @@ exports.getJobFamiliyNames = function(callback) {
 //Get details for a specific band
 exports.getBand = function(band_id, callback) {
     db.query(
-        'SELECT band_name, band_competency, band_responsibilities FROM Band WHERE band_id = ?',
+        'SELECT Band.band_name, Band.band_competency, Band.band_responsibilities ' +
+        'FROM capabilitiesDB_test.Band ' +
+        'WHERE Band.band_id = ?',
         [band_id],
         function(err, rows){
             if(err){
@@ -62,7 +74,9 @@ exports.getBand = function(band_id, callback) {
 //Get details for a specific role
 exports.getRole = function(role_id, callback) {
     db.query(
-        'SELECT role_name, role_summary, role_training, role_responsibilities FROM Role WHERE role_id = ?',
+        'SELECT Role.role_name, Role.role_summary, Role.role_training, Role.role_responsibilities ' +
+        'FROM capabilitiesDB_test.Role ' +
+        'WHERE Role.role_id = ?',
         [role_id],
         function(err, rows){
             if(err){
