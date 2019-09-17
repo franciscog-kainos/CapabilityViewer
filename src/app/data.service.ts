@@ -179,4 +179,13 @@ export class DataService {
       }
     });
   }
+
+  public getDeletableJobFamilies() : Observable<JobFamily[]> {
+    return this.http.get<JobFamily[]>('/api/deletableJobFamilies');
+  }
+
+  public deleteJobFamily(jobFamilyId): Observable<Object> {
+    return this.http.delete('/api/deleteJobFamily/' + jobFamilyId);
+  }
+
 }

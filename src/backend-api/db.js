@@ -144,6 +144,41 @@ exports.getCapability = function (capability_id, callback) {
     )
 };
 
+//Get all job families with no associated entities
+exports.getDeletableJobFamilies = function(callback){
+    db.query(
+        'SELECT job_family_name, job_family_id ' +
+         'FROM Job_Family ' +
+         'WHERE job_family_id NOT IN ' +
+         '( ' +
+         	'SELECT job_family_id ' +
+             'FROM Capability ' +
+         ')',
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
+//Delete a specific job family
+exports.deleteJobFamily = function(job_family_id, callback){
+    db.query(
+        'DELETE FROM Job_Family ' +
+         'WHERE job_family_id = ?',
+        [job_family_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+
+    )
+}
+
 // Adds a new job family to the database
 exports.insertFamily = function(data, callback) {
     db.query('INSERT INTO Job_Family SET ?', data, function(err, results, fields) {
