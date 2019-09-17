@@ -17,6 +17,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatButtonModule} from '@angular/material';
     TablePageComponent,
     DetailViewerComponent,
     PageNotFoundComponent,
-    CapabilityLeadViewerComponent
+    CapabilityLeadViewerComponent,
+    AdminPageComponent
   ],
     imports: [
         BrowserModule,
