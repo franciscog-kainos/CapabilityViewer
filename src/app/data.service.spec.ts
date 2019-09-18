@@ -24,6 +24,21 @@ describe('DataService', () => {
         });
     });
 
+
+    it('should return a job family',(done: DoneFn) => {
+        data.getJobFamily(1).subscribe(value => {
+            expect(value).toBeTruthy();
+            done();
+        });
+    });
+
+    it('should return a list of capabilities in the job family',(done: DoneFn) => {
+        data.getCapabilitiesInJobFamily(1).subscribe(value => {
+            expect(value).toBeTruthy();
+            done();
+        });
+    });
+
   it('should return more than one capability',(done: DoneFn) => {
       data.getCapabilitiesInJobFamily(1).subscribe(value => {
         expect(value.length).toBeGreaterThan(1);

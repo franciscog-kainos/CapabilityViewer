@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, forkJoin} from 'rxjs';
 import {User} from './user';
 import {Capability} from './Capability';
@@ -55,7 +55,9 @@ export class DataService {
     }
 
     public getCapability(id): Observable<ICapability> {
-        return this.http.get<ICapability>('/api/capabilities/' + id);
+        let params = new HttpParams()
+            .set('capabilityId', id);
+        return this.http.get<ICapability>('/api/capability/' + id, {params: params });
     }
 
     public getBand(bandId): Observable<IBand> {
@@ -63,11 +65,16 @@ export class DataService {
     }
 
     public getCapabilitiesInJobFamily(familyId): Observable<ICapability[]> {
-        return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId);
+        let params = new HttpParams()
+            .set('familyId', familyId);
+        return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params: params});
     }
 
     public getRolesInCapabilityInJobFamily(familyId, capabilityId): Observable<IRole[]> {
-      return this.http.get<IRole[]>('/api/rolesInCapabilityInJobFamily/' + familyId + '/' + capabilityId);
+        let params = new HttpParams()
+            .set('capabilityId', capabilityId)
+            .set('familyId', familyId);
+        return this.http.get<IRole[]>('/api/rolesInCapabilityInJobFamily/' + familyId + '/' + capabilityId, {params: params});
     }
 
     public getJobFamily(jobFamilyId: number): Observable<IJobFamily> {

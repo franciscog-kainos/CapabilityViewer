@@ -71,9 +71,15 @@ app.get('/capabilities/:id', (req, res) => {
         res.send(row[0]);
     });
 });
+app.get('/capability/:id', (req, res) => {
+    db.getCapabilityById(req.params.id, (err, row) => {
+        if (err) return handleError(err);
+        res.send(row[0]);
+    });
+});
 
-app.get('/capabilitiesByJobFamily/:id', (req, res) => {
-    db.getCapabilitiesInJobFamily(req.params.id, (err, row) => {
+app.get('/capabilitiesByJobFamily/:familyId', (req, res) => {
+    db.getCapabilitiesInJobFamily(req.params.familyId, (err, row) => {
         if (err) return handleError(err);
         res.send(row);
     });
@@ -86,8 +92,9 @@ app.get('/jobFamily/:id', (req, res) => {
     });
 });
 
-app.get('/rolesInCapabilityInJobFamily/:fam_id/:cap_id', (req, res) => {
-    db.getRolesInCapabilityInJobFamily(req.params.job_family_id, req.params.capability_id, (err, row) => {
+app.get('/rolesInCapabilityInJobFamily/:familyId/:capabilityId', (req, res) => {
+    console.log(req.params);
+    db.getRolesInCapabilityInJobFamily(req.params.familyId, req.params.capabilityId, (err, row) => {
         if (err) return handleError(err);
         res.send(row);
     });

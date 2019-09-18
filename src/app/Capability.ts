@@ -3,8 +3,7 @@ import {Role} from './Role';
 import {TableObject} from './table-object';
 
 export class Capability extends ICapability implements TableObject {
-    roles: Role[];
-
+    roles: Role[] = [];
     static fromICapability(cap: ICapability) {
         const capability = new Capability(cap.capability_name);
         capability.capability_name = cap.capability_name;
