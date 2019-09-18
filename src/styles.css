@@ -54,3 +54,14 @@ body {
 
 }
 
+.ag-theme-material .ag-icon-expanded{
+    color: white;
+}
+
+.ag-theme-material .ag-icon-contracted{
+    color: white;
+}
+
+.ag-theme-material .ag-icon-menu{
+    color: white;
+}
