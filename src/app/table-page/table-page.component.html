@@ -10,7 +10,8 @@
         (sortChanged)="onColumnClicked($event)"
         [components]="components"
         (gridReady)="onGridReady($event)"
-        [animateRows] = "true">
+        [animateRows] = "true"
+        [suppressMenuHide]="true">
     </ag-grid-angular>
     <button (click)="navigateToCapabilityView(1)">capability</button>
 </div>

@@ -59,7 +59,6 @@ describe('Table Page', () => {
   });
 });
 
-
 describe('Test search function', ()=>{
   let table_page: TablePage; 
 
@@ -68,7 +67,7 @@ describe('Test search function', ()=>{
   });
 
   it('Load table page', () => {
-    table_page.navigateTo();
+    table_page.refreshTable();
       expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
     });
 
@@ -85,3 +84,25 @@ describe('Test search function', ()=>{
 
 })
 
+describe('Test band search function', ()=>{
+  let table_page: TablePage; 
+
+  beforeEach(() => {
+    table_page = new TablePage
+  });
+
+  it('Load table page', () => {
+    table_page.refreshTable();
+      expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+    });
+
+    it('Fill text box', () => {
+      table_page.clickSearchBandButton()
+      table_page.fillBandSearchBox();
+      });
+
+      it('The first search result should be Head of Business', () => {
+      table_page.checkFirstBandSearchResult()
+    })
+
+})

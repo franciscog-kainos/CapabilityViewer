@@ -118,7 +118,7 @@ export class TablePageComponent implements OnInit {
       {
         headerName: "Band Level",
         children: [
-          { headerName: '', cellRenderer: "nameCellRenderer", field: 'bandLevels', width: 0, filter: 'agTextColumnFilter',filterParams: {
+          { headerName: 'Band', cellRenderer: "nameCellRenderer", field: 'bandLevels', width: 0, filter: 'agTextColumnFilter',filterParams: {
             valueGetter: params => {
               if (params.data.bandLevels.band_name != undefined){
               return params.data.bandLevels.band_name
