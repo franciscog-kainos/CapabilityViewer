@@ -239,8 +239,8 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
 
  /* -------------------------- ROLES END ------------------------ */
 
-INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`)
+INSERT INTO `User`(`user_f_name`, `user_l_name`, `user_username`, `user_password`, `role_id`)
     VALUES
-    ('Jane One', 'Doe', 1),
-    ('Jane Two', 'Doe', 2),
-    ('Jane Three', 'Doe', 3);
+    ('Jane One', 'Doe', 'D.Janeone', '0fa261c7bd180d1f9375def4f533e26dfede5961', 1),
+    ('Jane Two', 'Doe', 'D.Janetwo', '8937a8a12eed27b9b599d46b6d469cabfa6bd6e3', 2),
+    ('Jane Three', 'Doe', 'D.Janethree', '9f218bae904489b0325f6b3c999491f7b1f08694', 3);

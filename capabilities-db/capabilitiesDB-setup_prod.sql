@@ -17,7 +17,9 @@ CREATE TABLE IF NOT EXISTS Band(
 CREATE TABLE IF NOT EXISTS User(
 	user_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	user_f_name VARCHAR(50) NOT NULL,
-    user_l_name VARCHAR(50)
+    user_l_name VARCHAR(50),
+    user_username VARCHAR(52) NOT NULL,
+    user_password CHAR(40) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Role(
