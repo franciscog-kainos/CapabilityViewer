@@ -33,6 +33,9 @@ export class DetailViewerComponent implements OnInit {
             data.getRole(this.detailID).subscribe(response => {
                 this.role = response;
             });
+            data.getRoleTraining(this.detailID).subscribe(response => {
+                this.populateTrainingResources(response);
+            });
         }
 
         if(this.detailType == "band"){
@@ -40,16 +43,28 @@ export class DetailViewerComponent implements OnInit {
                 this.band = response;
             });
              data.getBandTraining(this.detailID).subscribe(response => {
-                 if(response != null){
-                     this.trainingResources.push(response);
-                     for(let resource of this.trainingResources){
-                        if(resource && resource.training_category != null){
-                         this.categories.add(resource.training_category);
-                        }
-                     }
-                 }
+                 this.populateTrainingResources(response);
             });
+        }
+    }
 
+    //Populate variables for training resources and categories to be displayed using response from API
+    private populateTrainingResources(response: object){
+        if(response){
+            //More than one training resource
+            if(Array.isArray(response)) {
+                this.trainingResources = [...this.trainingResources, ...response as TrainingResource[]];
+            }
+            //Only one training resource
+            else {
+                this.trainingResources.push(response as TrainingResource);
+            }
+            //Get categories
+            for(let resource of this.trainingResources){
+                if(resource && resource.training_category != null){
+                    this.categories.add(resource.training_category);
+                 }
+             }
         }
     }
 

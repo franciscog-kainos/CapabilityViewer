@@ -2,7 +2,7 @@
     <!--Role Details below-->
     <div class="role-information" *ngIf="detailType === 'role'">
         <mat-card>
-            <mat-card-title>{{role.role_name}}</mat-card-title>
+            <mat-card-title id="role-name">{{role.role_name}}</mat-card-title>
         </mat-card>
 
         <mat-expansion-panel>
@@ -15,19 +15,35 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>Training</mat-panel-title>
-                <mat-panel-description>This is a summary of the content</mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>{{role.role_training}}</p>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
                 <mat-panel-title>Responsibilities</mat-panel-title>
                 <mat-panel-description>This is a summary of the content</mat-panel-description>
             </mat-expansion-panel-header>
             <p>{{role.role_responsibilities}}</p>
         </mat-expansion-panel>
+
+        <!-- Start training -->
+        <mat-expansion-panel id="training-panel" *ngIf="trainingResources.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Training</mat-panel-title>
+                <mat-panel-description>Training required for this band</mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!--Start training categories-->
+            <mat-expansion-panel *ngFor="let category of categories">
+                <mat-expansion-panel-header>
+                    <mat-panel-title id="training-category">{{category}}</mat-panel-title>
+                    <mat-panel-description>Summary of this training category</mat-panel-description>
+                </mat-expansion-panel-header>
+                <!--change this to use ng-for-->
+                <ng-container *ngFor="let resource of trainingResources">
+                    <ul *ngIf="resource.training_category === category" class="main-detail-content" id="role-training-detail">
+                        <li><a href="{{resource.training_link}}">{{resource.training_name}}</a></li>
+                    </ul>
+                </ng-container>
+
+            </mat-expansion-panel>
+        </mat-expansion-panel>
+        <!-- End training -->
     </div>
 
 

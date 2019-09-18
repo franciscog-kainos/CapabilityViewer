@@ -25,56 +25,81 @@ app.get('/', function(req, res) {
 
 app.get('/roles', function(req, res) {
     db.getRoleNames(function(err, rows) {
-        if (err) return handleError(err, req, res);
+        if (err) {
+            return handleError(err, req, res);
+        }
         res.send(rows);
     });
 });
 
 app.get('/families', function(req, res) {
     db.getJobFamiliyNames(function(err, rows) {
-        if (err) return handleError(err, req, res);
+        if (err) {
+            return handleError(err, req, res);
+        }
         res.send(rows);
     });
 });
 
 app.get('/capabilities', function(req, res) {
   db.getCapabilityNames(function(err, rows) {
-if (err) return handleError(err, req, res);
+    if (err) {
+        return handleError(err, req, res);
+    }
       res.send(rows);
   });
 });
 
 app.get('/bands', function(req, res) {
   db.getBandNames(function(err, rows) {
-      if (err) return handleError(err, req, res);
+      if (err) {
+        return handleError(err, req, res);
+      }
       res.send(rows);
   });
 });
 
 app.get('/bands/:id', (req,res) => {
     db.getBand(req.params.id, (err,row) => {
-        if(err) return handleError(err);
+        if(err) {
+            return handleError(err);
+        }
         res.send(row[0]);
     });
 });
 
 app.get('/bands/:id/training', (req,res) => {
     db.getBandTraining(req.params.id, (err,row) => {
-        if(err) return handleError(err);
+        if(err) {
+            return handleError(err);
+        }
         res.send(row[0]);
     });
 });
 
 app.get('/roles/:id', (req,res) => {
     db.getRole(req.params.id, (err,row) => {
-        if(err) return handleError(err);
+        if(err) {
+            return handleError(err);
+        }
         res.send(row[0]);
+    });
+});
+
+app.get('/roles/:id/training', (req,res) => {
+    db.getRoleTraining(req.params.id, (err,rows) => {
+        if(err) {
+            return handleError(err);
+        }
+        res.send(rows);
     });
 });
 
 app.get('/capabilities/:id', (req,res) => {
     db.getCapability(req.params.id, (err,row) => {
-        if(err) return handleError(err);
+        if(err) {
+            return handleError(err);
+        }
         res.send(row[0]);
     });
 });

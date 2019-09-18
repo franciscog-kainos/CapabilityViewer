@@ -89,12 +89,11 @@ exports.getBandTraining = function(band_id, callback){
     )
 }
 
-
 //Get details for a specific role
 exports.getRole = function(role_id, callback) {
     db.query(
-        'SELECT Role.role_name, Role.role_summary, Role.role_training, Role.role_responsibilities ' +
-        'FROM capabilitiesDB_test.Role ' +
+        'SELECT Role.role_name, Role.role_summary, Role.role_responsibilities ' +
+        'FROM Role ' +
         'WHERE Role.role_id = ?',
         [role_id],
         function(err, rows){
@@ -105,6 +104,24 @@ exports.getRole = function(role_id, callback) {
         }
     )
 };
+
+//Get training for a specific role
+exports.getRoleTraining = function(role_id, callback){
+    db.query(
+    'SELECT Training.training_name AS `training_name`, Training.training_link AS `training_link`, Training_Category.training_category_name AS `training_category` ' +
+    'FROM Training INNER JOIN Role_Training on Training.training_id = Role_Training.training_id ' +
+    'INNER JOIN Role on Role.role_id = Role_Training.role_id ' +
+    'INNER JOIN Training_Category on Training_Category.training_category_id = Training.training_category_id ' +
+    'WHERE Role.role_id = ?',
+        [role_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+}
 
 //Get details for a specific capability
 exports.getCapability = function(capability_id, callback) {

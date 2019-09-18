@@ -1,10 +1,11 @@
 import { LandingPage } from './landing-page.po';
 import { BandDetailViewerPage } from './band-detail-viewer-page.po';
+import { RoleDetailViewerPage } from './role-detail-viewer-page.po';
 import { browser, logging, protractor } from 'protractor';
 
 describe('Landing Page', () => {
   let page: LandingPage;
-  let bandDetailPage: BandDetailViewerPage
+  let roleDetailPage: RoleDetailViewerPage;
 
   beforeEach(() => {
     page = new LandingPage();
@@ -25,6 +26,31 @@ describe('Landing Page', () => {
 });
 
 
+describe('Role detail page', () => {
+let page: RoleDetailViewerPage;
+    beforeEach(() => {
+        page = new  RoleDetailViewerPage();
+    });
+
+      it('should display role name', () => {
+        page.navigateTo();
+        expect(page.getTitleText()).toEqual('Head of Business Unit');
+      });
+
+    it('should display role training categories when training panel is clicked', () => {
+        page.clickTraining();
+        browser.driver.sleep(500);
+        expect(page.getTrainingCategoryText()).toContain('Professional Skills');
+      });
+
+      it('should display role training content when a category is clicked', () => {
+        page.clickTrainingCategory();
+        browser.driver.sleep(500);
+        expect(page.getTrainingContent()).toContain('Coaching - 3. Advanced');
+      });
+});
+
+
 
 describe('Band detail page', () => {
   let page: BandDetailViewerPage;
@@ -40,7 +66,8 @@ describe('Band detail page', () => {
 
   it('should display band responsibilities when responsibilities panel is clicked', () => {
     page.clickResponsibilities();
-    expect(page.getResponsibilitiesContent()).toContain('Executive responsibility');
+    browser.driver.sleep(500);
+    expect(page.getResponsibilitiesContent()).toContain('Executive Responsibilities');
   });
 
   it('should display band competencies when competencies panel is clicked', () => {
@@ -55,6 +82,7 @@ describe('Band detail page', () => {
   });
 
   it('should display band training content when a category is clicked', () => {
+  browser.driver.sleep(500);
     page.clickTrainingCategory();
     expect(page.getTrainingContent()).toContain('Coaching - 3. Advanced');
   });

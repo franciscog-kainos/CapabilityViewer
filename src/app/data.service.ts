@@ -52,6 +52,10 @@ export class DataService {
     return this.http.get<Role>('/api/roles/' + id);
   }
 
+  public getRoleTraining(roleId) : Observable<TrainingResource[]>{
+    return this.http.get<TrainingResource[]>('/api/roles/' + roleId + '/training');
+  }
+
   public getCapability(id) : Observable<Capability> {
     return this.http.get<Capability>('/api/capabilities/' + id);
   }

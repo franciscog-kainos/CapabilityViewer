@@ -190,6 +190,7 @@ INSERT INTO `Training`(`training_name`, `training_link`, `training_category_id`)
 INSERT INTO `Role_Training`(`role_id`, `training_id`)
 	VALUES
     (1, 1),
+    (1, 5),
     (3, 5),
 	(2, 1);
 
