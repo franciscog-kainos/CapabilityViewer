@@ -1,16 +1,11 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
 import {DataService} from '../data.service';
-import {JobFamily} from '../JobFamily';
 import {Role} from '../Role';
 import {Capability} from '../Capability';
 import {Band} from '../Band';
-import {Observable} from 'rxjs';
 import {GridApi, GridOptions} from 'ag-grid-community';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormsModule} from '@angular/forms';
-import {JobFamilyColumns} from "../job-family-columns";
-import {DataRow} from "../data-row";
 
 @Component({
     selector: 'table-page',

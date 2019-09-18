@@ -17,26 +17,26 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
+import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
 import {MatMenuModule} from "@angular/material/menu";
-import { RandomComponent } from './random/random.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        PageHeaderComponent,
-        LandingPageComponent,
-        TablePageComponent,
-        DetailViewerComponent,
-        PageNotFoundComponent,
-        CapabilityLeadViewerComponent,
-        RandomComponent
-    ],
+  declarations: [
+    AppComponent,
+    PageHeaderComponent,
+    LandingPageComponent,
+    TablePageComponent,
+    DetailViewerComponent,
+    PageNotFoundComponent,
+    CapabilityLeadViewerComponent,
+    TableHeaderClickComponent
+  ],
     imports: [
         BrowserModule,
         FormsModule,
         NgbModule,
         HttpClientModule,
-        AgGridModule.withComponents([]),
+        AgGridModule.withComponents([TableHeaderClickComponent]),
         BrowserAnimationsModule,
         MatExpansionModule,
         AppRoutingModule,
