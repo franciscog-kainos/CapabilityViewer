@@ -91,6 +91,8 @@ export class TablePageComponent implements OnInit {
     }
 }
 
+//TODO - ON COLUMN HEADER CLICKED
+
 function NameCellRenderer() {
 
 }
