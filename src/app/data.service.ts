@@ -4,6 +4,7 @@ import { JobFamily } from './JobFamily';
 import { Capability } from './Capability';
 import { Band } from './Band';
 import { Role } from './Role';
+import { TrainingResource } from './TrainingResource';
 import { Observable, forkJoin } from 'rxjs';
 import {User} from './user';
 
@@ -57,5 +58,9 @@ export class DataService {
 
   public getBand(bandId) : Observable<Band>{
     return this.http.get<Band>('/api/bands/' + bandId);
+  }
+
+  public getBandTraining(bandId) : Observable<TrainingResource[]>{
+    return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
   }
 }

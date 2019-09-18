@@ -30,31 +30,59 @@
         </mat-expansion-panel>
     </div>
 
+
     <!--Band details below-->
     <div class="band-information" *ngIf="detailType === 'band'">
         <!-- Start band name -->
         <mat-card>
-            <mat-card-title>{{band.band_name}}</mat-card-title>
+            <mat-card-title id="band-name">{{band.band_name}}</mat-card-title>
         </mat-card>
         <!-- End band name -->
 
         <!-- Start band responsibilities -->
-        <mat-expansion-panel>
+        <mat-expansion-panel id="responsibilities-panel">
             <mat-expansion-panel-header>
                 <mat-panel-title>Responsibilities</mat-panel-title>
                 <mat-panel-description> Responsibilities for this band</mat-panel-description>
             </mat-expansion-panel-header>
-            <p class="main-detail-content">{{band.band_responsibilities}}</p>
+            <p class="main-detail-content" id="responsibilities-detail">{{band.band_responsibilities}}</p>
         </mat-expansion-panel>
         <!-- End band responsibilities -->
-<!-- Start band competencies -->
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Competencies</mat-panel-title>
-            <mat-panel-description> Competencies for this band</mat-panel-description>
-        </mat-expansion-panel-header>
-        <p class="main-detail-content">{{band.band_competency}}</p>
-    </mat-expansion-panel>
-    <!-- End band competencies -->
+        <!-- Start band competencies -->
+        <mat-expansion-panel id="competencies-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Competencies</mat-panel-title>
+                <mat-panel-description> Competencies for this band</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p class="main-detail-content" id="competencies-detail">{{band.band_competency}}</p>
+        </mat-expansion-panel>
+        <!-- End band competencies -->
+
+        <!-- Start training -->
+        <mat-expansion-panel id="training-panel" *ngIf="trainingResources.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Training</mat-panel-title>
+                <mat-panel-description>Training required for this band</mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!--Start training categories-->
+            <mat-expansion-panel *ngFor="let category of categories">
+                <mat-expansion-panel-header>
+                    <mat-panel-title id="training-category">{{category}}</mat-panel-title>
+                    <mat-panel-description>Summary of this training category</mat-panel-description>
+                </mat-expansion-panel-header>
+                <!--change this to use ng-for-->
+                <ng-container *ngFor="let resource of trainingResources">
+                    <ul *ngIf="resource.training_category === category" class="main-detail-content" id="training-detail">
+                        <li><a href="{{resource.training_link}}">{{resource.training_name}}</a></li>
+                    </ul>
+                </ng-container>
+
+            </mat-expansion-panel>
+        </mat-expansion-panel>
+        <!-- End training -->
+
+    </div>
 </div>
-</div>
+
+
