@@ -71,6 +71,25 @@ exports.getBand = function(band_id, callback) {
     )
 };
 
+//Get training for a specific band
+exports.getBandTraining = function(band_id, callback){
+    db.query(
+    'SELECT Training.training_name AS `training_name`, Training.training_link AS `training_link`, Training_Category.training_category_name AS `training_category` ' +
+    'FROM Training INNER JOIN Band_Training on Training.training_id = Band_Training.training_id ' +
+    'INNER JOIN Band on Band.band_id = Band_Training.band_id ' +
+    'INNER JOIN Training_Category on Training_Category.training_category_id = Training.training_category_id ' +
+    'WHERE Band.band_id = ?',
+        [band_id],
+        function(err, rows){
+            if(err){
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+}
+
+
 //Get details for a specific role
 exports.getRole = function(role_id, callback) {
     db.query(
