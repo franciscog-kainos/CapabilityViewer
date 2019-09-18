@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { GridOptions } from 'ag-grid-community';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from '@angular/forms';
+import {TableHeaderClickComponent} from "../table-header-click/table-header-click.component";
 
 @Component({
   selector: 'table-page',
@@ -122,28 +123,27 @@ export class TablePageComponent implements OnInit {
               }
             }
           },  },
-        ]
+        ],
       },
       {
         headerName: "Sales and Marketing",
         children: [
-          { headerName: '', cellRenderer: "nameCellRenderer", field: '', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "closed", },
-          { headerName: 'Business development',resizable: true, cellRenderer: "nameCellRenderer", field: 'firstColumn', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "open",filterParams: {
+          { headerName: '', cellRenderer: "nameCellRenderer", field: '', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "closed",  },
+          { headerName: 'Business development',resizable: true, cellRenderer: "nameCellRenderer", headerComponentFramework: TableHeaderClickComponent, field: 'firstColumn', width: 200, filter: 'agTextColumnFilter', columnGroupShow: "open",filterParams: {
             valueGetter: params => {
               if (params.data.firstColumn.role_name != undefined){
               return params.data.firstColumn.role_name
               }
             }
           }, },
-          { headerName: 'Account Management',resizable: true,cellRenderer: "nameCellRenderer", field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open",filterParams: {
+          { headerName: 'Account Management',resizable: true, cellRenderer: "nameCellRenderer", headerComponentFramework: TableHeaderClickComponent, field: 'secondColumn', width: 200, filter: 'agTextColumnFilter',columnGroupShow: "open",filterParams: {
             valueGetter: params => {
               if (params.data.secondColumn.role_name != undefined){
               return params.data.secondColumn.role_name
               }
             }
           },  },
-
-          { headerName: 'Sales', cellRenderer: "nameCellRenderer", resizable: true,field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
+          { headerName: 'Sales', cellRenderer: "nameCellRenderer", headerComponentFramework: TableHeaderClickComponent, resizable: true,field: 'fourthColumn', width: 200 ,columnGroupShow: "open"}
         ]
       },
       {
@@ -155,7 +155,6 @@ export class TablePageComponent implements OnInit {
         ]
       }
     ];
-
   }
 
   onCellClicked(event){
