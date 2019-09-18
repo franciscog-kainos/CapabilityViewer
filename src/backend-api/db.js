@@ -76,7 +76,7 @@ exports.getRole = function(role_id, callback) {
 //Get details for a specific capability
 exports.getCapability = function(capability_id, callback) {
     db.query(
-        'SELECT Capability.capability_name, User.user_f_name, User.user_l_name ' +
+        'SELECT Capability.capability_name, User.user_f_name, User.user_l_name, User.user_picture ' +
         'FROM capabilitiesDB_test.Capability, capabilitiesDB_test.User ' +
         'WHERE User.user_id = Capability.leader_id AND Capability.capability_id = ?;',
         [capability_id],

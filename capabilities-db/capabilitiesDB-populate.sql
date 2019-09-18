@@ -239,8 +239,13 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_training`, `role_responsib
 
  /* -------------------------- ROLES END ------------------------ */
 
-INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`)
+INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`, `user_picture`)
     VALUES
-    ('Jane One', 'Doe', 1),
-    ('Jane Two', 'Doe', 2),
-    ('Jane Three', 'Doe', 3);
+    ('Jane One', 'Doe', 1, '../assets/Kainos-logo-neg.png'),
+    ('Jane Two', 'Doe', 2, ''),
+    ('Jane Three', 'Doe', 3, '');
+
+ /* ----------------- ASSIGNING CAPABILITY LEADS ----------------- */
+UPDATE `Capability` SET leader_id = 1 WHERE capability_id = 1;
+UPDATE `Capability` SET leader_id = 2 WHERE capability_id = 2;
+UPDATE `Capability` SET leader_id = 3 WHERE capability_id = 3;
