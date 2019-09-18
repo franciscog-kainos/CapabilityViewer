@@ -1,3 +1,3 @@
 export interface TableObject {
-    asTableObject(): object;
+    asTableObject(): any;
 }

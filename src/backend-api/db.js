@@ -21,6 +21,14 @@ exports.getRoleNames = function (callback) {
     });
 };
 
+exports.getRolesInBand = function (bandId, callback) {
+
+    db.query('SELECT * FROM Role WHERE band_id=?',[bandId], function (err, rows) {
+        if (err) return callback(err, null);
+        callback(err, rows);
+    });
+};
+
 exports.getCapabilityNames = function (callback) {
 
     db.query('SELECT capability_id, capability_name, job_family_id FROM Capability ORDER BY job_family_id', function (err, rows) {

@@ -65,6 +65,14 @@ app.get('/roles/:id', (req, res) => {
     });
 });
 
+app.get('/rolesInBand/:id', (req, res) => {
+    console.log(req.params.id);
+    db.getRolesInBand(req.params.id, (err, row) => {
+        if (err) return handleError(err);
+        res.send(row);
+    });
+});
+
 app.get('/capabilities/:id', (req, res) => {
     db.getCapability(req.params.id, (err, row) => {
         if (err) return handleError(err);

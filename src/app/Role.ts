@@ -1,7 +1,7 @@
 import {IRole} from './irole';
 import {TableObject} from './table-object';
 
-export class Role extends IRole implements TableObject {
+export class Role extends IRole {
     columnName: string;
     constructor(name: string) {
         super();
@@ -18,24 +18,5 @@ export class Role extends IRole implements TableObject {
         role.band_id = value.band_id;
         role.type = value.type;
         return role;
-    }
-
-    asTableObject(): object {
-        return {
-            headerName: this.role_name,
-            resizable: true,
-            cellRenderer: 'nameCellRenderer',
-            field: this.columnName,
-            width: 200,
-            filter: 'agTextColumnFilter',
-            columnGroupShow: 'open',
-            filterParams: {
-                valueGetter: params => {
-                    if (params.data.firstColumn.role_name !== undefined) {
-                        return params.data.firstColumn.role_name;
-                    }
-                }
-            },
-        };
     }
 }

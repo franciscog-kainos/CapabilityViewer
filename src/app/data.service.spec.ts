@@ -31,6 +31,14 @@ describe('DataService', () => {
             done();
         });
     });
+    it('should return all job families',(done: DoneFn) => {
+        data.getAllJobFamilies().subscribe(value => {
+            expect(value).toBeTruthy();
+            expect(value.length).toBeGreaterThan(2);
+            done();
+        });
+    });
+
 
     it('should return a list of capabilities in the job family',(done: DoneFn) => {
         data.getCapabilitiesInJobFamily(1).subscribe(value => {
@@ -52,6 +60,13 @@ describe('DataService', () => {
       done();
     });
   });
+
+    it('should return more than one role in the band',(done: DoneFn) => {
+        data.getRolesInBand(1).subscribe(value => {
+            expect(value.length).toBeGreaterThan(1);
+            done();
+        });
+    });
 
 
 });

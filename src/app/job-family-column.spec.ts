@@ -1,4 +1,4 @@
-import { JobFamilyColumn } from './job-family-column';
+import { JobFamilyColumns } from './job-family-columns';
 import {TestBed} from "@angular/core/testing";
 import {HttpClientModule} from "@angular/common/http";
 import {DataService} from "./data.service";
@@ -6,28 +6,21 @@ import {Role} from "./Role";
 import {Capability} from "./Capability";
 
 describe('BandColumn', () => {
+  let data: DataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [DataService]
     });
+    data = TestBed.get(DataService);
   });
 
   it('should create an instance', () => {
-    expect(new JobFamilyColumn()).toBeTruthy();
-  });
-
-  it('should not return a null role table object', (done: DoneFn) => {
-    let data: DataService = TestBed.get(DataService);
-    data.getRole(7).subscribe(value => {
-      expect(Role.fromIRole(value).asTableObject).toBeTruthy();
-      done();
-    });
+    expect(JobFamilyColumns.populateChildren(data, () => '')).toBeTruthy();
   });
 
   it('should not return a null capability table object', (done: DoneFn) => {
-    let data: DataService = TestBed.get(DataService);
     data.getCapability(1).subscribe(value => {
       let capability = Capability.fromICapability(value);
       data.getRolesInCapabilityInJobFamily(capability.capability_id, capability.job_family_id).subscribe(roles => {
@@ -43,10 +36,10 @@ describe('BandColumn', () => {
   });
 
   it('show the columns', (done: DoneFn) => {
-    const fam = new JobFamilyColumn();
-    let data = TestBed.get(DataService);
-    fam.populateChildren(data, 1, () => {
-      console.log(fam.family.asTableObject());
+    const fam = JobFamilyColumns.populateChildren(data, () => '');
+    fam.then(f => {
+      expect(f.asColumnDef).toBeTruthy();
+      console.log(f.asColumnDef());
       done();
     });
 

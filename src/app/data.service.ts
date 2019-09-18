@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable, forkJoin} from 'rxjs';
+import {Observable, forkJoin, Subject} from 'rxjs';
 import {User} from './user';
 import {Capability} from './Capability';
 import {Role} from './Role';
@@ -9,6 +9,9 @@ import {IJobFamily} from './ijob-family';
 import {ICapability} from './icapability';
 import {IRole} from './irole';
 import {IBand} from './iband';
+import {JobFamilyColumns} from "./job-family-columns";
+import {DataRow} from "./data-row";
+import {Data} from "@angular/router";
 
 
 @Injectable({
@@ -17,6 +20,15 @@ import {IBand} from './iband';
 export class DataService {
 
     mockUser: User;
+    rowData: Subject<any[]>;
+    rowData$: Observable<any[]>;
+    tableRowData: any[];
+    tableHeaderData: any[];
+    headerData: Subject<any[]>;
+    headerData$: Observable<any[]>;
+    roles: Role[];
+    numberOfBands = 0;
+    updateNumber = 0;
 
     constructor(private http: HttpClient) {
         this.getAllFromDatabase();
@@ -24,6 +36,43 @@ export class DataService {
             new Capability('A Random Capability'),
             new Role('A Random Role'),
             new Band('A random band'));
+        this.rowData = new Subject<any[]>();
+        this.rowData$ = this.rowData.asObservable();
+        this.headerData = new Subject<any[]>();
+        this.headerData$ = this.headerData.asObservable();
+        this.tableRowData = [];
+        this.tableHeaderData = [];
+    }
+
+    public generateTableData(dataUpdate, headerUpdate): void {
+
+        JobFamilyColumns.populateChildren(this, () => console.log('Done'))
+            .then(columns => {
+                this.headerData.next(columns.asColumnDef());
+                let capabilities: Capability[] = columns.families
+                    .reduce((a, b) => a.concat(b.capabilities), []);
+                this.numberOfBands = columns.bands.length;
+                console.log(capabilities);
+                columns.bands.forEach(b => DataRow.makeRow(b, capabilities, this,(update) => this.rowData.next(update)));
+            });
+
+        this.headerData$.subscribe(header => {
+            console.log(header);
+            headerUpdate(header)
+        });
+
+        this.rowData$.subscribe(update => {
+            if (this.updateNumber < this.numberOfBands-1 && this.tableRowData.length < this.numberOfBands-1) {
+                this.tableRowData.push(update);
+                this.updateNumber++;
+            } else {
+                dataUpdate(this.tableRowData);
+                this.updateNumber = 0;
+                console.log(this.tableRowData);
+            }
+
+        })
+
     }
 
     public getAllFromDatabase(): Observable<any[]> {
@@ -50,6 +99,12 @@ export class DataService {
         return this.http.get<IRole[]>('/api/roles');
     }
 
+    public getRolesInBand(bandId): Observable<IRole[]> {
+        let params = new HttpParams()
+            .set('id', bandId);
+        return this.http.get<IRole[]>('/api/rolesInBand/' + bandId, {params: params});
+    }
+
     public getRole(id): Observable<IRole> {
         return this.http.get<IRole>('/api/roles/' + id);
     }
@@ -57,7 +112,7 @@ export class DataService {
     public getCapability(id): Observable<ICapability> {
         let params = new HttpParams()
             .set('capabilityId', id);
-        return this.http.get<ICapability>('/api/capability/' + id, {params: params });
+        return this.http.get<ICapability>('/api/capability/' + id, {params: params});
     }
 
     public getBand(bandId): Observable<IBand> {

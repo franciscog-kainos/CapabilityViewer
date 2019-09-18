@@ -23,10 +23,11 @@ export class JobFamily extends IJobFamily implements TableObject {
         this.capabilities.push(capability);
     }
 
-    asTableObject(): object {
+    asTableObject(): any {
+        const children: any[] = this.capabilities.map(c => c.asTableObject());
         return {
-            headerName: 'Sales and Marketing',
-            children: this.capabilities.map(c => c.asTableObject())
-        }
+            headerName: this.job_family_name,
+            children: children
+        };
     }
 }
