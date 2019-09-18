@@ -11,7 +11,7 @@ import {IRole} from './irole';
 import {IBand} from './iband';
 import {JobFamilyColumns} from "./job-family-columns";
 import {DataRow} from "./data-row";
-import {Data} from "@angular/router";
+import { TrainingResource } from './TrainingResource';
 
 
 @Injectable({
@@ -53,7 +53,7 @@ export class DataService {
                     .reduce((a, b) => a.concat(b.capabilities), []);
                 this.numberOfBands = columns.bands.length;
                 console.log(capabilities);
-                columns.bands.forEach(b => DataRow.makeRow(b, capabilities, this,(update) => this.rowData.next(update)));
+                columns.bands.forEach(b => DataRow.makeRow(b, capabilities, this, (update) => this.rowData.next(update)));
             });
 
         this.headerData$.subscribe(header => {
@@ -62,7 +62,7 @@ export class DataService {
         });
 
         this.rowData$.subscribe(update => {
-            if (this.updateNumber < this.numberOfBands-1 && this.tableRowData.length < this.numberOfBands-1) {
+            if (this.updateNumber < this.numberOfBands - 1 && this.tableRowData.length < this.numberOfBands - 1) {
                 this.tableRowData.push(update);
                 this.updateNumber++;
             } else {
@@ -123,6 +123,14 @@ export class DataService {
         let params = new HttpParams()
             .set('familyId', familyId);
         return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params: params});
+    }
+
+    public getBand(bandId): Observable<Band> {
+        return this.http.get<Band>('/api/bands/' + bandId);
+    }
+
+    public getBandTraining(bandId): Observable<TrainingResource[]> {
+        return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
     }
 
     public getRolesInCapabilityInJobFamily(familyId, capabilityId): Observable<IRole[]> {

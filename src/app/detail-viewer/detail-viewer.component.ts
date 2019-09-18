@@ -4,8 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../data.service';
 import { Band } from '../Band';
 import { Role } from '../Role';
-import {IBand} from '../iband';
-import {IRole} from '../irole';
+import { TrainingResource } from '../TrainingResource';
 
 @Component({
     selector: 'detail-viewer',
@@ -14,10 +13,12 @@ import {IRole} from '../irole';
 })
 export class DetailViewerComponent implements OnInit {
     data: DataService;
-    band: IBand;
-    role: IRole;
+    band: Band;
+    role: Role;
     detailID: string;
     detailType: string;
+    trainingResources: TrainingResource[];
+    categories: Set<string>;
 
     constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
         //Get parameters from page url
@@ -38,12 +39,25 @@ export class DetailViewerComponent implements OnInit {
             data.getBand(this.detailID).subscribe(response => {
                 this.band = response;
             });
+             data.getBandTraining(this.detailID).subscribe(response => {
+                 if(response != null){
+                     this.trainingResources.push(response);
+                     for(let resource of this.trainingResources){
+                        if(resource && resource.training_category != null){
+                         this.categories.add(resource.training_category);
+                        }
+                     }
+                 }
+            });
+
         }
     }
 
     ngOnInit() {
         this.band = new Band('');
         this.role = new Role('');
+        this.trainingResources = [];
+        this.categories = new Set();
     }
 
     goBack() {

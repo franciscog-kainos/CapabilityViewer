@@ -31,17 +31,17 @@ INSERT INTO `Capability`(`capability_name`, `job_family_id`)
     ('Project Management', 5),
     ('Support Management', 5);
 
-INSERT INTO `Band`(`band_name`, `band_competency`)
+INSERT INTO `Band`(`band_name`, `band_competency`, `band_responsibilities`)
     VALUES
-    ('Executive', 'Executive Competency'),
-    ('Leadership Community', 'Leadership Competency'),
-    ('Principal', 'Principal Competency'),
-    ('Manager', 'Manager Competency'),
-    ('Consultant', 'Consultant Competency'),
-    ('Senior Associate', 'Senior Competency'),
-    ('Associate', 'Associate Competency'),
-    ('Trainee', 'Trainee Competency'),
-    ('Apprentice', 'Apprentice Competency');
+    ('Executive', 'Executive Competency', 'Executive Responsibilities'),
+    ('Leadership Community', 'Leadership Competency', 'Leadership Responsibilities'),
+    ('Principal', 'Principal Competency', 'Principal Responsibilities'),
+    ('Manager', 'Manager Competency', 'Manager Responsibilities'),
+    ('Consultant', 'Consultant Competency', 'Consultant Responsibilities'),
+    ('Senior Associate', 'Senior Competency', 'Senior Responsibilities'),
+    ('Associate', 'Associate Competency', 'Associate Responsibilities'),
+    ('Trainee', 'Trainee Competency', 'Trainee Responsibilities'),
+    ('Apprentice', 'Apprentice Competency', 'Apprentice Responsibilities');
 
 /* -------------------------- ROLES BEGIN ------------------------ */
 INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capability_id`, `band_id`)
@@ -102,29 +102,29 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
     ('Sales Director',
     '',
     '* ',
-    2, 3),
+    3, 2),
 
     ('Sales Director',
     '',
     '* ',
-    2, 4),
+    4, 2),
 
     ('Sales Director',
     '',
     '* ',
-    2, 5),
+    5, 2),
 
     ('Marketing Leader',
     '',
     '* ',
-    2, 6),
+    6, 2),
 
     ('Business Development Director',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-	1, 6),
+	1, 3),
 
     /* --- Technical --- */
     ('Chief Technology Officer',

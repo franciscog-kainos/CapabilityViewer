@@ -29,7 +29,7 @@ describe('Getting all role information', function() {
 
     it('Should return columns with names and data for role_id and role_name', function() {
         request.get({
-            uri: API_BASE_URL + 'roles', 
+            uri: API_BASE_URL + 'roles',
         }, (err, res, body) => {
             if (err) {
                 logger.error(err);
@@ -58,7 +58,7 @@ describe('Getting all job familiy information', function() {
 
     it('Should return columns with names and data for job_family_id and job_family_name', function() {
         request.get({
-            uri: API_BASE_URL + 'families', 
+            uri: API_BASE_URL + 'families',
         }, (err, res, body) => {
             if (err) {
                 logger.error(err);
@@ -81,13 +81,13 @@ describe('Getting all band information', function() {
                 logger.error(err);
             };
 
-            expect(res.statusCode).to.equal(200);            
+            expect(res.statusCode).to.equal(200);
         });
     });
 
     it('Should return columns with names and data for band_id and band_name', function() {
         request.get({
-            uri: API_BASE_URL + 'bands', 
+            uri: API_BASE_URL + 'bands',
         }, (err, res, body) => {
             if (err) {
                 logger.error(err);
@@ -115,7 +115,7 @@ describe('Getting all capability information', function() {
 
     it('Should return columns with names role_id and role_name', function() {
         request.get({
-            uri: API_BASE_URL + 'capabilities', 
+            uri: API_BASE_URL + 'capabilities',
         }, (err, res, body) => {
             if (err) {
                 logger.error(err);
@@ -139,7 +139,7 @@ describe('Getting a specific band', function() {
             if (err) {
                 logger.error(err);
             };
-            
+
             expect(res.statusCode).to.equal(200);
 
         });
@@ -152,11 +152,23 @@ describe('Getting a specific band', function() {
             if (err) {
                 logger.error(err);
               };
-            
+
             expect(body).to.include('{"band_name":"Executive","band_competency":"Executive Competency","band_responsibilities":"Executive Responsibilities"}');
 
         });
     });
+    it("Should get training details for a specific band", function(){
+        request.get({
+            uri: API_BASE_URL + 'bands/1/training',
+        }, (err, res, body) => {
+            if (err) {
+                logger.error(err);
+            };
+            body = JSON.parse(body);
+            assert.deepEqual(Object.keys(body), ['training_name', 'training_link', 'training_category']);
+        });
+    });
+
 });
 
 
