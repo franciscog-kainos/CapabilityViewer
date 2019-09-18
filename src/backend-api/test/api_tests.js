@@ -89,6 +89,17 @@ describe('Getting a specific band', function() {
             assert.deepEqual(Object.keys(body), ['band_name','band_competency','band_responsibilities']);
         });
     });
+    it("Should get training details for a specific band", function(){
+        request.get({
+            uri: API_BASE_URL + 'bands/1/training',
+        }, (err, res, body) => {
+            if (err) {
+                logger.error(err);
+            };
+            body = JSON.parse(body);
+            assert.deepEqual(Object.keys(body), ['training_name', 'training_link', 'training_category']);
+        });
+    });
 
 });
 

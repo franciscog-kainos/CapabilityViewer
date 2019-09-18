@@ -6,7 +6,7 @@ export class LandingPage {
   }
 
   getTitleText() {
-    return element(by.css('company-root h1')).getText() as Promise<string>;
+    return element(by.css('mat-card-title')).getText() as Promise<string>;
   }
 
   clickTableNavigation(){
