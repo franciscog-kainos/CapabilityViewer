@@ -1,8 +1,9 @@
-<p>Capability Name</p>
-<p>{{capability.capability_name}}</p>
-
-<p>Capability Lead</p>
-<p>{{capability.user_f_name + " " + capability.user_l_name}}</p>
-
-<p>Image</p>
-<img src={{capability.user_picture}} alt="image of user">
+<mat-card class="main-card">
+    <mat-card-header>
+        <img mat-card-avatar id="matcard-avatar" src={{capability.user_picture}} alt="image of user">
+        <mat-card-title id="matcard-title">{{capability.user_f_name + " " + capability.user_l_name}}</mat-card-title>
+        <mat-card-subtitle id="matcard-subtitle">{{capability.capability_name}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    </mat-card-content>
+</mat-card>
