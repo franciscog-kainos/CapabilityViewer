@@ -56,15 +56,13 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
-    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
-    2, 1),
+    1, 2),
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
-    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
@@ -72,7 +70,6 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
-    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
@@ -80,7 +77,6 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
-    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
@@ -88,7 +84,6 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
     ('Head of Business Unit',
     'Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.',
-    '* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)',
     '* Deliver training as part of MAP
 * Encourage collaboration across BUs
 * Identify and actively develop talent at all levels within your area of responsibility',
@@ -101,7 +96,6 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
     ('Sales Director',
     '',
-    '* ',
     '* ',
     2, 2),
 
@@ -172,11 +166,11 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
  /* -------------------------- ROLES END ------------------------ */
 
-INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`, `user_picture`)
+INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`)
     VALUES
-    ('Jane One', 'Doe', 1, '../assets/Kainos-logo-neg.png'),
-    ('Jane Two', 'Doe', 2, ''),
-    ('Jane Three', 'Doe', 3, '');
+    ('Jane One', 'Doe', 1),
+    ('Jane Two', 'Doe', 2),
+    ('Jane Three', 'Doe', 3);
 
 INSERT INTO `Training_Category`(`training_category_name`)
 	VALUES
@@ -206,7 +200,6 @@ INSERT INTO `Band_Training`(`band_id`, `training_id`)
     (5, 2),
     (2, 4);
 
- /* ----------------- ASSIGNING CAPABILITY LEADS ----------------- */
-UPDATE `Capability` SET leader_id = 1 WHERE capability_id = 1;
-UPDATE `Capability` SET leader_id = 2 WHERE capability_id = 2;
-UPDATE `Capability` SET leader_id = 3 WHERE capability_id = 3;
+INSERT INTO `Capability`(`capability_name`, `job_family_id`, `leader_id`)
+    VALUES
+    ('Test Capability', 1, 1)

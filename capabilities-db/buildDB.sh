@@ -26,26 +26,26 @@ fi
 
 echo "Sourcing and populating capabilitiesDB-setup_test.sql..."
 mysql --defaults-file="mysql.config" -e "source capabilitiesDB-setup_test.sql;"
-mysql --defaults-file="mysql.config" -e "use capabilitiesDB_test; source capabilitiesDB-populate.sql;"
-
-echo "Sourcing and populating capabilitiesDB-setup_prod..."
 mysql --defaults-file="mysql.config" -e "source capabilitiesDB-setup_prod.sql;"
-mysql --defaults-file="mysql.config" -e "use capabilitiesDB_prod; source capabilitiesDB-populate.sql;"
 
+if [ -f "capabilitesDB-users.sql" ]; then
+  echo "Giving user permissions."
+  mysql --defaults-file="mysql.config" -e "use capabilitiesDB_prod; source capabilitesDB-users.sql;"
+    mysql --defaults-file="mysql.config" -e "use capabilitiesDB_test; source capabilitesDB-users.sql;"
 
-
-echo "Production Table Initialised!"
+fi
+echo "populating capabilitiesDB-setup_test..."
+mysql --defaults-file="mysql.config" -e "use capabilitiesDB_test; source capabilitiesDB-populate.sql;"
 echo "Test Table Initialised"
+
+echo "populating capabilitiesDB-setup_prod..."
+mysql --defaults-file="mysql.config" -e "use capabilitiesDB_prod; source capabilitiesDB-populate.sql;"
+echo "Production Table Initialised!"
 
 echo ""
 echo "============================================================================"
 echo ""
 
-
-if [ -f "capabilitesDB-users.sql" ]; then
-  echo "Giving user permissions."
-  mysql --defaults-file="mysql.config" -e "source capabilitesDB-users.sql;"
-fi
 
 echo ""
 echo "Script finished."
