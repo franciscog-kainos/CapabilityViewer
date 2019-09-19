@@ -1,15 +1,25 @@
-<div id="center">
-    <ag-grid-angular
-        class="ag-theme-material table"
-        [gridOptions]="gridOptions"
-        [rowData]="rowData"
-        [columnDefs]="columnDefs"
-        (cellClicked)="onCellClicked($event)"
-        (sortChanged)="onColumnClicked($event)"
-        [components]="components"
-        (gridReady)="onGridReady($event)"
-        [animateRows] = "true">
-    </ag-grid-angular>
-    <button (click)="navigateToCapabilityView(1)">capability</button>
-</div>
+<mat-card>
+    <mat-card-title class="tableTitle">Career Table
+    </mat-card-title>
+    <mat-card-content style="padding-bottom: 24px">
+        <mat-form-field class="searchFormField">
+            <input class="field" matInput type="text" (input)="quickFilter()" [(ngModel)]="filterText" id="quickFilter" placeholder="Search roles..."/>
+        </mat-form-field>
+        <ag-grid-angular
+                class="ag-theme-material table"
+                [gridOptions]="gridOptions"
+                [rowData]="rowData"
+                [columnDefs]="columnDefs"
+                (cellClicked)="onCellClicked($event)"
+                (sortChanged)="onColumnClicked($event)"
+                (firstDataRendered)="onFirstDataRendered(params)"
+                domLayout="autoHeight"
+                [components]="components"
+                (gridReady)="onGridReady($event)"
+                [animateRows] = "true"
+                [suppressMenuHide]="true">
+        </ag-grid-angular>
+    </mat-card-content>
+
+</mat-card>
 

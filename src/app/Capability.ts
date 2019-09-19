@@ -1,12 +1,62 @@
-export class Capability {
-    capability_id: number;
-    capability_name: string;
-    job_family_id: number;
+import {ICapability} from './icapability';
+import {Role} from './Role';
+import {TableObject} from './table-object';
+import {TableHeaderClickComponent} from "./table-header-click/table-header-click.component";
 
-    constructor(name: string) {
-        this.capability_name = name;
+export class Capability extends ICapability implements TableObject {
+    roles: Role[] = [];
+    static numberOfCapabilities = 0;
+    static fromICapability(cap: ICapability) {
+        const capability = new Capability(cap.capability_name);
+        capability.capability_name = cap.capability_name;
+        capability.capability_id = cap.capability_id;
+        capability.job_family_id = cap.job_family_id;
+        capability.leader_id = cap.leader_id;
+        return capability;
     }
-    leader_id: number;
-    user_f_name: string;
-    user_l_name: string;
+
+    constructor(capability_name: string) {
+        super();
+        this.capability_name = capability_name;
+        this.capability_id = undefined;
+    }
+
+    addRoles(role: Role) {
+        this.roles.push(role);
+    }
+
+    asTableObject(): any {
+        if (this.capability_name === '')
+            return {
+                headerName: this.capability_name,
+                field: "capability_" + this.capability_id,
+                resizable: true,
+                pinned: 'left',
+                cellRenderer: "nameCellRenderer",
+                filter: 'agTextColumnFilter',
+                filterParams: {
+                    valueGetter: params => {
+                        if (params.data.capability_undefined.band_name != undefined) {
+                            return params.data.capability_undefined.band_name;
+                        }
+                    }
+                }
+            };
+
+        else
+            return {
+                headerName: this.capability_name,
+                columnGroupShow: 'open',
+                field: "capability_" + this.capability_id,
+                resizable: true,
+                cellRenderer: "nameCellRenderer",
+                headerComponentFramework: TableHeaderClickComponent,
+                filter: 'agTextColumnFilter',
+                getQuickFilterText: (params) => {
+                    console.log(params);
+                    if (params.value !== undefined)
+                    return params.value.role_name;
+                }
+            }
+    }
 }

@@ -17,6 +17,9 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
+import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -26,24 +29,28 @@ import {MatButtonModule} from '@angular/material';
     TablePageComponent,
     DetailViewerComponent,
     PageNotFoundComponent,
-    CapabilityLeadViewerComponent
+    CapabilityLeadViewerComponent,
+    TableHeaderClickComponent
   ],
     imports: [
         BrowserModule,
         FormsModule,
         NgbModule,
         HttpClientModule,
-        AgGridModule.withComponents([]),
+        AgGridModule.withComponents([TableHeaderClickComponent]),
         BrowserAnimationsModule,
         MatExpansionModule,
         AppRoutingModule,
         CommonModule,
         MatCardModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatMenuModule,
+        MatInputModule
     ],
-  providers: [],
-  bootstrap: [ AppComponent ]
+    providers: [],
+    bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+}

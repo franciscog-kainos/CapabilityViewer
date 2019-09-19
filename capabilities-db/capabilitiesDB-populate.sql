@@ -1,6 +1,6 @@
 INSERT INTO `Job_Family`(`job_family_name`)
     VALUES 
-    ('Sales & Marketing'), 
+    ('Sales & Marketing'),
     ('Technical'),
     ('Consulting'),
     ('Experience Design'),
@@ -190,6 +190,7 @@ INSERT INTO `Training`(`training_name`, `training_link`, `training_category_id`)
 INSERT INTO `Role_Training`(`role_id`, `training_id`)
 	VALUES
     (1, 1),
+    (1, 5),
     (3, 5),
 	(2, 1);
 
@@ -198,3 +199,7 @@ INSERT INTO `Band_Training`(`band_id`, `training_id`)
     (1, 1),
     (5, 2),
     (2, 4);
+
+INSERT INTO `Capability`(`capability_name`, `job_family_id`, `leader_id`)
+    VALUES
+    ('Test Capability', 1, 1)

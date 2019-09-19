@@ -21,8 +21,14 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
-    port: 9876,
     colors: true,
+    proxies: {
+      "/api": {
+        "target": "http://localhost:8002",
+        "secure": false,
+        "pathRewrite": {"^/api" :  ""}
+      }
+    },
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],

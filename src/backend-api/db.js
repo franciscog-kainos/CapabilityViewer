@@ -1,75 +1,80 @@
-require('dotenv').config({ path: 'mysql.env' });
+require('dotenv').config({path: 'mysql.env'});
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_DATABASE
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE
 });
 
-db.connect(function(err) {
+db.connect(function (err) {
     if (err) throw err;
     console.log('Connected to mysql');
 });
 
-exports.getRoleNames = function(callback) {
+exports.getRoleNames = function (callback) {
 
-    db.query('SELECT Role.role_id, Role.role_name, Role.band_id, Role.capability_id ' +
-        'FROM capabilitiesDB_test.Role ' +
-        'ORDER BY Role.band_id',
-        function(err, rows) {
+    db.query('SELECT role_id, role_name,band_id,capability_id FROM Role ORDER BY band_id', function (err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
-exports.getCapabilityNames = function(callback) {
+exports.getRolesInBand = function (bandId, callback) {
 
-    db.query('SELECT Capability.capability_id, Capability.capability_name ' +
-        'FROM capabilitiesDB_test.Capability ' +
-        'ORDER BY Capability.job_family_id',
-        function(err, rows) {
+    db.query('SELECT * FROM Role WHERE band_id=?',[bandId], function (err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
-exports.getBandNames = function(callback) {
+exports.getCapabilityNames = function (callback) {
 
-    db.query('SELECT Band.band_id, Band.band_name ' +
-        'FROM capabilitiesDB_test.Band',
-        function(err, rows) {
+    db.query('SELECT capability_id, capability_name, job_family_id FROM Capability ORDER BY job_family_id', function (err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
-exports.getJobFamiliyNames = function(callback) {
+exports.getCapabilityById = function (capability_id, callback) {
+    db.query('SELECT * FROM Capability WHERE capability_id=?', [capability_id],
+        function (err, rows) {
+            if (err) return callback(err, null);
+            callback(err, rows);
+        });
+};
 
-    db.query('SELECT Job_Family.job_family_id, Job_Family.job_family_name ' +
-        'FROM capabilitiesDB_test.Job_Family',
-        function(err, rows) {
+exports.getBandNames = function (callback) {
+
+    db.query('SELECT band_id, band_name FROM Band', function (err, rows) {
+        if (err) return callback(err, null);
+        callback(err, rows);
+    });
+};
+
+exports.getJobFamiliyNames = function (callback) {
+
+    db.query('SELECT job_family_id, job_family_name FROM Job_Family', function (err, rows) {
         if (err) return callback(err, null);
         callback(err, rows);
     });
 };
 
 //Get details for a specific band
-exports.getBand = function(band_id, callback) {
+exports.getBand = function (band_id, callback) {
     db.query(
-        'SELECT Band.band_name, Band.band_competency, Band.band_responsibilities ' +
-        'FROM capabilitiesDB_test.Band ' +
-        'WHERE Band.band_id = ?',
+        'SELECT band_name, band_competency, band_responsibilities FROM Band WHERE band_id = ?',
         [band_id],
-        function(err, rows){
-            if(err){
+        function (err, rows) {
+            if (err) {
                 return callback(err, null);
             }
             callback(null, rows);
         }
     )
-};
+}
+
 
 //Get training for a specific band
 exports.getBandTraining = function(band_id, callback){
@@ -91,14 +96,12 @@ exports.getBandTraining = function(band_id, callback){
 
 
 //Get details for a specific role
-exports.getRole = function(role_id, callback) {
+exports.getRole = function (role_id, callback) {
     db.query(
-        'SELECT Role.role_name, Role.role_summary, Role.role_training, Role.role_responsibilities ' +
-        'FROM capabilitiesDB_test.Role ' +
-        'WHERE Role.role_id = ?',
+        'SELECT * FROM Role WHERE role_id = ?',
         [role_id],
-        function(err, rows){
-            if(err){
+        function (err, rows) {
+            if (err) {
                 return callback(err, null);
             }
             callback(null, rows);
@@ -107,17 +110,69 @@ exports.getRole = function(role_id, callback) {
 };
 
 //Get details for a specific capability
-exports.getCapability = function(capability_id, callback) {
+exports.getCapability = function (capability_id, callback) {
     db.query(
-        'SELECT Capability.capability_name, User.user_f_name, User.user_l_name ' +
+        'SELECT Capability.capability_name, User.user_f_name, User.user_l_name, User.user_picture ' +
         'FROM capabilitiesDB_test.Capability, capabilitiesDB_test.User ' +
         'WHERE User.user_id = Capability.leader_id AND Capability.capability_id = ?;',
         [capability_id],
-        function(err, rows){
-            if(err){
+        function (err, rows) {
+            if (err) {
                 return callback(err, null);
             }
             callback(null, rows);
+        }
+    )
+};
+
+exports.getCapabilitiesInJobFamily = function (family_id, callback) {
+    db.query(
+        'select * from Capability where Capability.job_family_id = ' + family_id,
+        [family_id],
+        function (err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
+exports.getJobFamily = function (family_id, callback) {
+    db.query(
+        'select * from Job_Family where job_family_id = ' + family_id,
+        [family_id],
+        function (err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows[0]);
+        }
+    )
+};
+
+exports.getRolesInCapabilityInJobFamily = function (family_id, capability_id, callback) {
+    db.query(
+        'select * from Role WHERE capability_id=? AND capability_id IN (select Role.capability_id FROM Role JOIN Capability ON Role.capability_id=Capability.capability_id WHERE job_family_id=?)',
+        [capability_id, family_id],
+        function (err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
+exports.getUser = (id, callback) => {
+    db.query(
+        'select * from User WHERE user_id=?',
+        [id],
+        function (err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows[0]);
         }
     )
 };
