@@ -163,3 +163,16 @@ exports.getRolesInCapabilityInJobFamily = function (family_id, capability_id, ca
         }
     )
 };
+
+exports.getUser = (id, callback) => {
+    db.query(
+        'select * from User WHERE user_id=?',
+        [id],
+        function (err, rows) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, rows[0]);
+        }
+    )
+};

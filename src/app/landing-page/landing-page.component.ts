@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import {User} from '../user';
+import {IUser} from '../IUser';
 import {Capability} from '../Capability';
 import {Role} from '../Role';
 import {Band} from '../Band';

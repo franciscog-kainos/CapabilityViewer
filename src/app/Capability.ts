@@ -31,6 +31,7 @@ export class Capability extends ICapability implements TableObject {
                 headerName: this.capability_name,
                 field: "capability_" + this.capability_id,
                 resizable: true,
+                pinned: 'left',
                 cellRenderer: "nameCellRenderer",
                 filter: 'agTextColumnFilter',
                 filterParams: {
@@ -45,6 +46,7 @@ export class Capability extends ICapability implements TableObject {
         else
             return {
                 headerName: this.capability_name,
+                columnGroupShow: 'open',
                 field: "capability_" + this.capability_id,
                 resizable: true,
                 cellRenderer: "nameCellRenderer",

@@ -109,6 +109,13 @@ app.get('/rolesInCapabilityInJobFamily/:familyId/:capabilityId', (req, res) => {
     });
 });
 
+app.get('/user/:id', (req, res) => {
+    console.log(req.params.id);
+    db.getUser(req.params.id, (err, row) => {
+        if (err) return handleError(err);
+        res.send(row);
+    });
+});
 
 app.listen(8002, function () {
     console.log('Server listening on port 8002');

@@ -19,6 +19,7 @@ import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capabili
 import {MatButtonModule} from '@angular/material';
 import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
 import {MatMenuModule} from "@angular/material/menu";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatMenuModule} from "@angular/material/menu";
         MatCardModule,
         AppRoutingModule,
         MatButtonModule,
-        MatMenuModule
+        MatMenuModule,
+        MatInputModule
     ],
     providers: [],
     bootstrap: [AppComponent]

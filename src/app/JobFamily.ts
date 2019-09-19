@@ -24,10 +24,22 @@ export class JobFamily extends IJobFamily implements TableObject {
     }
 
     asTableObject(): any {
-        const children: any[] = this.capabilities.map(c => c.asTableObject());
+        let children: any[] = [this.groupHead()];
+        if (this.job_family_name === 'Bands') {
+            children = this.capabilities.map(c => c.asTableObject());
+        } else
+            children = children.concat(this.capabilities.map(c => c.asTableObject()));
         return {
             headerName: this.job_family_name,
             children: children
         };
+    }
+
+    groupHead() {
+        return {
+            headerName: '',
+            columnGroupShow: 'closed',
+            resizable: true
+        }
     }
 }

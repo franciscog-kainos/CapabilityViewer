@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, forkJoin, Subject} from 'rxjs';
-import {User} from './user';
+import {IUser} from './IUser';
 import {Capability} from './Capability';
 import {Role} from './Role';
 import {Band} from './Band';
@@ -11,7 +11,9 @@ import {IRole} from './irole';
 import {IBand} from './iband';
 import {JobFamilyColumns} from "./job-family-columns";
 import {DataRow} from "./data-row";
-import { TrainingResource } from './TrainingResource';
+import {TrainingResource} from './TrainingResource';
+import {User} from "./user";
+import {placeholdersToParams} from "@angular/compiler/src/render3/view/i18n/util";
 
 
 @Injectable({
@@ -19,7 +21,7 @@ import { TrainingResource } from './TrainingResource';
 })
 export class DataService {
 
-    mockUser: User;
+    mockUser: IUser;
     rowData: Subject<any[]>;
     rowData$: Observable<any[]>;
     tableRowData: any[];
@@ -32,10 +34,9 @@ export class DataService {
 
     constructor(private http: HttpClient) {
         this.getAllFromDatabase();
-        this.mockUser = new User('Test User',
-            new Capability('A Random Capability'),
-            new Role('A Random Role'),
-            new Band('A random band'));
+        this.mockUser = new User();
+        this.mockUser.user_f_name = 'Test';
+        this.mockUser.user_l_name = 'User';
         this.rowData = new Subject<any[]>();
         this.rowData$ = this.rowData.asObservable();
         this.headerData = new Subject<any[]>();
@@ -142,5 +143,11 @@ export class DataService {
 
     public testConnection() {
         return this.http.get<object>('/api/');
+    }
+
+    public getUser(id): Observable<IUser> {
+        let params = new HttpParams()
+            .set('id', id);
+        return this.http.get<IUser>('/api/user/'+id, {params: params});
     }
 }

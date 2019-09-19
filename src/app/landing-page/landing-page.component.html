@@ -1,5 +1,5 @@
 <mat-card style="height: 80vh">
-  <mat-card-title style="padding: 16px">Welcome, {{data.mockUser.name}}!</mat-card-title>
+  <mat-card-title style="padding: 16px">Welcome, {{data.mockUser.user_f_name + " " + data.mockUser.user_l_name}}!</mat-card-title>
   <mat-card-content>
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item id="landing-page-nav-button-my-place" (click)="navigate()">My Position</button>

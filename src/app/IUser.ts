@@ -1,8 +1,4 @@
-import {IRole} from './irole';
-import {ICapability} from './icapability';
-import {IBand} from './iband';
-
-export class User {
+export abstract class IUser {
 
     user_id: number;
     user_f_name: string;

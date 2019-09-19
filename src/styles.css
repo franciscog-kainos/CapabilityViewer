@@ -2,7 +2,6 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-material.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 .list {
     text-align: left;
@@ -42,20 +41,35 @@ body {
     background: #202D52;
     color: white;
     text-align: left;
+    font-size: 16px;
+}
+.mat-form-field {
+    color: white;
+}
+.material-icons {
+    vertical-align: middle;
 }
 
 .ag-theme-material .ag-header-viewport {
-    background: #202D52;
 }
 
 .ag-theme-material .ag-header-group-cell {
     background: #202D52;
     color: white;
     font-size: 18px;
-
 }
+
+.ag-icon .ag-icon-menu {
+    color: white;
+}
+
+.ag-theme-material .ag-icon {
+    color: white;
+}
+
 .ag-theme-material .ag-header-group-cell:not(.ag-column-resizing) + .ag-header-group-cell:hover, .ag-theme-material .ag-header-group-cell:not(.ag-column-resizing) + .ag-header-group-cell.ag-column-resizing, .ag-theme-material .ag-header-cell:not(.ag-column-resizing) + .ag-header-cell:hover, .ag-theme-material .ag-header-cell:not(.ag-column-resizing) + .ag-header-cell.ag-column-resizing, .ag-theme-material .ag-header-group-cell:first-of-type:hover, .ag-theme-material .ag-header-group-cell:first-of-type.ag-column-resizing, .ag-theme-material .ag-header-cell:first-of-type:hover, .ag-theme-material .ag-header-cell:first-of-type.ag-column-resizing {
     color:  #202D52;
+
 }
 
 .ag-theme-material .ag-cell {

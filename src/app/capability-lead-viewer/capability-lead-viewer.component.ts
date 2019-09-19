@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from "../data.service";
 import {Capability} from "../Capability";
 import {Location} from "@angular/common";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {ICapability} from '../icapability';
+import {IUser} from "../IUser";
 
 @Component({
   selector: 'capability-lead-viewer',
@@ -12,7 +13,8 @@ import {ICapability} from '../icapability';
 })
 export class CapabilityLeadViewerComponent implements OnInit {
   data: DataService;
-  capability: ICapability;
+  @Input() capability: ICapability;
+  @Input() leader: IUser;
   id: string;
 
   constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
@@ -23,6 +25,10 @@ export class CapabilityLeadViewerComponent implements OnInit {
 
     data.getCapability(this.id).subscribe(response => {
       this.capability = response;
+      console.log(this.capability);
+      data.getUser(this.capability.leader_id).subscribe(value => {
+        this.leader = value;
+      });
     });
   }
 
