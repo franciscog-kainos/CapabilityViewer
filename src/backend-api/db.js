@@ -73,7 +73,8 @@ exports.getBand = function (band_id, callback) {
             callback(null, rows);
         }
     )
-};
+}
+
 
 //Get training for a specific band
 exports.getBandTraining = function(band_id, callback){

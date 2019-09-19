@@ -86,12 +86,6 @@ app.get('/capabilities/:id', (req, res) => {
         res.send(row[0]);
     });
 });
-app.get('/capability/:id', (req, res) => {
-    db.getCapabilityById(req.params.id, (err, row) => {
-        if (err) return handleError(err);
-        res.send(row[0]);
-    });
-});
 
 app.get('/capabilitiesByJobFamily/:familyId', (req, res) => {
     db.getCapabilitiesInJobFamily(req.params.familyId, (err, row) => {
