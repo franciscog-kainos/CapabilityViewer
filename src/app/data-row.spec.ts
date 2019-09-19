@@ -23,7 +23,7 @@ describe('DataRow', () => {
       let allCapabilities: Capability[] = value.families
           .reduce((a, b) => a.concat(b.capabilities), []);
 
-      let promises: Promise<Map<string, string>>[] = value.bands.reduce((a, b) => a.concat(new DataRow(b, allCapabilities).makeRow(data)), []);
+      let promises: Promise<Map<string, string>>[] = value.bands.reduce((a, b) => a.concat(DataRow.makeRow(b, allCapabilities, data, () => 'Done')), []);
       promises.forEach(p => p.then(v => console.log(v)));
       console.log(promises);
       done();

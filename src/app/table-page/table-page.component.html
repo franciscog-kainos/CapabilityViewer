@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>Career Table</mat-card-title>
     <mat-card-content class="table-content">
-        <input type="text"(input)="quickFilter()"id="quickFilter"placeholder="Search roles..."/>
+        <input type="text" (input)="quickFilter()" [(ngModel)]="filterText" id="quickFilter" placeholder="Search roles..."/>
         <ag-grid-angular
                 class="ag-theme-material table"
                 [gridOptions]="gridOptions"

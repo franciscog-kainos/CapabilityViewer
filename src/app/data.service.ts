@@ -112,7 +112,7 @@ export class DataService {
     public getCapability(id): Observable<ICapability> {
         let params = new HttpParams()
             .set('capabilityId', id);
-        return this.http.get<ICapability>('/api/capability/' + id, {params: params});
+        return this.http.get<ICapability>('/api/capabilities/' + id, {params: params});
     }
 
     public getBand(bandId): Observable<IBand> {

@@ -81,7 +81,7 @@ app.get('/rolesInBand/:id', (req, res) => {
 });
 
 app.get('/capabilities/:id', (req, res) => {
-    db.getCapability(req.params.id, (err, row) => {
+    db.getCapabilityById(req.params.id, (err, row) => {
         if (err) return handleError(err);
         res.send(row[0]);
     });

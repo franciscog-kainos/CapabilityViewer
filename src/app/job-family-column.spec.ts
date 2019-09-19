@@ -22,9 +22,10 @@ describe('BandColumn', () => {
 
   it('should not return a null capability table object', (done: DoneFn) => {
     data.getCapability(1).subscribe(value => {
+      console.log(value)
       let capability = Capability.fromICapability(value);
       data.getRolesInCapabilityInJobFamily(capability.capability_id, capability.job_family_id).subscribe(roles => {
-        expect(Capability.fromICapability(value).asTableObject).toBeTruthy();
+        expect(Capability.fromICapability(value).asTableObject()).toBeTruthy();
         capability.roles = roles.map(role => Role.fromIRole(role));
         expect(capability.roles).toBeTruthy();
         expect(capability.roles.length).toBeGreaterThan(0);

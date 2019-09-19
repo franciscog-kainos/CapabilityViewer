@@ -29,6 +29,7 @@ export class TablePageComponent implements OnInit {
     public gridOptions: GridOptions;
     components;
     private gridApi: GridApi;
+    filterText: string;
 
     ngOnInit() {
         console.log(this.gridOptions.api);
@@ -43,7 +44,7 @@ export class TablePageComponent implements OnInit {
 
     quickFilter() {
         // Use ag-grids search function
-        this.gridApi.setQuickFilter(document.getElementById("quickFilter").value);
+        this.gridApi.setQuickFilter(this.filterText);
     }
 
 
