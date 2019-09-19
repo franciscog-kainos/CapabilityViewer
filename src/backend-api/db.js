@@ -102,3 +102,12 @@ exports.getCapability = function(capability_id, callback) {
         }
     )
 };
+
+// Adds a new job family to the database
+exports.insertFamily = function(data, callback) {
+    db.query('INSERT INTO Job_Family SET ?', data, function(err, results, fields) {
+        console.log(data);
+        if (err) return callback(err, null);
+        callback(err, results.insertId);
+    });
+};
