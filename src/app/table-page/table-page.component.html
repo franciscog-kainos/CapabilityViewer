@@ -12,6 +12,7 @@
                 [columnDefs]="columnDefs"
                 (cellClicked)="onCellClicked($event)"
                 (sortChanged)="onColumnClicked($event)"
+                (firstDataRendered)="onFirstDataRendered(params)"
                 domLayout="autoHeight"
                 [components]="components"
                 (gridReady)="onGridReady($event)"

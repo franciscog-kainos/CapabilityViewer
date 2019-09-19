@@ -25,6 +25,7 @@ export class TablePageComponent implements OnInit {
     components;
     private gridApi: GridApi;
     filterText: string;
+    private params;
 
     ngOnInit() {
         console.log(this.gridOptions.api);
@@ -33,8 +34,16 @@ export class TablePageComponent implements OnInit {
 
     onGridReady(params) {
         // Preparation for grid api
+        this.params = params;
         this.gridApi = params.api;
-        console.log(params);
+        this.data.generateTableData(
+            (update) => {
+                this.gridApi.setRowData(update);
+            },
+            (update) => {
+                this.gridApi.setColumnDefs(update);
+                Capability.numberOfCapabilities = update.length;
+            });
     }
 
     quickFilter() {
@@ -47,14 +56,6 @@ export class TablePageComponent implements OnInit {
         this.data = data;
         this.gridOptions = <GridOptions>{};
         this.components = {nameCellRenderer: NameCellRenderer};
-        this.data.generateTableData(
-            (update) => {
-                this.gridApi.setRowData(update);
-            },
-            (update) => {
-                this.gridApi.setColumnDefs(update);
-                Capability.numberOfCapabilities = update.length;
-            });
 
 
     }

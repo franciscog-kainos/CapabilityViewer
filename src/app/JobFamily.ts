@@ -38,6 +38,7 @@ export class JobFamily extends IJobFamily implements TableObject {
     groupHead() {
         return {
             headerName: '',
+            width:300,
             columnGroupShow: 'closed',
             resizable: true
         }
