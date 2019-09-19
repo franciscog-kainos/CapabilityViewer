@@ -6,13 +6,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {RouterModule, Routes} from "@angular/router";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import {CapabilityLeadViewerComponent} from "./capability-lead-viewer/capability-lead-viewer.component";
+import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'table-page', component: TablePageComponent },
   { path: 'detail-viewer/:detailType/:detailID', component: DetailViewerComponent },
   { path: 'capability/:id', component: CapabilityLeadViewerComponent },
-  { path: '',   redirectTo: '/landing-page', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

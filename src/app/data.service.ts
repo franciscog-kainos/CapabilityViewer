@@ -6,6 +6,7 @@ import { Band } from './Band';
 import { Role } from './Role';
 import { Observable, forkJoin } from 'rxjs';
 import {User} from './user';
+import { AuthUser } from './AuthUser';
 
 
 @Injectable({
@@ -45,6 +46,10 @@ export class DataService {
 
   public getAllRoles() : Observable<Role[]> {
     return this.http.get<Role[]>('/api/roles');
+  }
+
+  public getAllUsernames() : Observable<AuthUser[]> {
+    return this.http.get<AuthUser[]>('/api/usernames');
   }
 
   public getRole(id) : Observable<Role> {

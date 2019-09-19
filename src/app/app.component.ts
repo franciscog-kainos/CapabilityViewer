@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from './data.service';
+import { AuthenticationService } from './auth.service';
+import { AuthUser } from './AuthUser';
 
 @Component({
   selector: 'company-root',
@@ -8,6 +11,8 @@ import { DataService } from './data.service';
 })
 export class AppComponent {
   title = 'Career Lattice V2.0';
+
+  currentUser: AuthUser;
 
 rowData = [
     { business_development: 'Toyota', model: 'Celica', price: 35000 },
@@ -45,5 +50,12 @@ rowData = [
   rowData: this.rowData
 };
 
-  constructor () { }
+constructor( private router: Router, private authenticationService: AuthenticationService) {
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    }
+
+    logout() {
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
+    }
 }

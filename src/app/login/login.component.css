@@ -1,0 +1,7 @@
+.authInput {
+    width: 300px;
+}
+
+form input.ng-valid {
+  background: none;
+}
