@@ -1,16 +1,16 @@
-<mat-card>
-  <mat-card-title>Hello! {{data.mockUser.name}}</mat-card-title>
+<mat-card style="height: 80vh">
+  <mat-card-title style="padding: 16px">Welcome, {{data.mockUser.name}}!</mat-card-title>
   <mat-card-content>
-    <div class="dropdown">
-      <button class="dropbtn">Why are you here today?     &darr;</button>
-      <div class="dropdown-content">
-        <a id="landing-page-nav-button-my-place" (click)="navigate()">See my place in the company...</a>
-        <a id="landing-page-nav-button-moves-upwards" (click)="navigate()">I want to see what I need for a promotion...</a>
-        <a id="landing-page-nav-button-moves-sideways" (click)="navigate()">I want to see opportunities in my band...</a>
-        <a id="landing-page-nav-button-last-session" (click)="navigate()">Take me back to my previous session...</a>
-        <a id="landing-page-nav-button-show-all" (click)="navigate()">I just want to see everything...</a>
-      </div>
-    </div>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item id="landing-page-nav-button-my-place" (click)="navigate()">My Position</button>
+      <button mat-menu-item id="landing-page-nav-button-moves-upwards" (click)="navigate()">Steps for Promotion</button>
+      <button mat-menu-item id="landing-page-nav-button-moves-sideways" (click)="navigate()">Current Opportunities</button>
+      <button mat-menu-item id="landing-page-nav-button-last-session" (click)="navigate()">Previous Session</button>
+    </mat-menu>
+
+    <button mat-raised-button style="background: #66bb6a; color: white" [matMenuTriggerFor]="appMenu">
+      Why are you here today?
+    </button>
   </mat-card-content>
 </mat-card>
 

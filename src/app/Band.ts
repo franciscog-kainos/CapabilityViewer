@@ -1,12 +1,17 @@
-export class Band {
+import {IBand} from './iband';
 
-    band_id: number;
-    band_name: string;
-    band_competency: string;
+export class Band extends IBand {
+    type: string;
+    static fromIBand(band: IBand): Band {
+        let newBand = new Band(band.band_name);
+        newBand.band_competency = band.band_competency;
+        newBand.band_id = band.band_id;
+        newBand.band_responsibilities = band.band_responsibilities;
+        return newBand;
+    }
 
     constructor(name: string) {
-        this.band_name = name;
+        super();
+        super.band_name = name;
     }
-    band_responsibilities: string;
-    type: string;
 }

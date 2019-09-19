@@ -3,6 +3,7 @@ import {DataService} from "../data.service";
 import {Capability} from "../Capability";
 import {Location} from "@angular/common";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ICapability} from '../icapability';
 
 @Component({
   selector: 'capability-lead-viewer',
@@ -11,7 +12,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 })
 export class CapabilityLeadViewerComponent implements OnInit {
   data: DataService;
-  capability: Capability;
+  capability: ICapability;
   id: string;
 
   constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {

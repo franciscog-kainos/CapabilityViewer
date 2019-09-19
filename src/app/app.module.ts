@@ -18,6 +18,7 @@ import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
 import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -42,10 +43,12 @@ import { TableHeaderClickComponent } from './table-header-click/table-header-cli
         CommonModule,
         MatCardModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatMenuModule
     ],
-  providers: [],
-  bootstrap: [ AppComponent ]
+    providers: [],
+    bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+}

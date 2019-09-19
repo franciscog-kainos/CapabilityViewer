@@ -1,6 +1,6 @@
 INSERT INTO `Job_Family`(`job_family_name`)
     VALUES 
-    ('Sales & Marketing'), 
+    ('Sales & Marketing'),
     ('Technical'),
     ('Consulting'),
     ('Experience Design'),
@@ -166,11 +166,11 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
  /* -------------------------- ROLES END ------------------------ */
 
-INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`, `user_picture`)
+INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`)
     VALUES
-    ('Jane One', 'Doe', 1, '../assets/Kainos-logo-neg.png'),
-    ('Jane Two', 'Doe', 2, ''),
-    ('Jane Three', 'Doe', 3, '');
+    ('Jane One', 'Doe', 1),
+    ('Jane Two', 'Doe', 2),
+    ('Jane Three', 'Doe', 3);
 
 INSERT INTO `Training_Category`(`training_category_name`)
 	VALUES
@@ -190,6 +190,7 @@ INSERT INTO `Training`(`training_name`, `training_link`, `training_category_id`)
 INSERT INTO `Role_Training`(`role_id`, `training_id`)
 	VALUES
     (1, 1),
+    (1, 5),
     (3, 5),
 	(2, 1);
 
@@ -199,7 +200,6 @@ INSERT INTO `Band_Training`(`band_id`, `training_id`)
     (5, 2),
     (2, 4);
 
- /* ----------------- ASSIGNING CAPABILITY LEADS ----------------- */
-UPDATE `Capability` SET leader_id = 1 WHERE capability_id = 1;
-UPDATE `Capability` SET leader_id = 2 WHERE capability_id = 2;
-UPDATE `Capability` SET leader_id = 3 WHERE capability_id = 3;
+INSERT INTO `Capability`(`capability_name`, `job_family_id`, `leader_id`)
+    VALUES
+    ('Test Capability', 1, 1)

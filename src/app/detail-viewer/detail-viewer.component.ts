@@ -17,7 +17,7 @@ export class DetailViewerComponent implements OnInit {
     role: Role;
     detailID: string;
     detailType: string;
-    trainingResources: TrainingResource[];
+    trainingResources: any[];
     categories: Set<string>;
 
     constructor(private location: Location, data: DataService, private route: ActivatedRoute, private router: Router) {
@@ -31,13 +31,13 @@ export class DetailViewerComponent implements OnInit {
         //Get data from API to be displayed
         if (this.detailType == "role") {
             data.getRole(this.detailID).subscribe(response => {
-                this.role = response;
+                this.role = Role.fromIRole(response);
             });
         }
 
         if(this.detailType == "band"){
             data.getBand(this.detailID).subscribe(response => {
-                this.band = response;
+                this.band = Band.fromIBand(response);
             });
              data.getBandTraining(this.detailID).subscribe(response => {
                  if(response != null){

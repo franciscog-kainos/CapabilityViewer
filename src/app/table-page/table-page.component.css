@@ -1,11 +1,4 @@
-#center {
-    display: grid;
-    justify-items: center;
-    grid-template-rows: 90vh 10vh;
-    grid-template-columns: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-.table {
-}
+.table-content {
+    margin: 16px;
 
+}
