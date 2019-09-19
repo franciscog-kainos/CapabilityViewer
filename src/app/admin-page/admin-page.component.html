@@ -2,11 +2,24 @@
     <mat-card>
         <mat-card-title>Admin Panel</mat-card-title>
     </mat-card>
+
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Add New Job Role</mat-panel-title>
-            <mat-panel-description>Adds a new job role to the system</mat-panel-description>
+        <mat-expansion-panel-header id="jobFamilyPanel">
+            <mat-panel-title>Add New Job Family</mat-panel-title>
+            <mat-panel-description>Adds a new job family to the system</mat-panel-description>
         </mat-expansion-panel-header>
-        <p>Test Pooper</p>
+
+        <div class="form-container">
+          <form (ngSubmit)="addFamily(addForm)" #addForm="ngForm">
+            <fieldset> 
+              <mat-form-field>
+                <input matInput [(ngModel)]="newFamily.job_family_name" name="job_family_name" placeholder="Job Family" id="jobFamilyName">
+              </mat-form-field>
+             <br>
+              <button id="submit" type="submit" mat-raised-button color="primary" >Add</button>
+            </fieldset>
+
+          </form>
+        </div>
     </mat-expansion-panel>
 </div>

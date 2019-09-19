@@ -14,6 +14,7 @@ import {User} from './user';
 export class DataService {
 
   mockUser: User;
+  
 
   constructor(private http: HttpClient) {
     this.getAllFromDatabase();
@@ -57,5 +58,24 @@ export class DataService {
 
   public getBand(bandId) : Observable<Band>{
     return this.http.get<Band>('/api/bands/' + bandId);
+  }
+
+  // public addFamily(newFamily: JobFamily): Observable<JobFamily> {
+  //   return this.http.post<JobFamily>('/api/families', newFamily);
+  // }
+
+  
+  public addFamily(newFamily: JobFamily): void {
+    console.log(newFamily);
+
+    this.http.post<JobFamily>('api/families', newFamily).subscribe( res => {
+
+      if (res == null) {
+        console.log('Could not add family!');
+      } else {
+        console.log('Added new family!');
+        console.log(newFamily);
+      }
+    });
   }
 }

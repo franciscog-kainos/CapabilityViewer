@@ -75,3 +75,19 @@ app.get('/capabilities/:id', (req,res) => {
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
+
+app.post('/families', (req, res) => {
+    db.insertFamily(req.body, (err) => {
+        if(err) return handleError(err);
+        res.send({message: "Added new family"});
+    });
+})
+
+
+// app.post('/families', function (req, res) {
+//     function insertFamily(){
+//       db.insertFamily(req.body, function (err) {
+//         if (err) return handleError(err, req, res);
+//         res.send({message: "Added new family", body: req.body.family_});
+//       });
+//     }
