@@ -37,7 +37,7 @@ export class DetailViewerComponent implements OnInit {
 
         if(this.detailType == "band"){
             data.getBand(this.detailID).subscribe(response => {
-                this.band = response;
+                this.band = Band.fromIBand(response);
             });
              data.getBandTraining(this.detailID).subscribe(response => {
                  if(response != null){

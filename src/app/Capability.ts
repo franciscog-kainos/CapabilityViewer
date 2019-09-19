@@ -1,6 +1,7 @@
 import {ICapability} from './icapability';
 import {Role} from './Role';
 import {TableObject} from './table-object';
+import {TableHeaderClickComponent} from "./table-header-click/table-header-click.component";
 
 export class Capability extends ICapability implements TableObject {
     roles: Role[] = [];
@@ -47,6 +48,7 @@ export class Capability extends ICapability implements TableObject {
                 field: "capability_" + this.capability_id,
                 resizable: true,
                 cellRenderer: "nameCellRenderer",
+                headerComponentFramework: TableHeaderClickComponent,
                 filter: 'agTextColumnFilter',
                 getQuickFilterText: (params) => {
                     console.log(params);

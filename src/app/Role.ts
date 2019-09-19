@@ -2,7 +2,7 @@ import {IRole} from './irole';
 import {TableObject} from './table-object';
 
 export class Role extends IRole {
-    columnName: string;
+    type: string;
     constructor(name: string) {
         super();
         super.role_name = name;
@@ -16,7 +16,6 @@ export class Role extends IRole {
         role.role_responsibilities = value.role_responsibilities;
         role.capability_id = value.capability_id;
         role.band_id = value.band_id;
-        role.type = value.type;
         return role;
     }
 }

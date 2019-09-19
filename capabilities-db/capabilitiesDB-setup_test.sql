@@ -10,14 +10,14 @@ CREATE TABLE IF NOT EXISTS Job_Family(
 CREATE TABLE IF NOT EXISTS Band(
 	band_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     band_name VARCHAR(50) NOT NULL UNIQUE,
-    band_competency TEXT NOT NULL
+    band_competency TEXT NOT NULL,
+    band_responsibilities VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS User(
 	user_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	user_f_name VARCHAR(50) NOT NULL,
-    user_l_name VARCHAR(50),
-    user_picture VARCHAR(200)
+    user_l_name VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS Role(
