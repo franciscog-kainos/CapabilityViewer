@@ -125,10 +125,6 @@ export class DataService {
         return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params: params});
     }
 
-    public getBand(bandId): Observable<Band> {
-        return this.http.get<Band>('/api/bands/' + bandId);
-    }
-
     public getBandTraining(bandId): Observable<TrainingResource[]> {
         return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
     }
