@@ -18,6 +18,7 @@ import {DetailViewerComponent} from './detail-viewer/detail-viewer.component';
 import {CapabilityLeadViewerComponent} from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
 import {TableHeaderClickComponent} from './table-header-click/table-header-click.component';
+import {MatMenuModule} from '@angular/material/menu';
 import {ConfirmDeleteDialog} from './confirm-delete-dialog/confirm-delete-dialog.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {FeedbackDialog} from './feedback-dialog/feedback-dialog.component';
@@ -32,8 +33,6 @@ import {FeedbackDialog} from './feedback-dialog/feedback-dialog.component';
         PageNotFoundComponent,
         CapabilityLeadViewerComponent,
         TableHeaderClickComponent
-        CapabilityLeadViewerComponent,
-        TableHeaderClickComponent,
         AdminPageComponent,
         ConfirmDeleteDialog,
         FeedbackDialog

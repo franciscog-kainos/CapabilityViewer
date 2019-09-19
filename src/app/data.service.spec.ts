@@ -68,12 +68,5 @@ describe('DataService', () => {
         });
     });
 
-    it('should return a user', (done: DoneFn) => {
-       data.getUser(1).subscribe(value => {
-           expect(value).toBeTruthy();
-           done();
-       })
-    });
-
 
 });

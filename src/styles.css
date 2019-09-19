@@ -48,6 +48,7 @@ body {
 }
 .material-icons {
     vertical-align: middle;
+    text-align: left;
 }
 
 .ag-theme-material .ag-header-viewport {
@@ -61,6 +62,13 @@ body {
 
 .ag-icon .ag-icon-menu {
     color: white;
+}
+.ag-theme-material .ag-header-group-cell:not(.ag-column-resizing) + .ag-header-group-cell:hover, .ag-theme-material .ag-header-group-cell:not(.ag-column-resizing) + .ag-header-group-cell.ag-column-resizing, .ag-theme-material .ag-header-cell:not(.ag-column-resizing) + .ag-header-cell:hover, .ag-theme-material .ag-header-cell:not(.ag-column-resizing) + .ag-header-cell.ag-column-resizing, .ag-theme-material .ag-header-group-cell:first-of-type:hover, .ag-theme-material .ag-header-group-cell:first-of-type.ag-column-resizing, .ag-theme-material .ag-header-cell:first-of-type:hover, .ag-theme-material .ag-header-cell:first-of-type.ag-column-resizing {
+    color:  #202D52;
+}
+
+.ag-theme-material .ag-cell {
+    text-align: left;
 }
 
 .ag-theme-material .ag-icon {
@@ -76,6 +84,28 @@ body {
     text-align: left;
 }
 
+.ag-theme-material .ag-cell:hover {
+    font-weight: bold;
+    box-shadow: 6px 0px 35px -13px rgba(0,0,0,0.78);
+}
+
+.executive-band-row {
+    background: #651fff !important;
+    color: white !important;
+}
+
+.executive-band-row:hover {
+    color: white !important;
+    background: #6200ea !important;
+
+}
+
+.bandLevels {
+    font-weight: bold;
+}
+.bandLevels:hover {
+    font-weight: bolder;
+}
 .ag-theme-material .ag-cell:hover {
     font-weight: bold;
     box-shadow: 6px 0px 35px -13px rgba(0,0,0,0.78);
