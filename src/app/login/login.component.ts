@@ -30,14 +30,23 @@ export class LoginComponent implements OnInit {
 
     login() : void {
 
-    	if (this.authenticationService.login(this.authUser.user_username)) {
+    	this.authenticationService.login(this.authUser).subscribe({
+    		next: data => {
+    			if (data && data.successful) {
+		        	this.router.navigate(['/landing-page']);
+        		} else {
+          			// PUT ERROR LABEL HERE????
+          			console.log("NO.")
+        		}
+        	}
+      	});
 
-        	this.router.navigate(['/landing-page']);
+    	// if (this.authenticationService.login(this.authUser.user_username)) {
 
-        } else {
+     //    	this.router.navigate(['/landing-page']);
 
-        	
-        	
-        }
+     //    } else {
+
+     //    }
     }
 }

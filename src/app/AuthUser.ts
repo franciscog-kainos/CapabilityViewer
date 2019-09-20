@@ -1,8 +1,9 @@
 export class AuthUser {
 
-    user_id: number;
+    user_id: string;
     user_username: string;
-    password: string;
+    user_password: string;
     token?: string;
+    isAdmin: boolean;
 
 }

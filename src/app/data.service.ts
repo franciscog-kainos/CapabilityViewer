@@ -7,6 +7,7 @@ import { Role } from './Role';
 import { Observable, forkJoin } from 'rxjs';
 import {User} from './user';
 import { AuthUser } from './AuthUser';
+import { AuthResponse } from './AuthResponse'
 
 
 @Injectable({
@@ -62,5 +63,9 @@ export class DataService {
 
   public getBand(bandId) : Observable<Band>{
     return this.http.get<Band>('/api/bands/' + bandId);
+  }
+
+  public login(data) : Observable<AuthResponse>{
+    return this.http.post<AuthResponse>('/api/login', data.user);
   }
 }
