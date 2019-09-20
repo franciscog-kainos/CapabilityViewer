@@ -51,6 +51,27 @@ app.get('/bands', function(req, res) {
   });
 });
 
+app.get('/training_resources', function(req, res) {
+    db.getTrainingResources(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
+app.get('/trainings', function(req, res) {
+    db.getTrainings(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
+app.get('/training_categories', function(req, res) {
+    db.getTrainingCategories(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
 app.get('/bands/:id', (req,res) => {
     db.getBand(req.params.id, (err,row) => {
         if(err) return handleError(err);
@@ -76,6 +97,20 @@ app.get('/capabilities/:id', (req,res) => {
     db.getCapability(req.params.id, (err,row) => {
         if(err) return handleError(err);
         res.send(row[0]);
+    });
+});
+
+app.post('/bands', (req, res) => {
+    db.insertBand(req.body, (err) => {
+        if(err) return handleError(err);
+        res.send({message: "Added new band"});
+    });
+});
+
+app.post('/band_trainings', (req, res) => {
+    db.insertBandTraining(req.body, (err) => {
+        if(err) return handleError(err);
+        res.send({message: "Added new band training relations"});
     });
 });
 

@@ -2,3 +2,42 @@
     width: 70%;
     margin: 0 auto;
 }
+
+.form-input {
+    width: 50%;
+    display: block;
+}
+
+.textarea-form-input {
+    display: block;
+    height: content-box;
+}
+
+.mat-card {
+    background-color: #202D52;
+    color: white;
+}
+
+.mat-expansion-panel-header-description {
+    margin-left: 60%;
+}
+
+.mat-expansion-panel-header-description {
+    flex-grow: 2;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title {
+    display: flex;
+    flex-grow: 1;
+    margin-right: 16px;
+}
+
+button {
+    background-color: #202D52;
+    color: white;
+}
+
+p {
+    text-align: left;
+    margin-right: 30px;
+}

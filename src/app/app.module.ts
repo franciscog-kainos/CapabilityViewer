@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,15 +9,16 @@ import { AgGridModule } from 'ag-grid-angular';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
-import {LandingPageComponent} from "./landing-page/landing-page.component";
-import {TablePageComponent} from "./table-page/table-page.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { TablePageComponent } from './table-page/table-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
-import {MatButtonModule} from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { MatButtonModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule, MatGridListModule } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,15 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
         CommonModule,
         MatCardModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatGridListModule,
+        MatTabsModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
   providers: [],
   bootstrap: [ AppComponent ]

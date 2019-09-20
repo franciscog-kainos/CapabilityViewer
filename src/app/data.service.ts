@@ -7,7 +7,8 @@ import { Role } from './Role';
 import { TrainingResource } from './TrainingResource';
 import { Observable, forkJoin } from 'rxjs';
 import {User} from './user';
-
+import {Training} from './Training';
+import {TrainingCategory} from './TrainingCategory';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,10 @@ export class DataService {
     return this.http.get<Role[]>('/api/roles');
   }
 
+  public getAllTrainingResources() : Observable<TrainingResource[]> {
+    return this.http.get<TrainingResource[]>('/api/training_resources');
+  }
+
   public getRole(id) : Observable<Role> {
     return this.http.get<Role>('/api/roles/' + id);
   }
@@ -62,5 +67,33 @@ export class DataService {
 
   public getBandTraining(bandId) : Observable<TrainingResource[]>{
     return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
+  }
+
+  public getTrainings() : Observable<Training[]> {
+    return this.http.get<Training[]>('/api/trainings');
+  }
+
+  public getTrainingCategories() : Observable<TrainingCategory[]> {
+    return this.http.get<TrainingCategory[]>('/api/training_categories');
+  }
+
+  public addBand(newBand: Band): void {
+    this.http.post<Band>('api/bands', newBand).subscribe( res => {
+      if (res == null) {
+        console.log('Band was not added!');
+      } else {
+        console.log('Band was added');
+      }
+    });
+  }
+
+  public addBandTraining(newBandTraining: Band): void {
+    this.http.post<BandTraining>('api/band_trainings', newBandTraining).subscribe( res => {
+      if (res == null) {
+        console.log('Band Training was not added!');
+      } else {
+        console.log('Band Training was added');
+      }
+    });
   }
 }
