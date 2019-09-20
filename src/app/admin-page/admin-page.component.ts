@@ -38,7 +38,7 @@ export class AdminPageComponent implements OnInit {
 
     addFamily(addForm): void{
         const familyToAdd: IJobFamily = this.newFamily;
-        this.newFamily = new JobFamily('');
+        this.newFamily = new IJobFamily();
         console.log(familyToAdd);
         this.data.addFamily(familyToAdd);
       }
@@ -106,7 +106,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.newFamily = new JobFamily('');
+      this.newFamily = new IJobFamily();
       this.getDeletableJobFamilies();
   }
 
