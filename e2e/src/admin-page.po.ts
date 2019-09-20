@@ -1,6 +1,7 @@
 import { browser, by, element } from 'protractor';
 
 export class AdminPage {
+
     navigateTo() {
         return browser.get(browser.baseUrl+='admin-page') as Promise<any>;      
     }
@@ -8,7 +9,7 @@ export class AdminPage {
     /* Add Job Family Tests */
     getColumnHeaderText() {
         return element(by.xpath('//div[@col-id="1_0"]')).getText() as Promise<string>;
-    } 
+    }
 
     clickAddJobFamilyAccordion(){
         this.getAddJobFamilyAccordion().click() as Promise<any>;
