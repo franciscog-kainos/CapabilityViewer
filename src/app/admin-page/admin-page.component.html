@@ -10,15 +10,16 @@
         </mat-expansion-panel-header>
 
         <div class="form-container">
-          <form (ngSubmit)="addFamily(addForm)" #addForm="ngForm">
+          <form (ngSubmit)="addFamily(addForm)" #jobAddForm="ngForm">
             <fieldset> 
               <mat-form-field>
-                <input matInput [(ngModel)]="newFamily.job_family_name" name="job_family_name" placeholder="Job Family" id="jobFamilyName">
+                <input matInput required [(ngModel)]="newFamily.job_family_name" name="job_family_name" placeholder="Job Family" id="jobFamilyName">
+                
               </mat-form-field>
+              
              <br>
-              <button id="submit" type="submit" mat-raised-button color="primary" >Add</button>
+              <button  id="submit" type="submit" mat-raised-button color="primary" (click)="openSnackBar('Job Family Added')" [disabled]="!jobAddForm.form.valid">Add</button>
             </fieldset>
-
           </form>
         </div>
     </mat-expansion-panel>

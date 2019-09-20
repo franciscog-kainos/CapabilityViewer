@@ -5,6 +5,7 @@ export class AdminPage {
         return browser.get(browser.baseUrl+='admin-page') as Promise<any>;      
     }
 
+    /* Add Job Family Tests */
     getColumnHeaderText() {
         return element(by.xpath('//div[@col-id="1_0"]')).getText() as Promise<string>;
     } 
@@ -31,4 +32,6 @@ export class AdminPage {
         expect(input.getAttribute('value')).toBe('testfamily');
 
     }
+    /* Add Job Family Tests */
+
 }

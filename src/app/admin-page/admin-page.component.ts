@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { JobFamily } from '../JobFamily';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'company-admin-page',
@@ -13,12 +15,8 @@ export class AdminPageComponent implements OnInit {
   public newFamily: JobFamily;
 
 
-  constructor(dataservice: DataService) { 
+  constructor(dataservice: DataService, private _snackBar: MatSnackBar) { 
     this.data = dataservice;
-   
-    /*this.data.addFamily(newFamily).subscribe(res => {
-
-    })*/
   }
 
   ngOnInit() {
@@ -32,7 +30,12 @@ export class AdminPageComponent implements OnInit {
     this.newFamily = new JobFamily();
     console.log(familyToAdd);
     this.data.addFamily(familyToAdd);
+  }
 
-    
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+    duration: 2000,
+    });
   }
 }

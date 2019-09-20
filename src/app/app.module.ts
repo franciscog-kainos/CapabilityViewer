@@ -19,6 +19,7 @@ import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capabili
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MatButtonModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
   providers: [],
   bootstrap: [ AppComponent ]
