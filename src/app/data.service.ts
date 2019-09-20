@@ -125,7 +125,6 @@ export class DataService {
             .set('familyId', familyId);
         return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params: params});
     }
-
     public getBandTraining(bandId): Observable<TrainingResource[]> {
         return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
     }
@@ -164,4 +163,20 @@ export class DataService {
             }
         });
     }
+
+  public updateFamily(newFamily: IJobFamily): void {
+    console.log(newFamily);
+
+    this.http.put<IJobFamily>('api/families', newFamily).subscribe( res => {
+
+      if (res == null) {
+        console.log('Family was not updated!');
+        console.log(newFamily);
+      } else {
+        console.log('Famlily was updated');
+        console.log(newFamily);
+
+      }
+    });
+  }
 }
