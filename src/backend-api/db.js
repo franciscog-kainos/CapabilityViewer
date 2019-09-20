@@ -71,6 +71,25 @@ exports.getBand = function(band_id, callback) {
     )
 };
 
+//Update a specific job family with a new name
+exports.editFamily = function(data, callback) {
+    console.log("This should be here")
+    var id = data.job_family_id;
+    var newName = data.job_family_name;
+    db.query(
+        'update Job_Family set Job_Family.job_family_name = "' +
+         newName  + '" where Job_Family.job_family_id = "' + id +'"',
+        function(err, rows){
+            console.log("Executed")
+            if(err){
+                console.log("Executed")
+                return callback(err, null);
+            }
+            callback(null, rows);
+        }
+    )
+};
+
 //Get details for a specific role
 exports.getRole = function(role_id, callback) {
     db.query(

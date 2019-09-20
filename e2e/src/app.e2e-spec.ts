@@ -1,29 +1,27 @@
 import { LandingPage } from './landing-page.po';
 import { browser, logging } from 'protractor';
+import { AdminPage } from './admin-page.po';
 
-describe('Landing Page', () => {
-  let page: LandingPage;
+describe('Table Page', () => {
+  let page: AdminPage;
 
   beforeEach(() => {
-    page = new LandingPage();
+    page = new AdminPage();
   });
 
-  it('should display welcome message', () => {
+//Testing the edit page
+  it('should expand the accordion when it is clicked', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to Career Lattice V2.0!');
+    let elem = page.getEditHeader();
+    page.clickEditHeader();
+    expect(elem.getAttribute('class')).toContain("mat-expanded");
+  });
+    
+
+  it('should add text to the input box', () => {
+    page.clickEditJobFamilyNameInput();
+    page.clickEditJobFamilyButton();
   });
 
-  it('should redirect to table page when navigation button is clicked', () => {
-    page.clickTableNavigation();
-    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "table-page");
-  });
 
-
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
-  });
 });

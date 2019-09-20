@@ -1,0 +1,14 @@
+.admin-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.mat-card {
+    background-color: #202D52;
+    color: white;
+}
+
+button {
+    background-color: #202D52;
+    color: white;
+}
