@@ -3,5 +3,4 @@ export abstract class ICapability {
     capability_name: string;
     leader_id: number;
     job_family_id: number;
-    user_picture: string;
 }

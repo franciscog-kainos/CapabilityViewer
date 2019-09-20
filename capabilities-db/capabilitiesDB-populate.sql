@@ -166,11 +166,11 @@ INSERT INTO `Role`(`role_name`, `role_summary`, `role_responsibilities`, `capabi
 
  /* -------------------------- ROLES END ------------------------ */
 
-INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`)
+INSERT INTO `User`(`user_f_name`, `user_l_name`, `role_id`, `user_picture`)
     VALUES
-    ('Jane One', 'Doe', 1),
-    ('Jane Two', 'Doe', 2),
-    ('Jane Three', 'Doe', 3);
+    ('Jane One', 'Doe', 1, '../assets/capability-leads/jeremy.jpg'),
+    ('Jane Two', 'Doe', 2, ''),
+    ('Jane Three', 'Doe', 3, '');
 
 INSERT INTO `Training_Category`(`training_category_name`)
 	VALUES
@@ -203,3 +203,4 @@ INSERT INTO `Band_Training`(`band_id`, `training_id`)
 INSERT INTO `Capability`(`capability_name`, `job_family_id`, `leader_id`)
     VALUES
     ('Test Capability', 1, 1)
+
