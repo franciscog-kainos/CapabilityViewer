@@ -21,6 +21,7 @@ import { MatButtonModule, MatFormFieldModule, MatSelectModule, MatInputModule } 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     DetailViewerComponent,
     PageNotFoundComponent,
     CapabilityLeadViewerComponent,
-    AdminPageComponent
+    AdminPageComponent 
   ],
     imports: [
         BrowserModule,
@@ -49,7 +50,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
         MatSelectModule,
         MatInputModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatTabsModule
     ],
   providers: [],
   bootstrap: [ AppComponent ]

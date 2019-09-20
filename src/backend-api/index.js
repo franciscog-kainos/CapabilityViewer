@@ -72,6 +72,13 @@ app.get('/capabilities/:id', (req,res) => {
     });
 });
 
+app.put('/families', (req,res) => {
+    db.editFamily(req.body, (err,row) => {
+        if(err) return handleError(err);
+        res.send(row[0]);
+    });
+});
+
 app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });

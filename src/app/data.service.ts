@@ -60,11 +60,6 @@ export class DataService {
     return this.http.get<Band>('/api/bands/' + bandId);
   }
 
-  // public addFamily(newFamily: JobFamily): Observable<JobFamily> {
-  //   return this.http.post<JobFamily>('/api/families', newFamily);
-  // }
-
-  
   public addFamily(newFamily: JobFamily): void {
     console.log(newFamily);
 
@@ -74,6 +69,18 @@ export class DataService {
         console.log('Could not add family!');
       } else {
         console.log('Added new family!');
+        console.log(newFamily);
+
+  public updateFamily(newFamily: JobFamily): void {
+    console.log(newFamily);
+
+    this.http.put<JobFamily>('api/families', newFamily).subscribe( res => {
+
+      if (res == null) {
+        console.log('Family was not updated!');
+        console.log(newFamily);
+      } else {
+        console.log('Famlily was updated');
         console.log(newFamily);
       }
     });

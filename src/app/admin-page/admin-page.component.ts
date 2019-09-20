@@ -10,20 +10,23 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
+
 export class AdminPageComponent implements OnInit {
   data: DataService;
-  public newFamily: JobFamily;
+  jobFamilies: JobFamily[] = [
+  ];
 
+  newFamily: JobFamily;
 
-  constructor(dataservice: DataService, private _snackBar: MatSnackBar) { 
-    this.data = dataservice;
+  constructor(data: DataService,private _snackBar: MatSnackBar) { 
+    this.data = data;
+    data.getAllJobFamilies().subscribe(responseList => {
+      var loadedFamilies = responseList;
+      var displayFamilies
+      this.jobFamilies = loadedFamilies;
+    });
+  
   }
-
-  ngOnInit() {
-    this.newFamily = new JobFamily();
-
-  }
-
   
   addFamily(addForm): void{
     const familyToAdd: JobFamily = this.newFamily;
@@ -32,10 +35,17 @@ export class AdminPageComponent implements OnInit {
     this.data.addFamily(familyToAdd);
   }
 
+  editFamily(editForm): void{
+    this.data.updateFamily(this.newFamily);
+  }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-    duration: 2000,
+      duration: 2000,
     });
+  }
+
+  ngOnInit() {
+      this.newFamily = new JobFamily()
   }
 }

@@ -2,25 +2,63 @@
     <mat-card>
         <mat-card-title>Admin Panel</mat-card-title>
     </mat-card>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Job Family">
+          
+            <mat-expansion-panel>
+                <mat-expansion-panel-header id="jobFamilyPanel">
+                    <mat-panel-title>Add New Job Family</mat-panel-title>
+                    <mat-panel-description>Adds a new job family to the system</mat-panel-description>
+                </mat-expansion-panel-header>
 
-    <mat-expansion-panel>
-        <mat-expansion-panel-header id="jobFamilyPanel">
-            <mat-panel-title>Add New Job Family</mat-panel-title>
-            <mat-panel-description>Adds a new job family to the system</mat-panel-description>
-        </mat-expansion-panel-header>
+                <div class="form-container">
+                  <form (ngSubmit)="addFamily(addForm)" #jobAddForm="ngForm">
+                    <fieldset> 
+                      <mat-form-field>
+                        <input matInput required [(ngModel)]="newFamily.job_family_name" name="job_family_name" placeholder="Job Family" id="jobFamilyName">
 
-        <div class="form-container">
-          <form (ngSubmit)="addFamily(addForm)" #jobAddForm="ngForm">
-            <fieldset> 
-              <mat-form-field>
-                <input matInput required [(ngModel)]="newFamily.job_family_name" name="job_family_name" placeholder="Job Family" id="jobFamilyName">
-                
+                      </mat-form-field>
+
+                     <br>
+                      <button  id="submit" type="submit" mat-raised-button color="primary" (click)="openSnackBar('Job Family Added')" [disabled]="!jobAddForm.form.valid">Add</button>
+                    </fieldset>
+                  </form>
+                </div>
+            </mat-expansion-panel>
+
+          
+            <mat-expansion-panel class="Edit">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Edit Job family</mat-panel-title>
+                    <mat-panel-description>Edit the title of a job family</mat-panel-description>
+                </mat-expansion-panel-header>
+                <form #editForm="ngForm" (ngSubmit)="editFamily(editForm)">
+                <fieldset> 
+                        <mat-label>Select job family</mat-label>
+            <mat-select [(ngModel)]="newFamily.job_family_id" name="job_family_id"  >    
+                    
+                <mat-option *ngFor="let jobFamily of jobFamilies" [value]="jobFamily.job_family_id">
+                    {{jobFamily.job_family_name}}
+                  </mat-option>    
+            </mat-select>
+            <mat-form-field class="example-full-width">
+                <input matInput required name="job_family_name" id="jobFamilyName" [(ngModel)]="newFamily.job_family_name" placeholder="Enter new name">
               </mat-form-field>
-              
-             <br>
-              <button  id="submit" type="submit" mat-raised-button color="primary" (click)="openSnackBar('Job Family Added')" [disabled]="!jobAddForm.form.valid">Add</button>
-            </fieldset>
-          </form>
-        </div>
-    </mat-expansion-panel>
+              <br>
+              <button mat-raised-button (click)="openSnackBar('Job Family updated')" type="submit" [disabled]="!editForm.form.valid">Apply</button>  
+              </fieldset> 
+            </form> 
+        </mat-expansion-panel>
+        </mat-tab>
+        <mat-tab label="Capability">
+            Content 2
+        </mat-tab>
+        <mat-tab label="Band">
+            Content 3
+            </mat-tab>
+            <mat-tab label="Role">
+                Content 4
+    
+            </mat-tab>
+        </mat-tab-group>
 </div>
