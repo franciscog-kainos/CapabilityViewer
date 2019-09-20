@@ -23,7 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ConfirmDeleteDialog } from "./confirm-delete-dialog/confirm-delete-dialog.component";
 import { FeedbackDialog} from "./feedback-dialog/feedback-dialog.component";
-import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
+import {TableHeaderClickComponent} from "./table-header-click/table-header-click.component";
 import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
@@ -38,7 +38,8 @@ import {MatMenuModule} from "@angular/material/menu";
     TableHeaderClickComponent,
     AdminPageComponent,
     ConfirmDeleteDialog,
-    FeedbackDialog
+    FeedbackDialog,
+
   ],
     imports: [
         BrowserModule,
@@ -60,7 +61,7 @@ import {MatMenuModule} from "@angular/material/menu";
         MatTabsModule,
         MatDialogModule,
         NgSelectModule,
-        MatMenuModule
+        MatMenuModule,
     ],
   providers: [],
   bootstrap: [ AppComponent ],

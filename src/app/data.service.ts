@@ -95,17 +95,14 @@ export class DataService {
     public getAllBands(): Observable<IBand[]> {
         return this.http.get<IBand[]>('/api/bands');
     }
-
     public getAllRoles(): Observable<IRole[]> {
         return this.http.get<IRole[]>('/api/roles');
     }
-
     public getRolesInBand(bandId): Observable<IRole[]> {
         let params = new HttpParams()
             .set('id', bandId);
         return this.http.get<IRole[]>('/api/rolesInBand/' + bandId, {params: params});
     }
-
     public getRole(id): Observable<IRole> {
         return this.http.get<IRole>('/api/roles/' + id);
     }
@@ -125,6 +122,7 @@ export class DataService {
             .set('familyId', familyId);
         return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params: params});
     }
+
     public getBandTraining(bandId): Observable<TrainingResource[]> {
         return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
     }
@@ -164,28 +162,27 @@ export class DataService {
         });
     }
 
-  public updateFamily(newFamily: IJobFamily): void {
-    console.log(newFamily);
-
-    this.http.put<IJobFamily>('api/families', newFamily).subscribe( res => {
-
-      if (res == null) {
-        console.log('Family was not updated!');
-        console.log(newFamily);
-      } else {
-        console.log('Famlily was updated');
+    public updateFamily(newFamily: IJobFamily): void {
         console.log(newFamily);
 
-      }
-    });
-  }
+        this.http.put<IJobFamily>('api/families', newFamily).subscribe( res => {
 
-  public getDeletableJobFamilies() : Observable<JobFamily[]> {
-    return this.http.get<JobFamily[]>('/api/deletableJobFamilies');
-  }
+            if (res == null) {
+                console.log('Family was not updated!');
+                console.log(newFamily);
+            } else {
+                console.log('Famlily was updated');
+                console.log(newFamily);
 
-  public deleteJobFamily(jobFamilyId): Observable<Object> {
-    return this.http.delete('/api/deleteJobFamily/' + jobFamilyId);
-  }
+            }
+        });
+    }
 
+    public getDeletableJobFamilies() : Observable<IJobFamily[]> {
+        return this.http.get<IJobFamily[]>('/api/deletableJobFamilies');
+    }
+
+    public deleteJobFamily(jobFamilyId): Observable<Object> {
+        return this.http.delete('/api/deleteJobFamily/' + jobFamilyId);
+    }
 }
