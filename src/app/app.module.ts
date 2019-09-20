@@ -24,6 +24,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ConfirmDeleteDialog } from "./confirm-delete-dialog/confirm-delete-dialog.component";
 import { FeedbackDialog} from "./feedback-dialog/feedback-dialog.component";
 import { TableHeaderClickComponent } from './table-header-click/table-header-click.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { TableHeaderClickComponent } from './table-header-click/table-header-cli
         MatSnackBarModule,
         MatTabsModule,
         MatDialogModule,
-        NgSelectModule
+        NgSelectModule,
+        MatMenuModule
     ],
   providers: [],
   bootstrap: [ AppComponent ],
