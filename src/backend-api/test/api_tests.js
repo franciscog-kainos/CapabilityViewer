@@ -92,5 +92,15 @@ describe('Getting a specific band', function() {
 
 });
 
-
-
+describe('Updating a Job Family name', function() {
+    it('Should return status 200 with valid endpoint', function() {
+        request.put({
+            uri: API_BASE_URL + 'families',
+        }, (err, res, body) => {
+            if (err) {
+                logger.error(err);
+            };
+            assert.equal(res.statusCode, 200);
+        });
+    });
+});

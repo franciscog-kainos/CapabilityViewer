@@ -58,4 +58,20 @@ export class DataService {
   public getBand(bandId) : Observable<Band>{
     return this.http.get<Band>('/api/bands/' + bandId);
   }
+
+  public updateFamily(newFamily: JobFamily): void {
+    console.log(newFamily);
+
+    this.http.put<JobFamily>('api/families', newFamily).subscribe( res => {
+
+      if (res == null) {
+        console.log('Family was not updated!');
+        console.log(newFamily);
+      } else {
+        console.log('Famlily was updated');
+        console.log(newFamily);
+
+      }
+    });
+  }
 }

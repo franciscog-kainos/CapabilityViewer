@@ -18,6 +18,8 @@ import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
 import {MatButtonModule} from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { MatFormFieldModule, MatSelectModule, MatInputModule,MatTabsModule } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     DetailViewerComponent,
     PageNotFoundComponent,
     CapabilityLeadViewerComponent,
-    AdminPageComponent
+    AdminPageComponent, 
   ],
     imports: [
         BrowserModule,
@@ -42,7 +44,12 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
         CommonModule,
         MatCardModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSelectModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSnackBarModule,
+        MatTabsModule
     ],
   providers: [],
   bootstrap: [ AppComponent ]
