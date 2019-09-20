@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/data.service';
-import {JobFamily} from '../JobFamily'
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { DataService } from '../data.service';
+import { JobFamily } from '../JobFamily';
+import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'company-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
-
 
 export class AdminPageComponent implements OnInit {
   data: DataService;
@@ -26,6 +27,13 @@ export class AdminPageComponent implements OnInit {
     });
   
   }
+  
+  addFamily(addForm): void{
+    const familyToAdd: JobFamily = this.newFamily;
+    this.newFamily = new JobFamily();
+    console.log(familyToAdd);
+    this.data.addFamily(familyToAdd);
+  }
 
   editFamily(editForm): void{
     this.data.updateFamily(this.newFamily);
@@ -40,5 +48,4 @@ export class AdminPageComponent implements OnInit {
   ngOnInit() {
       this.newFamily = new JobFamily()
   }
-
 }

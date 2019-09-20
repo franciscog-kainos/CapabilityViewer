@@ -16,10 +16,11 @@ import {TablePageComponent} from "./table-page/table-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {DetailViewerComponent} from "./detail-viewer/detail-viewer.component";
 import { CapabilityLeadViewerComponent } from './capability-lead-viewer/capability-lead-viewer.component';
-import {MatButtonModule} from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { MatFormFieldModule, MatSelectModule, MatInputModule,MatTabsModule } from '@angular/material';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatButtonModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     DetailViewerComponent,
     PageNotFoundComponent,
     CapabilityLeadViewerComponent,
-    AdminPageComponent, 
+    AdminPageComponent 
   ],
     imports: [
         BrowserModule,
@@ -45,9 +46,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
         MatCardModule,
         AppRoutingModule,
         MatButtonModule,
+        MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
-        MatFormFieldModule,
+        ReactiveFormsModule,
         MatSnackBarModule,
         MatTabsModule
     ],

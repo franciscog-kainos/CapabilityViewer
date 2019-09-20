@@ -4,6 +4,29 @@
     </mat-card>
     <mat-tab-group mat-align-tabs="center">
         <mat-tab label="Job Family">
+          
+            <mat-expansion-panel>
+                <mat-expansion-panel-header id="jobFamilyPanel">
+                    <mat-panel-title>Add New Job Family</mat-panel-title>
+                    <mat-panel-description>Adds a new job family to the system</mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="form-container">
+                  <form (ngSubmit)="addFamily(addForm)" #jobAddForm="ngForm">
+                    <fieldset> 
+                      <mat-form-field>
+                        <input matInput required [(ngModel)]="newFamily.job_family_name" name="job_family_name" placeholder="Job Family" id="jobFamilyName">
+
+                      </mat-form-field>
+
+                     <br>
+                      <button  id="submit" type="submit" mat-raised-button color="primary" (click)="openSnackBar('Job Family Added')" [disabled]="!jobAddForm.form.valid">Add</button>
+                    </fieldset>
+                  </form>
+                </div>
+            </mat-expansion-panel>
+
+          
             <mat-expansion-panel class="Edit">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Edit Job family</mat-panel-title>
@@ -19,9 +42,10 @@
                   </mat-option>    
             </mat-select>
             <mat-form-field class="example-full-width">
-                <textarea matInput name="job_family_name" id="jobFamilyName" [(ngModel)]="newFamily.job_family_name" placeholder="Enter new name"></textarea>
+                <input matInput required name="job_family_name" id="jobFamilyName" [(ngModel)]="newFamily.job_family_name" placeholder="Enter new name">
               </mat-form-field>
-              <button mat-raised-button (click)="openSnackBar('Job Family updated')" type="submit">Apply</button>  
+              <br>
+              <button mat-raised-button (click)="openSnackBar('Job Family updated')" type="submit" [disabled]="!editForm.form.valid">Apply</button>  
               </fieldset> 
             </form> 
         </mat-expansion-panel>

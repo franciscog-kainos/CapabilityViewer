@@ -1,4 +1,4 @@
-import { LandingPage } from './landing-page.po';
+import { AdminPage } from './admin-page.po';
 import { browser, logging } from 'protractor';
 import { AdminPage } from './admin-page.po';
 
@@ -9,7 +9,13 @@ describe('Table Page', () => {
     page = new AdminPage();
   });
 
-//Testing the edit page
+
+  it('should expand the accordion when it is clicked', () => {
+    page.navigateTo();
+    let elem = page.getAddJobFamilyAccordion();
+    page.clickAddJobFamilyAccordion();
+
+ //Testing the edit page
   it('should expand the accordion when it is clicked', () => {
     page.navigateTo();
     let elem = page.getEditHeader();
@@ -19,9 +25,17 @@ describe('Table Page', () => {
     
 
   it('should add text to the input box', () => {
-    page.clickEditJobFamilyNameInput();
-    page.clickEditJobFamilyButton();
+    page.clickJobFamilyNameInput();
+    page.clickAddJobFamilyButton();
   });
+});
 
+
+afterEach(async () => {
+  // Assert that there are no errors emitted from the browser
+  const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+  expect(logs).not.toContain(jasmine.objectContaining({
+    level: logging.Level.SEVERE,
+  } as logging.Entry));
 
 });
