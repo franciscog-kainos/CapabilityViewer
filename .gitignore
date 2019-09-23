@@ -1,6 +1,6 @@
-capabilities-db/mysql.config
-capabilities-db/capabilitesDB-users.sql
-mysql.env
+backend-api/capabilities-db/mysql.config
+backend-api/capabilities-db/capabilitesDB-users.sql
+backend-api/mysql.env
 .DS_Store
 
 # Created by https://www.gitignore.io/api/node,macos,windows,angular,intellij,visualstudiocode

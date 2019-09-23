@@ -14,9 +14,7 @@ app.use(cors());
 function handleError(err, req, res) {
     if (err.errno === 3819) err.code = "ER_CHECK_CONSTRAINT_VIOLATED";
     console.error(`${err.errno} (${err.code}) : ${err.sqlMessage}`);
-    res.status(500).send({
-        message: 'Database error. ' + err.sqlMessage
-    });
+    res.sendStatus(500);
 }
 
 app.get('/', function (req, res) {
@@ -117,6 +115,45 @@ app.get('/user/:id', (req, res) => {
     });
 });
 
-app.listen(8002, function () {
+app.get('/deletableJobFamilies', (req,res) => {
+    db.getDeletableJobFamilies(function(err, rows) {
+        if (err) return handleError(err, req, res);
+        res.send(rows);
+    });
+});
+
+app.put('/families', (req,res) => {
+    db.editFamily(req.body, (err,row) => {
+        if(err) return handleError(err);
+        res.send(row[0]);
+    });
+});
+
+app.delete('/deleteJobFamily/:id', (req, res) => {
+    db.deleteJobFamily(req.params.id, (err, rows) =>{
+        if(err){
+            return handleError(err);
+        }
+        res.send(rows);
+    });
+});
+
+app.listen(8002, function() {
     console.log('Server listening on port 8002');
 });
+
+app.post('/families', (req, res) => {
+    db.insertFamily(req.body, (err) => {
+        if(err) return handleError(err);
+        res.send({message: "Added new family"});
+    });
+})
+
+
+// app.post('/families', function (req, res) {
+//     function insertFamily(){
+//       db.insertFamily(req.body, function (err) {
+//         if (err) return handleError(err, req, res);
+//         res.send({message: "Added new family", body: req.body.family_});
+//       });
+//     }

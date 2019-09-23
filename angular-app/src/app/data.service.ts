@@ -9,11 +9,11 @@ import {IJobFamily} from './ijob-family';
 import {ICapability} from './icapability';
 import {IRole} from './irole';
 import {IBand} from './iband';
-import {JobFamilyColumns} from "./job-family-columns";
-import {DataRow} from "./data-row";
+import {JobFamilyColumns} from './job-family-columns';
+import {DataRow} from './data-row';
 import {TrainingResource} from './TrainingResource';
-import {User} from "./user";
-import {placeholdersToParams} from "@angular/compiler/src/render3/view/i18n/util";
+import {User} from './user';
+import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 
 
 @Injectable({
@@ -33,7 +33,6 @@ export class DataService {
     updateNumber = 0;
 
     constructor(private http: HttpClient) {
-        this.getAllFromDatabase();
         this.mockUser = new User();
         this.mockUser.user_f_name = 'Test';
         this.mockUser.user_l_name = 'User';
@@ -50,7 +49,7 @@ export class DataService {
         JobFamilyColumns.populateChildren(this, () => console.log('Done'))
             .then(columns => {
                 this.headerData.next(columns.asColumnDef());
-                let capabilities: Capability[] = columns.families
+                const capabilities: Capability[] = columns.families
                     .reduce((a, b) => a.concat(b.capabilities), []);
                 this.numberOfBands = columns.bands.length;
                 console.log(capabilities);
@@ -59,7 +58,7 @@ export class DataService {
 
         this.headerData$.subscribe(header => {
             console.log(header);
-            headerUpdate(header)
+            headerUpdate(header);
         });
 
         this.rowData$.subscribe(update => {
@@ -72,16 +71,8 @@ export class DataService {
                 console.log(this.tableRowData);
             }
 
-        })
+        });
 
-    }
-
-    public getAllFromDatabase(): Observable<any[]> {
-        let jobFamilies = this.getAllJobFamilies();
-        let capabilities = this.getAllCapabilities();
-        let bands = this.getAllBands();
-        let roles = this.getAllRoles();
-        return forkJoin(jobFamilies, capabilities, bands, roles);
     }
 
     public getAllJobFamilies(): Observable<IJobFamily[]> {
@@ -101,9 +92,9 @@ export class DataService {
     }
 
     public getRolesInBand(bandId): Observable<IRole[]> {
-        let params = new HttpParams()
+        const params = new HttpParams()
             .set('id', bandId);
-        return this.http.get<IRole[]>('/api/rolesInBand/' + bandId, {params: params});
+        return this.http.get<IRole[]>('/api/rolesInBand/' + bandId, {params});
     }
 
     public getRole(id): Observable<IRole> {
@@ -111,9 +102,9 @@ export class DataService {
     }
 
     public getCapability(id): Observable<ICapability> {
-        let params = new HttpParams()
+        const params = new HttpParams()
             .set('capabilityId', id);
-        return this.http.get<ICapability>('/api/capabilities/' + id, {params: params});
+        return this.http.get<ICapability>('/api/capabilities/' + id, {params});
     }
 
     public getBand(bandId): Observable<IBand> {
@@ -121,20 +112,22 @@ export class DataService {
     }
 
     public getCapabilitiesInJobFamily(familyId): Observable<ICapability[]> {
-        let params = new HttpParams()
+        const params = new HttpParams()
             .set('familyId', familyId);
-        return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params: params});
+        return this.http.get<ICapability[]>('/api/capabilitiesByJobFamily/' + familyId, {params});
     }
 
     public getBandTraining(bandId): Observable<TrainingResource[]> {
-        return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training');
+        const params = new HttpParams()
+            .set('id', bandId);
+        return this.http.get<TrainingResource[]>('/api/bands/' + bandId + '/training', {params});
     }
 
     public getRolesInCapabilityInJobFamily(familyId, capabilityId): Observable<IRole[]> {
-        let params = new HttpParams()
+        const params = new HttpParams()
             .set('capabilityId', capabilityId)
             .set('familyId', familyId);
-        return this.http.get<IRole[]>('/api/rolesInCapabilityInJobFamily/' + familyId + '/' + capabilityId, {params: params});
+        return this.http.get<IRole[]>('/api/rolesInCapabilityInJobFamily/' + familyId + '/' + capabilityId, {params});
     }
 
     public getJobFamily(jobFamilyId: number): Observable<IJobFamily> {
@@ -146,8 +139,46 @@ export class DataService {
     }
 
     public getUser(id): Observable<IUser> {
-        let params = new HttpParams()
+        const params = new HttpParams()
             .set('id', id);
-        return this.http.get<IUser>('/api/user/'+id, {params: params});
+        return this.http.get<IUser>('/api/user/' + id, {params});
+    }
+
+    public addFamily(newFamily: IJobFamily): void {
+        console.log(newFamily);
+
+        this.http.post<IJobFamily>('api/families', newFamily).subscribe(res => {
+
+            if (res == null) {
+                console.log('Could not add family!');
+            } else {
+                console.log('Added new family!');
+                console.log(newFamily);
+            }
+        });
+    }
+
+    public updateFamily(newFamily: IJobFamily): void {
+        console.log(newFamily);
+
+        this.http.put<IJobFamily>('api/families', newFamily).subscribe(res => {
+
+            if (res == null) {
+                console.log('Family was not updated!');
+                console.log(newFamily);
+            } else {
+                console.log('Famlily was updated');
+                console.log(newFamily);
+
+            }
+        });
+    }
+
+    public getDeletableJobFamilies(): Observable<IJobFamily[]> {
+        return this.http.get<IJobFamily[]>('/api/deletableJobFamilies');
+    }
+
+    public deleteJobFamily(jobFamilyId): Observable<object> {
+        return this.http.delete('/api/deleteJobFamily/' + jobFamilyId);
     }
 }
