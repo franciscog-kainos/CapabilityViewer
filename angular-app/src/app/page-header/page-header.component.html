@@ -1,6 +1,6 @@
 <div>
 	<div id="kainos-logo">
-	    <img src="../assets/Kainos-logo-neg.png" alt="kainos logo">
+		<a routerLink="/landing-page"><img src="../assets/Kainos-logo-neg.png" alt="kainos logo" ></a>
 	</div>
 	<div *ngIf="this.router.url != '/landing-page'" id="back-button">
 		<button mat-flat-button (click)="goBack()">Go Back</button>
