@@ -1,0 +1,13 @@
+div {
+    background-color: #202D52;
+    margin-bottom: 30px;
+}
+img{
+    height: 80px;
+    padding: 10px;
+}
+#back-button {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}

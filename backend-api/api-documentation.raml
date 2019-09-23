@@ -1,0 +1,95 @@
+#%RAML 1.0
+---
+title: CapabilityViewer API
+baseUri: http://localhost:8002/
+version: v1
+
+/roles:
+    get: 
+        description: Returns generic information associated with all roles in the database
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                            {
+                                "role_id":1,
+                                "role_name":"Head Executive of Business Unit",
+                                "band_id":1,
+                                "capability_id":1
+                            }
+    /{role_id}:
+        get:
+            description: Returns responsibilities and competencies for a specific role
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: |
+                            {
+                                "role_name":"Head of Business Unit",
+                                "role_summary":"Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
+                                "role_training":"* [Coaching - 3. Advanced](https://kainossoftwareltd.sharepoint.com/people.old/L&amp;D/SitePages/Coaching%20-%20Advanced.aspx)","role_responsibilities":"* Deliver training as part of MAP\n* Encourage collaboration across BUs\n* Identify and actively develop talent at all levels within your area of responsibility"
+                            }
+
+/bands:
+    get: 
+        description: Returns generic information associated with all bands in the database
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                        {
+                            "job_family_id":1,
+                            "job_family_name":"Sales & Marketing"
+                        }
+    /{band_id}:
+        get:
+            description: Return responsibilities and competencies for a specific band
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: |
+                            {
+                                "band_name":"Executive",
+                                "band_competency":"Executive Competency",
+                                "band_responsibilities":"Executive Responsibilities"
+                            }
+
+/capabilities:
+    get:
+        description: Returns generic information associated with all capabilities in the database
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                        {
+                            "capability_id":1,
+                            "capability_name":"Business Development Director",
+                            "job_family_id":1
+                        }
+    /{capability_id}:
+        get:
+            description: Return capability lead and data for a specific capability
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example:
+
+/families:
+    get:
+        description: Returns generic information associated with all job families in the database
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                        {
+                            "band_name":"Executive",
+                            "band_competency":"Executive Competency",
+                            "band_responsibilities":"Executive Responsibilities"
+                        }
