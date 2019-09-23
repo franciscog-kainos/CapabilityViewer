@@ -3,8 +3,8 @@ import {DataService} from '../data.service';
 import {JobFamily} from '../JobFamily';
 import {FormControl, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
-import {ConfirmDeleteDialog} from '../confirm-delete-dialog/confirm-delete-dialog.component';
-import {FeedbackDialog} from '../feedback-dialog/feedback-dialog.component';
+import {ConfirmDeleteDialogComponent} from '../confirm-delete-dialog/confirm-delete-dialog.component';
+import {FeedbackDialogComponent} from '../feedback-dialog/feedback-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
 import {IJobFamily} from '../ijob-family';
 
@@ -21,7 +21,7 @@ export class AdminPageComponent implements OnInit {
     deletableJobFamilies: IJobFamily[] = [];
     jobFamily: JobFamily;
     selectedJobFamily: any;
-    confirmDeleteDialogRef: MatDialogRef<ConfirmDeleteDialog>;
+    confirmDeleteDialogRef: MatDialogRef<ConfirmDeleteDialogComponent>;
     feedbackMessage: string;
     newFamily: IJobFamily;
 
@@ -59,7 +59,7 @@ export class AdminPageComponent implements OnInit {
             selected: this.selectedJobFamily
         };
 
-        const confirmDeleteDialogRef = this.dialog.open(ConfirmDeleteDialog, dialogConfig);
+        const confirmDeleteDialogRef = this.dialog.open(ConfirmDeleteDialogComponent, dialogConfig);
         confirmDeleteDialogRef.afterClosed().subscribe(
             isDeleteConfirmed => {
                 if (isDeleteConfirmed) {
@@ -77,7 +77,7 @@ export class AdminPageComponent implements OnInit {
             result: result,
             type: operationType
         };
-        const feedbackDialogRef = this.dialog.open(FeedbackDialog, dialogConfig);
+        const feedbackDialogRef = this.dialog.open(FeedbackDialogComponent, dialogConfig);
     }
 
     private deleteJobFamily() {
